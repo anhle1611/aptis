@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APTIS Listening Practice</title>
+<meta name="description" content="Luyện tập APTIS Listening - 15 đề với đáp án và giải thích chi tiết">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/jszip/dist/jszip.min.js"></script>
+<script src="https://unpkg.com/docx-preview/dist/docx-preview.min.js"></script>
+<style>
+  :root {
+    --bg: #0f1117;
+    --bg2: #161b27;
+    --bg3: #1e2538;
+    --surface: #1e2538;
+    --surface2: #252d42;
+    --border: #2a3550;
+    --border2: #374165;
+    --accent: #6366f1;
+    --accent2: #818cf8;
+    --accent3: #c7d2fe;
+    --green: #22c55e;
+    --green-bg: rgba(34,197,94,0.12);
+    --green-border: rgba(34,197,94,0.35);
+    --red: #ef4444;
+    --red-bg: rgba(239,68,68,0.12);
+    --red-border: rgba(239,68,68,0.35);
+    --yellow: #f59e0b;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --text3: #64748b;
+    --radius: 14px;
+    --radius2: 9px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+  /* Background decorative gradient */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(99,102,241,0.06) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+  .header {
+    background: linear-gradient(180deg, #14192d 0%, #0f1117 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(20px);
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .header-logo { display: flex; align-items: center; gap: 10px; }
+  .logo-icon {
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 0 18px rgba(99,102,241,0.5);
+    flex-shrink: 0;
+  }
+  .logo-text h1 { font-size: 16px; font-weight: 700; }
+  .logo-text p { font-size: 11px; color: var(--text3); margin-top: 1px; }
+  .btn-home {
+    display: none;
+    align-items: center; gap: 6px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 7px 13px;
+    color: var(--text2); font-size: 12px; font-weight: 600;
+    cursor: pointer; font-family: inherit; transition: all 0.2s;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .btn-home:hover { border-color: var(--accent); color: var(--accent2); background: rgba(99,102,241,0.1); }
+  .header-right { display: flex; gap: 8px; align-items: center; }
+  .stat-chip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 11px;
+    font-size: 12px; color: var(--text2);
+    display: flex; align-items: center; gap: 5px;
+  }
+  .stat-chip .val { font-weight: 600; color: var(--accent2); }
+  .container { max-width: 880px; margin: 0 auto; padding: 28px 16px 80px; position: relative; z-index: 1; }
+
+  /* Setup */
+  .setup-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+  }
+  .section-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1.5px; color: var(--text3); margin-bottom: 16px;
+  }
+  .mode-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 8px; }
+  .mode-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius2);
+    padding: 14px 6px 12px;
+    color: var(--text2);
+    font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: all 0.22s ease;
+    text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px;
+    font-family: inherit; min-width: 0;
+  }
+  .mode-btn:hover { border-color: var(--accent); color: var(--text); background: var(--surface2); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+  .mode-btn.active {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(139,92,246,0.08));
+    color: var(--accent3);
+    box-shadow: 0 0 20px rgba(99,102,241,0.25);
+  }
+  .mode-icon { font-size: 24px; }
+  .mode-label { font-size: 13px; font-weight: 600; }
+  .mode-chip {
+    font-size: 10px; background: var(--surface2); padding: 2px 8px;
+    border-radius: 10px; color: var(--text3);
+  }
+  .mode-btn.active .mode-chip { background: rgba(99,102,241,0.25); color: var(--accent2); }
+  .start-row { display: flex; gap: 10px; align-items: center; margin-top: 18px; flex-wrap: wrap; }
+  .btn-primary {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border: none; border-radius: var(--radius2);
+    padding: 14px 28px; color: white;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    font-family: inherit; transition: all 0.22s ease;
+    display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 4px 20px rgba(99,102,241,0.35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(99,102,241,0.5); }
+  .btn-secondary {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius2); padding: 14px 20px;
+    color: var(--text2); font-size: 14px; font-weight: 500;
+    cursor: pointer; font-family: inherit; transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--border2); color: var(--text); background: var(--surface2); }
+  .info-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+  .info-tile {
+    padding: 12px 14px;
+    background: var(--surface);
+    border-radius: var(--radius2);
+    border: 1px solid var(--border);
+  }
+  .info-tile h4 { font-size: 12px; font-weight: 600; color: var(--accent2); margin-bottom: 4px; }
+  .info-tile p { font-size: 11px; color: var(--text2); line-height: 1.5; }
+
+  /* Progress */
+  .progress-wrap { background: var(--surface); border-radius: 4px; height: 4px; flex: 1; overflow: hidden; min-width: 80px; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg,#6366f1,#8b5cf6); border-radius: 4px; transition: width 0.4s ease; }
+
+  /* Quiz */
+  #quiz-area { display: none; }
+  .quiz-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .quiz-title { font-size: 18px; font-weight: 700; flex: 1; min-width: 0; }
+  .quiz-badge {
+    background: linear-gradient(135deg, rgba(99,102,241,0.25), rgba(139,92,246,0.15));
+    border: 1px solid rgba(99,102,241,0.3); border-radius: 20px;
+    padding: 4px 12px; font-size: 11px; font-weight: 600; color: var(--accent2);
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .quiz-progress-row {
+    width: 100%; display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: var(--radius2);
+    margin-bottom: 16px;
+  }
+
+  /* Part sections */
+  .part-section { margin-bottom: 36px; }
+  .part-header {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 18px; padding: 16px 20px;
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); border-left: 3px solid var(--accent);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+  .part-num {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px; flex-shrink: 0;
+    box-shadow: 0 0 14px rgba(99,102,241,0.4);
+  }
+  .part-info h3 { font-size: 14px; font-weight: 600; }
+  .part-info p { font-size: 12px; color: var(--text2); margin-top: 2px; }
+
+  /* Question cards */
+  .question-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 22px;
+    margin-bottom: 14px; transition: border-color 0.2s;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+  }
+  .question-card:hover { border-color: var(--border2); }
+  .question-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+  .q-num-badge {
+    background: var(--surface2); border: 1px solid var(--border2);
+    border-radius: 6px; padding: 3px 10px;
+    font-size: 11px; font-weight: 700; color: var(--accent2); white-space: nowrap;
+  }
+  .test-badge {
+    font-size: 10px; color: var(--text3);
+    background: var(--surface); padding: 2px 7px; border-radius: 4px;
+  }
+  .preview-btn {
+    font-size: 11px; font-weight: 600; color: #fff; background: var(--accent);
+    border: none; border-radius: 4px; padding: 4px 8px; cursor: pointer;
+    margin-left: auto; transition: background 0.2s; display: flex; align-items: center; gap: 4px;
+  }
+  .preview-btn:hover { background: var(--accent2); }
+  .question-text {
+    font-size: 14px; font-weight: 500; color: var(--text);
+    margin-bottom: 16px; line-height: 1.75;
+  }
+  .options-list { display: flex; flex-direction: column; gap: 9px; }
+  .option-btn {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius2); padding: 12px 16px;
+    color: var(--text); font-size: 13px; font-weight: 400;
+    cursor: pointer; text-align: left; font-family: inherit;
+    transition: all 0.2s ease; display: flex; align-items: center; gap: 12px;
+  }
+  .option-btn:hover:not(.answered) { border-color: var(--accent); background: rgba(99,102,241,0.1); transform: translateX(3px); }
+  .opt-letter {
+    width: 28px; height: 28px; border-radius: 7px;
+    background: var(--bg); border: 1px solid var(--border2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; flex-shrink: 0;
+    color: var(--text2); transition: all 0.2s;
+  }
+  .opt-text { flex: 1; }
+  .opt-icon { margin-left: auto; font-size: 16px; flex-shrink: 0; }
+  .option-btn.correct { background: var(--green-bg) !important; border-color: var(--green-border) !important; color: var(--green) !important; }
+  .option-btn.correct .opt-letter { background: var(--green); color: white; border-color: var(--green); }
+  .option-btn.wrong { background: var(--red-bg) !important; border-color: var(--red-border) !important; color: var(--red) !important; }
+  .option-btn.wrong .opt-letter { background: var(--red); color: white; border-color: var(--red); }
+  .option-btn.show-correct { background: rgba(34,197,94,0.07) !important; border-color: rgba(34,197,94,0.22) !important; color: #4ade80 !important; }
+  .option-btn.show-correct .opt-letter { background: rgba(34,197,94,0.25); border-color: rgba(34,197,94,0.45); color: var(--green); }
+  .option-btn.answered { cursor: default; pointer-events: none; }
+  .ans-hint {
+    font-size: 12px; color: var(--green); margin-top: 10px;
+    padding: 8px 12px; background: var(--green-bg);
+    border-radius: 6px; border: 1px solid var(--green-border); display: none;
+  }
+
+  /* Part 2 */
+  .speakers-grid { display: flex; flex-direction: column; gap: 10px; }
+  .speaker-row {
+    display: flex; align-items: center; gap: 10px; padding: 12px 14px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius2); transition: all 0.2s; flex-wrap: wrap;
+  }
+  .spk-label { font-size: 13px; font-weight: 600; color: var(--text); min-width: 0; flex: 0 0 100%; }
+  .spk-bottom-row { display: flex; align-items: center; gap: 8px; width: 100%; }
+  .spk-select {
+    flex: 1; background: var(--bg); border: 1px solid var(--border2);
+    border-radius: var(--radius2); padding: 9px 36px 9px 12px;
+    color: var(--text); font-family: inherit; font-size: 13px;
+    cursor: pointer; appearance: none; min-width: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' viewBox='0 0 12 8'%3E%3Cpath stroke='%2364748b' stroke-width='1.5' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 12px center;
+    transition: all 0.2s;
+  }
+  .spk-select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(99,102,241,0.2); }
+  .spk-select option { background: #1e2538; }
+  .speaker-row.correct { border-color: var(--green-border); background: var(--green-bg); }
+  .speaker-row.wrong { border-color: var(--red-border); background: var(--red-bg); }
+  .spk-check-btn {
+    background: var(--accent); border: none; border-radius: 7px;
+    padding: 9px 14px; color: white; font-family: inherit;
+    font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; white-space: nowrap; flex-shrink: 0;
+  }
+  .spk-check-btn:hover:not(:disabled) { background: var(--accent2); }
+  .spk-check-btn:disabled { opacity: 0.45; cursor: default; }
+  .spk-icon { font-size: 18px; flex-shrink: 0; min-width: 22px; text-align: center; }
+
+  /* Part 3 */
+  .statements-list { display: flex; flex-direction: column; gap: 12px; }
+  .statement-row {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius2); padding: 16px; transition: all 0.2s;
+  }
+  .stmt-text { font-size: 14px; color: var(--text); margin-bottom: 12px; font-weight: 500; line-height: 1.6; }
+  .mwb-options { display: flex; gap: 8px; }
+  .mwb-btn {
+    flex: 1; background: var(--bg); border: 1px solid var(--border2);
+    border-radius: var(--radius2); padding: 10px 6px;
+    color: var(--text2); font-family: inherit; font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: all 0.2s ease; text-align: center;
+    display: flex; align-items: center; justify-content: center; gap: 5px;
+  }
+  .mwb-btn:hover:not(.answered) { border-color: var(--accent); color: var(--text); background: rgba(99,102,241,0.1); }
+  .mwb-btn.correct { background: var(--green-bg) !important; border-color: var(--green-border) !important; color: var(--green) !important; font-weight: 600; }
+  .mwb-btn.wrong { background: var(--red-bg) !important; border-color: var(--red-border) !important; color: var(--red) !important; }
+  .mwb-btn.show-correct { background: rgba(34,197,94,0.07) !important; border-color: rgba(34,197,94,0.22) !important; color: #4ade80 !important; opacity: 0.8; }
+  .mwb-btn.answered { cursor: default; }
+
+  /* Part 4 */
+  .pair-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+    margin-bottom: 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+  }
+  .pair-head {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 14px 18px; display: flex; align-items: flex-start; gap: 10px;
+  }
+  .pair-ctx { font-size: 13px; color: var(--text2); flex: 1; line-height: 1.5; }
+  .pair-body { padding: 18px; display: flex; flex-direction: column; gap: 22px; }
+  .sub-q-text {
+    font-size: 14px; font-weight: 600; color: var(--text);
+    margin-bottom: 12px; padding-left: 12px;
+    border-left: 2px solid var(--accent); line-height: 1.6;
+  }
+
+  /* Score */
+  .score-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 36px 28px;
+    margin-top: 24px; text-align: center; display: none; box-shadow: var(--shadow);
+  }
+  .score-circle-wrap { position: relative; width: 120px; height: 120px; margin: 0 auto 20px; }
+  .score-circle-svg { transform: rotate(-90deg); }
+  .score-track { fill: none; stroke: var(--surface2); stroke-width: 10; }
+  .score-arc { fill: none; stroke: url(#scoreGrad); stroke-width: 10; stroke-linecap: round; transition: stroke-dashoffset 1s ease; }
+  .score-center {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .score-pct { font-size: 26px; font-weight: 800; line-height: 1; }
+  .score-frac { font-size: 11px; color: var(--text3); margin-top: 3px; }
+  .score-label { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .score-sub { font-size: 13px; color: var(--text2); margin-bottom: 24px; }
+  .score-details { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; }
+  .score-d { text-align: center; }
+  .score-d-num { font-size: 28px; font-weight: 800; line-height: 1; }
+  .score-d-lbl { font-size: 11px; color: var(--text3); margin-top: 4px; }
+  .green { color: var(--green); }
+  .red { color: var(--red); }
+  .dim { color: var(--text2); }
+  .actions-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+  /* Fixed bottom bar on mobile during quiz */
+  .quiz-bottom-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(0deg, var(--bg) 60%, transparent);
+    padding: 12px 16px 16px;
+    display: none;
+    gap: 10px;
+    z-index: 50;
+  }
+
+  /* Test separator in full mode */
+  .test-sep {
+    font-size: 11px; font-weight: 700; color: var(--text3);
+    text-transform: uppercase; letter-spacing: 1px;
+    padding: 14px 0 10px;
+    border-top: 1px solid var(--border); margin-top: 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .test-sep:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+
+  /* Animations */
+  @keyframes slideIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+  .animate-in { animation: slideIn 0.3s ease; }
+  @keyframes pulse-green { 0%{box-shadow:0 0 0 0 rgba(34,197,94,0.5);} 70%{box-shadow:0 0 0 10px rgba(34,197,94,0);} 100%{box-shadow:0 0 0 0 rgba(34,197,94,0);} }
+  @keyframes pulse-red { 0%{box-shadow:0 0 0 0 rgba(239,68,68,0.5);} 70%{box-shadow:0 0 0 10px rgba(239,68,68,0);} 100%{box-shadow:0 0 0 0 rgba(239,68,68,0);} }
+  .pulse-green { animation: pulse-green 0.5s ease; }
+  .pulse-red { animation: pulse-red 0.5s ease; }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+  @media(max-width:640px) {
+    .header { padding: 11px 14px; }
+    .logo-text p { display: none; }
+    .container { padding: 16px 12px 90px; }
+    .setup-card { padding: 18px 14px; }
+    .mode-grid { grid-template-columns: repeat(3,1fr); gap: 7px; }
+    .mode-icon { font-size: 20px; }
+    .mode-label { font-size: 12px; }
+    .mode-chip { font-size: 9px; padding: 1px 6px; }
+    .mode-btn { padding: 12px 4px 10px; }
+    .info-grid { grid-template-columns: 1fr; }
+    .start-row { flex-direction: column; align-items: stretch; }
+    .btn-primary { justify-content: center; }
+    .score-details { gap: 16px; }
+    /* Quiz header on mobile */
+    .quiz-title { font-size: 16px; }
+    .question-card { padding: 16px 14px; }
+    .question-text { font-size: 13px; }
+    .option-btn { padding: 11px 12px; font-size: 13px; }
+    .opt-letter { width: 24px; height: 24px; font-size: 11px; }
+    .pair-head { padding: 12px 14px; }
+    .pair-body { padding: 14px; gap: 18px; }
+    .sub-q-text { font-size: 13px; }
+    .part-header { padding: 12px 14px; }
+    .part-num { width: 30px; height: 30px; font-size: 13px; }
+    /* Speaker rows on mobile */
+    .speaker-row { padding: 12px; }
+    /* MWB on mobile */
+    .mwb-btn { padding: 11px 4px; font-size: 12px; }
+    /* Fixed bottom bar on mobile */
+    .quiz-bottom-bar { display: flex; }
+    .quiz-bottom-bar .btn-primary,
+    .quiz-bottom-bar .btn-secondary { flex: 1; justify-content: center; font-size: 13px; padding: 13px 10px; }
+    /* Hide desktop actions row on mobile */
+    #desktop-actions { display: none; }
+    .score-card { padding: 24px 16px; }
+    .score-d-num { font-size: 22px; }
+    .actions-row.score-actions { justify-content: center; }
+    .actions-row.score-actions .btn-primary,
+    .actions-row.score-actions .btn-secondary { flex: 1; justify-content: center; }
+  }
+  @media(min-width:641px) {
+    .quiz-bottom-bar { display: none !important; }
+    .spk-label { flex: 0 0 auto; min-width: 150px; }
+    .spk-bottom-row { flex: 1; }
+    .speaker-row { flex-wrap: nowrap; align-items: center; }
+  }
+</style>
+</head>
+<body>
+<nav style="background:var(--bg2); padding: 12px 24px; display:flex; gap:24px; border-bottom:1px solid var(--border); box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+  <a href="index.html" style="color:var(--accent); font-weight:700; font-size:15px; text-decoration:none; display:flex; align-items:center; gap:6px; border-bottom: 2px solid var(--accent); padding-bottom: 4px;">🎧 Listening</a>
+  <a href="reading.html" style="color:var(--text2); font-weight:500; font-size:15px; text-decoration:none; display:flex; align-items:center; gap:6px; padding-bottom: 4px;">📖 Reading</a>
+</nav>
+<header class="header">
+  <div class="header-left">
+    <div class="header-logo">
+      <div class="logo-icon">🎧</div>
+      <div class="logo-text">
+        <h1>APTIS Listening</h1>
+        <p>Practice &amp; Review</p>
+      </div>
+    </div>
+    <button class="btn-home" id="home-btn" onclick="backToSetup()">← Home</button>
+  </div>
+  <div class="header-right">
+    <div class="stat-chip">📚 <span class="val">15</span> Đề</div>
+    <div class="stat-chip" id="score-chip" style="display:none">✅ <span class="val" id="live-score">0</span> / <span class="val" id="live-total">0</span></div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Setup -->
+  <div id="setup-area">
+    <div class="setup-card animate-in">
+      <div class="section-label">🎯 Chọn Phần Muốn Luyện</div>
+      <div class="mode-grid">
+        <button class="mode-btn active" id="btn-mix" onclick="selectMode('mix')">
+          <span class="mode-icon">🔀</span>
+          <span class="mode-label">Mix Đề</span>
+          <span class="mode-chip">Random</span>
+        </button>
+        <button class="mode-btn" id="btn-part1" onclick="selectMode('part1')">
+          <span class="mode-icon">🎯</span>
+          <span class="mode-label">Phần 1</span>
+          <span class="mode-chip">Q1–13</span>
+        </button>
+        <button class="mode-btn" id="btn-part2" onclick="selectMode('part2')">
+          <span class="mode-icon">🎤</span>
+          <span class="mode-label">Phần 2</span>
+          <span class="mode-chip">Q14</span>
+        </button>
+        <button class="mode-btn" id="btn-part3" onclick="selectMode('part3')">
+          <span class="mode-icon">💬</span>
+          <span class="mode-label">Phần 3</span>
+          <span class="mode-chip">Q15</span>
+        </button>
+        <button class="mode-btn" id="btn-part4" onclick="selectMode('part4')">
+          <span class="mode-icon">📝</span>
+          <span class="mode-label">Phần 4</span>
+          <span class="mode-chip">Q16–17</span>
+        </button>
+      </div>
+      <div class="start-row">
+        <button class="btn-primary" id="start-btn" onclick="startQuiz()">▶ Bắt Đầu</button>
+        <div style="font-size:12px;color:var(--text3);flex:1" id="setup-hint">Mix: 13 câu MCQ random + Q14 random + Q15 random + cặp Q16/17 random</div>
+      </div>
+    </div>
+
+    <div class="setup-card animate-in" style="margin-top: 24px;">
+      <div class="section-label">📝 Luyện Cố Định Theo Đề (Full 4 Phần)</div>
+      <div class="mode-grid" id="test-grid" style="grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 10px;">
+        <!-- JS will populate buttons here -->
+      </div>
+    </div>
+
+    <div class="setup-card animate-in">
+      <div class="section-label">📖 Hướng Dẫn</div>
+      <div class="info-grid">
+        <div class="info-tile">
+          <h4>🎯 Phần 1 — Q1 đến Q13</h4>
+          <p>Multiple choice: Nghe và chọn 1 trong 3 đáp án A/B/C. Chọn xong sẽ highlight xanh (đúng) hoặc đỏ (sai).</p>
+        </div>
+        <div class="info-tile">
+          <h4>🎤 Phần 2 — Q14</h4>
+          <p>Dropdown: Nghe 4 người nói rồi chọn đúng nội dung của từng Speaker A/B/C/D từ danh sách.</p>
+        </div>
+        <div class="info-tile">
+          <h4>💬 Phần 3 — Q15</h4>
+          <p>Nghe cuộc trò chuyện giữa Man và Woman. Xác định mỗi ý kiến là của Man, Woman, hoặc Both.</p>
+        </div>
+        <div class="info-tile">
+          <h4>📝 Phần 4 — Q16 & Q17</h4>
+          <p>Cặp câu MCQ: Q16 và Q17 hiển thị cùng nhau vì liên quan đến 1 đoạn nghe. Mỗi câu có 3 đáp án.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz -->
+  <div id="quiz-area">
+    <div class="quiz-header">
+      <div class="quiz-title" id="quiz-title">Luyện Tập</div>
+      <div class="quiz-badge" id="quiz-badge">Mix</div>
+    </div>
+    <!-- Progress bar row -->
+    <div class="quiz-progress-row">
+      <div class="progress-wrap" style="flex:1">
+        <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+      </div>
+      <div style="font-size:12px;color:var(--text3);white-space:nowrap;" id="prog-text">0 / 0</div>
+      <div style="font-size:12px;color:var(--green);font-weight:600;white-space:nowrap;">✓ <span id="prog-correct">0</span></div>
+    </div>
+
+    <div id="q-container"></div>
+
+    <!-- Desktop action buttons -->
+    <div class="actions-row" id="desktop-actions">
+      <button class="btn-primary" id="submit-btn" onclick="submitAll()">✅ Kiểm Tra Tất Cả</button>
+      <button class="btn-secondary" onclick="backToSetup()">← Quay Lại</button>
+    </div>
+
+    <!-- Score card -->
+    <div class="score-card" id="score-card">
+      <svg width="0" height="0">
+        <defs>
+          <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#6366f1"/>
+            <stop offset="100%" stop-color="#8b5cf6"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="score-circle-wrap">
+        <svg class="score-circle-svg" width="120" height="120" viewBox="0 0 120 120">
+          <circle class="score-track" cx="60" cy="60" r="50"/>
+          <circle class="score-arc" id="score-arc" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="314"/>
+        </svg>
+        <div class="score-center">
+          <div class="score-pct" id="s-pct">0%</div>
+          <div class="score-frac" id="s-frac">0/0</div>
+        </div>
+      </div>
+      <div class="score-label" id="s-label">Kết Quả</div>
+      <div class="score-sub" id="s-sub">Xem đáp án đúng được highlight bên trên</div>
+      <div class="score-details">
+        <div class="score-d"><div class="score-d-num green" id="s-correct">0</div><div class="score-d-lbl">Đúng ✓</div></div>
+        <div class="score-d"><div class="score-d-num red" id="s-wrong">0</div><div class="score-d-lbl">Sai ✗</div></div>
+        <div class="score-d"><div class="score-d-num dim" id="s-total">0</div><div class="score-d-lbl">Tổng</div></div>
+      </div>
+      <div class="actions-row score-actions" style="justify-content:center;margin-top:24px;">
+        <button class="btn-primary" onclick="startQuiz()">🔄 Làm Lại (Mới)</button>
+        <button class="btn-secondary" onclick="backToSetup()">← Chọn Phần Khác</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile fixed bottom bar (shown only during quiz on mobile) -->
+  <div class="quiz-bottom-bar" id="mobile-bar">
+    <button class="btn-secondary" onclick="backToSetup()">🏠 Home</button>
+    <button class="btn-primary" id="submit-btn-mobile" onclick="submitAll()">✅ Kiểm Tra</button>
+  </div>
+
+</div>
+
+<script>
+const ALL_TESTS = [{"test_name": "LISTENING - TEST 1 - APTIS SV", "part1": [{"qnum": 1, "question": "A person calls a friend about his new car. How much does the small car cost him?", "options": ["3250 pounds", "3550 pounds", "4250 pounds"], "answer": "3250 pounds", "explain": "Hey, I just wanted to tell you about my new car! It's a small one, perfect for my needs. I got it for a great price -only 3,250 pounds! Can you believe it? I was looking at bigger models too, but they were way more expensive, around 3,550 pounds or even 4,250 pounds. I'm really happy with my choice!."}, {"qnum": 2, "question": "Two people are talking about meeting for dinner. What time does Ahmed meet Rose?", "options": ["half past seven", "quarter past seven", "quarter to eight"], "answer": "quarter to eight", "explain": "Hi Rose. It's Ahmed, what time should we meet for dinner tonight? How about we meet at quarter past seven Instead? Oh wait, I just remembered - I have a meeting ending at a half past seven. Let's make it quarter to eight instead so we could have 15 minutes to travel. Does that work for you?"}, {"qnum": 3, "question": "A man calls the teleshop. What is the teleshop number?", "options": ["102030", "201030", "301020"], "answer": "201030", "explain": "Hello, I need to call the teleshop for some information. My phone is not working. Can you remind me of the number? I think it starts with 20 or 10 or 30 something. Is it 102030 or 301020? No, wait! I remember now it's 201030! I really need to order that new gadget. Thanks for your help!."}, {"qnum": 4, "question": "A man is talking to a shopping assistant. What color top is he going to buy?", "options": ["Green", "Blue", "Black"], "answer": "Black", "explain": "Man: Hello, I would like to buy a top, please. Woman: Sure, do you have anything particular in mind? Man: I like the design of that green one over there. Do you have it in blue? Woman: Maybe. What size are you? Man: I am wearing large. Woman: Let me see. Ohh. We have that one in blue but small. The red and black ones, however, are available in large. Man: Red is not my cup of tea. Well, I will go with the other option then."}, {"qnum": 5, "question": "Anna is calling her brother Max. What does Anna do later in the afternoon?", "options": ["Stay late at the office", "Pick up her kids", "Hang out with friends"], "answer": "Stay late at the office", "explain": "Anna: Hey Max, it's Anna. I want to ask you for a favor this afternoon. I have to stay late at the office to finish some work. Could you please pick up my kids from school? After that, I know you'll want to hang out with your friends, so feel free to take them along. I really appreciate your help!"}, {"qnum": 6, "question": "Vincent is calling James. Why does Vincent call James?", "options": ["To say hello", "To suggest a drink", "To arrange meeting"], "answer": "To suggest a drink", "explain": "Hi James, it's Vincent. I just want to check in and see how you're doing. It's been a while since we last caught up! How about we grab a drink later? I know a great new place that has very nice tea. You should definitely try it next time you visit me. Text me back!"}, {"qnum": 7, "question": "A man is talking about his trip. What did he enjoy last year?", "options": ["Go for a walk", "Go picnic", "Go cycling"], "answer": "Go cycling", "explain": "Man: Last year, I had an amazing trip! One of the best things I enjoyed was going cycling in the countryside. The views were stunning, and it felt great to be outdoors. I also went for a walk a few times, but cycling really allowed me to explore more areas. We even had a picnic one day, which was lovely too!"}, {"qnum": 8, "question": "A woman is talking about her job. What encouraged her to become a scientist?", "options": ["Her mother", "A large stone", "The computer"], "answer": "A large stone", "explain": "Woman: I've always loved science, but there was a moment that really encouraged me to become a scientist. I remember when I was a child, I found a large stone during a school trip. It sparked my curiosity about geology. My mother also inspired me to explore my interests in science. Of course, I use the computer a lot now for my research, but that stone was the beginning."}, {"qnum": 9, "question": "A man is talking about the city concert. How will the concert end?", "options": ["The city's favorite group", "Fireworks performance", "Singing from orchestra"], "answer": "The city's favorite group", "explain": "Man: I can't wait for the concert this weekend! It's going to be such an exciting event. The highlight ending will be the city's favorite group performing on stage. I've heard they have some amazing songs planned. There will also be a fireworks performance to celebrate before that, and I'm sure the orchestra will do some singing as well. It's going to be a night to remember!"}, {"qnum": 10, "question": "A man is talking about his family trip. What does the man's wife enjoy?", "options": ["walking", "shopping", "photography"], "answer": "photography", "explain": "Man: On our family trip last summer, we had such a great time! My wife really enjoys photography. So, when we went walking together in the parks, she spent a lot of time taking pictures of the beautiful landscapes. Well, at least she is not crazy about shopping."}, {"qnum": 11, "question": "Jana is talking to her friend. What does Jana's sister look like?", "options": ["Curly hair", "Short", "Thin"], "answer": "Short", "explain": "Jana: Hey, could you do me a favor? My sister is waiting outside, and I need you to give her my book. She's the one who is short and has straight hair, so you can't miss her. I also think she's wearing a blue jacket today. If you see her, just hand it to her, and I'll be so grateful. Thanks for helping me out!\""}, {"qnum": 12, "question": "A man is calling his sister. Where are they going to meet?", "options": ["At the university", "At the station", "At the park"], "answer": "At the park", "explain": "Man: Hi, it's me! I wanted to confirm where we're meeting today. I thought we agreed to meet at the park, right? It's a nice place to relax and catch up. The station would be too crowded, and the university is a bit far for me. Let's stick to the park so we can enjoy the weather. What time should I meet you there?"}, {"qnum": 13, "question": "A woman is talking about her vacation. What is the relationship between the speaker and Lisa?", "options": ["Best friends", "Mother and daughter", "Teacher and student"], "answer": "Best friends", "explain": "Woman: I just got back from an amazing vacation with Lisa. We've been friends for years, and this trip really brought us closer. I can't imagine going with anyone else. Some people think we look like mother and daughter because we care for each other so much, but it's really just best friends hanging out!"}], "part2": {"qnum": 14, "context": "Four people are talking about their exercise preferences. Complete the sentence below. ", "speakers": [{"speaker": "Speaker A enjoys", "answer": "Mountain biking"}, {"speaker": "Speaker B enjoys", "answer": "Going for a run"}, {"speaker": "Speaker C enjoys", "answer": "Walking"}, {"speaker": "Speaker D enjoys", "answer": "Horse riding"}], "all_options": ["Mountain biking", "Going for a run", "Walking", "Horse riding"]}, "part3": {"qnum": 15, "context": "Listen to two people discussing the Internet. Read the opinions below and decide whose opinion matches the statements, the man, the woman, or both the man and the woman. You can listen to the discussion twice. ", "statements": [{"statement": "There is too much information on the Internet", "answer": "Woman"}, {"statement": "Finding information on the Internet requires skills", "answer": "Both"}, {"statement": "The use of internet affects the way we think", "answer": "Man"}, {"statement": "The internet makes young people less patient", "answer": "Both"}]}, "part4": [{"qnum": 16, "context": "Listen to an announcer talking about a newly released novel and answer the questions below.", "sub_questions": [{"question": "What does the announcer say about the new novel?", "options": ["It is different from his earlier works", "It is romantic and soft", "It is less famous than his earlier works"], "answer": "It is different from his earlier works"}, {"question": "What does the announcer say the writer should do in the future?", "options": ["The writer should continue to write this genre", "The writer should go back to his original genre", "He should listen to critics before writing his next work"], "answer": "He should listen to critics before writing his next work"}]}, {"qnum": 17, "context": "Listen to an expert talking about professionalism and answer the questions below.", "sub_questions": [{"question": "What does the expert say what being professional is all about?", "options": ["To maintain positive attitude", "To create good working environment", "To make good impressions"], "answer": "To maintain positive attitude"}, {"question": "What does the expert say about the definition of professionalism?", "options": ["It is the same of 40 years ago", "Our definition of it is changing", "It will not change anymore"], "answer": "Our definition of it is changing"}]}]}, {"test_name": "LISTENING - TEST 10 - APTIS SV", "part1": [{"qnum": 1, "question": "Listen to the speaker talking on the radio. What is she talking about?", "options": ["Her favorite hobby", "Her journey to work", "Her weekend plans"], "answer": "Her journey to work", "explain": "Every morning, I take the same route to work. I live outside the city, so I need to take a bus first. After that, I get on the train, which is usually pretty crowded. It's a long ride, but I enjoy listening to music while traveling. When I finally reach the station, I walk for about ten minutes. It might sound tiring, but I like this routine because it gives me time to think."}, {"qnum": 2, "question": "Listen to the conversation about the directions. Where is the library located?", "options": ["On the left of the square", "In front of the square", "Behind the square"], "answer": "On the left of the square", "explain": "If you're standing in the square, the library is easy to find. You'll see it on the left side, just past the bakery. It's a big building, so you can't miss it. Some people think it's in front of the square, but it's not. There's a small park in front, though. So, when you get to the square, just look to your left"}, {"qnum": 3, "question": "Listen to the woman talking about her holiday plans. Where is she going next?", "options": ["The east", "The north", "The south"], "answer": "The south", "explain": "I can't wait for my next holiday! This time, I'm heading to the south, where the mountains are. I've never been there before, but I've heard it's beautiful. I'm looking forward to hiking and seeing the snow-covered peaks. It's going to be a nice change from the city. Hopefully, the weather will be perfect!"}, {"qnum": 4, "question": "Listen to a writer talking about her job. What is her first job?", "options": ["Teacher", "Doctor", "Engineer"], "answer": "Teacher", "explain": "When I was younger, I didn't always dream of being a writer. My first job was actually as a teacher. I taught English to small children, and I loved helping them learn to read and write. It wasn't easy, though. I spent a lot of time grading papers and preparing lessons. But that job taught me how to use words well, and now I write stories for everyone to enjoy."}, {"qnum": 5, "question": "Listen to the conversation. Who is she taking a photo of?", "options": ["The boys' and the girls' team", "The girls' team", "Sue and Lily"], "answer": "The girls' team", "explain": "I'm just about to take a photo of the girls' team now. They're all lined up and ready, smiling for the camera. I've already taken pictures of the boys earlier, so it's their turn. The coaches will have their photo taken after this. The girls are excited because this picture will be in the school magazine. Alright, everyone, say \"cheese\"!"}, {"qnum": 6, "question": "Listen to the speaker talking about their weekly schedule. When is the meeting scheduled?", "options": ["Monday morning", "Friday evening", "Wednesday afternoon"], "answer": "Wednesday afternoon", "explain": "This week is pretty busy, but the most important thing is the meeting on Wednesday afternoon. We usually have it on Monday, but this time we had to change the day. Wednesday works better because everyone is free. I have a lot to prepare before then, so I'll spend Tuesday getting everything ready. It's a big meeting, and we need to finalize some plans. I'm just glad it's not on Friday, or I'd be too tired!"}, {"qnum": 7, "question": "Listening to a man talking about his business trip. What does he like in Dubai?", "options": ["He enjoy the food there", "He enjoys his job there", "He enjoys the people there"], "answer": "He enjoys his job there", "explain": "I've been living in Dubai for about two years now, and I really enjoy my work here. It's challenging, but that's what makes it exciting. The company I work for is great, and I get to meet people from all over the world. The food is also amazing, but the work itself is what keeps me happy. I can see myself staying here for a long time because I feel lucky to do what I love."}, {"qnum": 8, "question": "Aman is ordering a drink. What does he want?", "options": ["Beer", "Water", "Iced tea"], "answer": "Iced tea", "explain": ""}, {"qnum": 9, "question": "Stephanie is looking for a job taking care of children. How old is she?", "options": ["21", "20", "22"], "answer": "21", "explain": "Hi, I am Stephanie. I am interested in applying for a job taking care of children. I have three years of experience working with children of different ages, and I am confident in my ability to create a safe and engaging environment for them. I am fluent in both English and French, which allows me to communicate easily with families who speak either language. This year, I am 21 years old, and I am enthusiastic about bringing my skills and energy to a new position."}, {"qnum": 10, "question": "Listen to a woman giving advice on saving money. What advice does she give to save money?", "options": ["Buy in bulk", "Use the public transport", "Put money into the bank"], "answer": "Use the public transport", "explain": "You want to save some money, right? Well, there are a few things you can do. One idea is to buy in bulk, so you pay less for each item. But, the best tip I have is to use public transport instead of driving. It really helps to cut down on gas and parking costs. You could also put some money into the bank to save for later, but start with public transport-it's a big help!"}, {"qnum": 11, "question": "Listen to a teacher talking about meeting preparations. What is the teacher preparing for the meeting now?", "options": ["Set up the chairs", "Organize the documents", "Order the food"], "answer": "Order the food", "explain": "We have a big meeting coming up next week. There are a few things I still need to do to get ready, for example, I need to set up the chairs for everyone. Then, of course, I have to order the food so we can eat during the break. I'll also organize the documents that we'll need for the discussion. But, food is the priority right now."}, {"qnum": 12, "question": "Listen to an actor discussing his hobbies. What does the actor like to do in his free time?", "options": ["Drawing", "Watching movies", "Playing sports"], "answer": "Drawing", "explain": "I don't have much free time with my acting schedule, but when I do, I like to relax. Many people think I spend my free time watching movies, but that's not my favorite hobby. Actually, I love drawing. It helps me clear my mind and get creative. I sometimes play sports too, but drawing is what I enjoy most."}, {"qnum": 13, "question": "Listen to a principal talking about new school facilities. What new facility will the school have?", "options": ["a new library", "a sports field", "the performance space"], "answer": "the performance space", "explain": "Our school is getting some exciting new facilities. We already have a library and a sports field, but we're adding something different now. The school will have a new performance space for plays, concerts, and other events. It's going to be a great addition for the students. We're really looking forward to seeing it finished!"}], "part2": {"qnum": 14, "context": "", "speakers": [{"speaker": "Speaker A_____", "answer": "prefer running in the street"}, {"speaker": "Speaker B_____", "answer": "at the seaside"}, {"speaker": "Speaker C_____", "answer": "on the running track"}, {"speaker": "Speaker D_____", "answer": "in the fitness center"}], "all_options": ["prefer running in the street", "at the seaside", "on the running track", "in the fitness center"]}, "part3": {"qnum": 15, "context": "Continuity is very important in the workplace._____ Job security cannot always be guaranteed._____ Job satisfaction is an important motivator. _____ Technology is good for the entire economy. _____ ", "statements": [{"statement": "Continuity is very important in the workplace.", "answer": "Man"}, {"statement": "Job security cannot always be guaranteed.", "answer": "Woman"}, {"statement": "Job satisfaction is an important motivator.", "answer": "Both"}, {"statement": "Technology is good for the entire economy.", "answer": "Man"}]}, "part4": [{"qnum": 16, "context": "Listen to an expert talk about how to manage personal finances and answer the questions below.", "sub_questions": [{"question": "How does the speaker recommend saving money effectively?", "options": ["Saving a large amount only on a daily basis.", "Organizing their resources more effectively", "Use credit cards to manage expenses"], "answer": "Organizing their resources more effectively"}, {"question": "Who does the speaker believe can save money most successfully?", "options": ["Get advice from people that have experience", "Keep all your savings in a single account", "Avoid making any long-term financial plans"], "answer": "Get advice from people that have experience"}]}, {"qnum": 17, "context": "Listen to a woman talk about security camera and answer the questions below.", "sub_questions": [{"question": "What is the speaker's opinion about security cameras at work?", "options": ["People are unnecessarily worried about them", "Most people don't even realize cameras are present.", "Cameras should be placed to ensure complete coverage."], "answer": "People are unnecessarily worried about them"}, {"question": "How does the speaker suggest people should feel about security cameras at work?", "options": ["People often find them intimidating and invasive.", "Many believe they are only useful after incidents have occurred.", "People should feel reassured about their presence"], "answer": "People should feel reassured about their presence"}]}]}, {"test_name": "LISTENING - TEST 11 - APTIS SV", "part1": [{"qnum": 1, "question": "Lalia is talking to her friend about her upcoming trip. How much does she think the bus fare will be?", "options": ["£2.5", "£3", "£4.5"], "answer": "£2.5", "explain": "Woman: Hey, I'm really excited about my trip to the city tomorrow! I was just thinking about how I'll get there. Do you know how much the bus fare is? I think I heard it's £2.5 That sounds pretty reasonable! If I take the subway, that'll be just £4.5. I love how affordable public transport can be. I'll definitely need to have some change ready. By the way, do you know what time the bus leaves? I want to make sure I don't miss it!"}, {"qnum": 2, "question": "The woman is discussing her new exercise routine. How much time does she spend cycling?", "options": ["15 minutes", "25 minutes", "35 minutes"], "answer": "35 minutes", "explain": "Woman: Lately, I've started a new routine that I'm really enjoying! I decided to involve more exercise into my life. So, I began by walking for about 15 minutes every day, just to get moving. After that, I hop on my bike and cycle for 35 minutes. It's been refreshing! I love how it helps me clear my mind after a busy day. I'm thinking of sticking with this habit for the long run!"}, {"qnum": 3, "question": "A man is describing his school. What color is the teacher's building?", "options": ["Blue", "White", "Yellow"], "answer": "White", "explain": "Man: You know I've been spending a lot of time at school lately. I really like our campus! One thing that stands out is the teacher's building. It's really nice and has a bright, white color. I love how it looks against the blue sky. It's kind of a central point of the school, and it feels welcoming. I think it adds a lot to the overall atmosphere here."}, {"qnum": 4, "question": "A man is talking to a friend about his family. What is his main problem?", "options": ["Persuading his family", "Finding a job abroad", "Saving money for the move"], "answer": "Persuading his family", "explain": "Man: I've been having a tough time lately. I really want to move abroad for a new job, but my family isn't on board with it. They're worried about me leaving and don't understand why I want to go so far away. I've tried to explain all the benefits, but they just don't seem to get it. It's really frustrating because I want their support but it feels like I'm not getting through to them."}, {"qnum": 5, "question": "A woman is talking about her usual Saturday routine. What does she usually do on Saturdays?", "options": ["Meeting a friend", "Going shopping", "Seeing her family"], "answer": "Seeing her family", "explain": "Woman: Normally, on Saturdays, I spend the day with my family. We like to have brunch together and then do some fun activities, like playing board games or going for a walk. It's a nice way to relax and catch up. But this week, I have something different planned. I'm going to see a friend for her birthday and go shopping together instead. I'm looking forward to it, but I know I'll miss our usual family time!"}, {"qnum": 6, "question": "A woman is chatting with a friend about her afternoon plans. What is she going to do this aftermoon?", "options": ["Go on a city tour", "Visit a museum", "Relax at home"], "answer": "Go on a city tour", "explain": "Woman: I'm really looking forward to this afternoon! Normally, I just relax at home or maybe catch up on some shows, but today I want to do something different. I've decided to go on a city tour to explore some of the local sights. I thought about going to the park or even visiting a museum, but the city tour sounds much more exciting!"}, {"qnum": 7, "question": "Soobin is talking about his favorite room. What is Soobin's favorite room?", "options": ["Living room", "Bathroom", "Kitchen"], "answer": "Bathroom", "explain": "Man: You know, when I think about my favorite room in the house, it's kind of hard to choose. I mean, I really enjoy the kitchen since I love cooking, and the living room is great for hanging out with friends. But honestly, I have to say the bathroom is my favorite! It might sound strange, but it's the one place where I can truly relax."}, {"qnum": 8, "question": "Nate is on the phone with his friend. How long does Nate stay in India?", "options": ["3 days", "1 week", "2 weeks"], "answer": "2 weeks", "explain": "Man: Hey! It's Nate. I just finished a week in Thailand, and now I've arrived in India. I'll be here for two weeks in total. I plan to spend three days visiting the Taj Mahal because everyone says it's a must-see. By the way, I know it's not too far from where you are. Maybe we could meet up while I'm here? Let me know if you're around!"}, {"qnum": 9, "question": "A man is giving directions to a friend about how to get to the football club. The football club is near", "options": ["A grocery store", "A park", "A library"], "answer": "A park", "explain": "Man: To get to the football club, you just need to head down Main Street. Go past the grocery store on your left, and then take a right at the traffic light. You'll see the library on your right; just keep going straight. The football club is right after that, next to the park. It's pretty easy to find!"}, {"qnum": 10, "question": "Samia is going to meet her friend. What time are they going to meet?", "options": ["9:00", "10:00", "9:30"], "answer": "10:00", "explain": "Woman: Hey! I was thinking about our meet-up. We planned to meet at 9:30, but I just realized I have a class that finishes at 9:00, so I might not make it in time. How about we meet at 10:00 instead? That should give me enough time to get there. Does that work for you?"}, {"qnum": 11, "question": "Mary is talking to her friend about her new home. What does she ask her friend about?", "options": ["Where to buy a new table", "The furniture", "Mirror"], "answer": "Where to buy a new table", "explain": ""}, {"qnum": 12, "question": "A woman is talking about her favorite film on the radio. What film did she recommend?", "options": ["A comedy", "A romantic film", "An action film"], "answer": "An action film", "explain": "Woman: Today, I want to recommend an action film that really impressed me. The lead actor, who is usually known for his romantic roles, delivered an outstanding performance. Of course, if you're in the mood for something lighter, there are plenty of comedies to enjoy as well. But if you're looking for excitement, this action film is definitely worth a watch!"}, {"qnum": 13, "question": "Two friends are discussing a movie they recently watched. What elements of the film do they agree on?", "options": ["The music", "The ending", "The characters"], "answer": "The ending", "explain": "Man: I just finished watching that film we talked about. What did you think? Woman: I loved it! The ending was so satisfying! Man: Absolutely! It wrapped everything up perfectly. But I wasn't really sold on the characters. Woman: Really? I thought the characters were great and well-developed! Man: I felt they were a bit cliché, especially the main character. But I really love the soundtrack. Woman: Honestly, I didn't like the music at all. It felt out of place."}], "part2": {"qnum": 14, "context": "After waking up While singing To relax While studying ", "speakers": [{"speaker": "SPEAKER A___________", "answer": "To relax"}, {"speaker": "SPEAKER B___________", "answer": "While studying"}, {"speaker": "SPEAKER C___________", "answer": "While singing"}, {"speaker": "SPEAKER D___________", "answer": "After waking up"}], "all_options": ["After waking up___", "While singing___", "To relax___", "While studying___"]}, "part3": {"qnum": 15, "context": "Future generations fail to cope with technology information._____ Technology revolution is good for the economy. _____ No computer is superior to the human brain. _____ More should be done to protect individual privacy. _____ ", "statements": [{"statement": "Future generations fail to cope with technology information.", "answer": "Man"}, {"statement": "Technology revolution is good for the economy.", "answer": "Woman"}, {"statement": "No computer is superior to the human brain.", "answer": "Woman"}, {"statement": "More should be done to protect individual privacy.", "answer": "Both"}]}, "part4": [{"qnum": 16, "context": "Listen to a lecturer talking about modern television series and answer the questions below.", "sub_questions": [{"question": "What does the speaker say is one major strength of successful television series?", "options": ["They focus mainly on famous actors."], "answer": "It has the consistent quality throughout."}, {"question": "What does the speaker suggest about changes in television production?", "options": ["Streaming platforms have reduced production costs."], "answer": "Viewer habits influence the way that series are made."}]}, {"qnum": 17, "context": "Listen to a reviewer discussing a book about the life of a scientist and answer the questions below.", "sub_questions": [{"question": "What does the speaker say about the way of writing?", "options": ["It is focused on technical details", "It is exciting to read", "It is more of a textbook than a biography"], "answer": "It is exciting to read"}, {"question": "What does the speaker say about the overall content of the book?", "options": ["It has been written for a general audience", "It is only suitable for experts in the field", "It lacks engaging storytelling"], "answer": "It has been written for a general audience"}]}]}, {"test_name": "LISTENING - TEST 12 - APTIS SV", "part1": [{"qnum": 1, "question": "Mrs. Green is giving instructions to her class. What are the students writing about?", "options": ["Technology", "Animals", "Land"], "answer": "Land", "explain": "Today in class, I asked all of my students to complete a writing activity before the end of the lesson. The topic is about land and how different countries use it for farming, housing, and transportation. I want the students to think carefully and include examples from places they know or have studied before. Some students are already writing very good ideas, and I hope this activity will help improve both their vocabulary and their understanding of geography."}, {"qnum": 2, "question": "The teacher is talking to the students. Which room will they study in?", "options": ["Room 201", "Room 301", "Room 302"], "answer": "Room 301", "explain": "Hello everyone, this is your chemistry teacher. I’m calling to give you a quick update about our practical class this Friday. We will still meet at two o’clock as planned. Originally, the session was scheduled to take place in Room 201, and some of you may also have heard about using Room 302 as an alternative. However, due to an unexpected technical issue, the class will now be held in Room 301 instead. See you then."}, {"qnum": 3, "question": "The teacher is talking to the students. What country will they study next semester?", "options": ["France", "Italy", "Germany"], "answer": "France", "explain": "Good morning, everyone. Before we finish today, I’d like to give you a quick overview of what we’ll be studying next semester. Some of you may remember that last year we focused on Germany, and before that, we spent quite a lot of time discussing Italian history and culture. However, next term, our main topic will be France. We’ll look at key historical events, social changes, and how the country influenced Europe as a whole. I believe this will be a particularly impressive subject, and I’m sure many of you will find it both challenging and enjoyable."}, {"qnum": 4, "question": "Mr. Brown is talking to the students before the event. Which room is the presentation in?", "options": ["The meeting room", "The computer room", "The library"], "answer": "The meeting room", "explain": "Student: Excuse me, Mr. Brown. I’m looking for the presentation room. Mr. Brown: The presentation is being held in the meeting room today. Student: Is it on this floor? Mr. Brown: Yes, just walk down the hall and turn left. Student: Great, thank you very much for your help"}, {"qnum": 5, "question": "The woman is talking about Mr. Thompson's schedule. What time is the meeting?", "options": ["2pm", "10am", "11am"], "answer": "2pm", "explain": "This is a reminder of Mr. Thompson’s schedule. Today, he will leave for the airport at 10 a.m., and at 11 a.m. he is scheduled to complete the check-in process for his flight to Ho Chi Minh City. Please note that tomorrow afternoon at 2 p.m., he has an important meeting with a business partner. All necessary documents should be prepared in advance."}, {"qnum": 6, "question": "He's talking about his trip to India. Where do they go when they travel to India?", "options": ["Go to the park", "Go to famous places", "Go out to eat"], "answer": "Go to the park", "explain": "I’ve traveled to India several times, and people often assume that I spend most of my time visiting famous landmarks or going out to eat local food. Of course, I do enjoy trying Indian dishes, and I’ve seen some well-known places too. However, what I really like to do when I’m there is go to the park. I enjoy walking through public parks, watching people relax, and experiencing everyday life. That’s usually where I spend most of my time when I travel to India."}, {"qnum": 7, "question": "Lucy is asking her mom about tonight’s plan. What time is dinner?", "options": ["6:45 p.m.", "7:30 p.m.", "8:15 p.m."], "answer": "7:30 p.m.", "explain": "Lucy: Mom, are we having dinner at home tonight or eating out? Mom: We’re eating at home tonight. Lucy: Okay. What time is dinner? Mom: We’ll eat at seven thirty p.m. because your father comes home late today. Lucy: Alright, I’ll finish my homework before dinner."}, {"qnum": 8, "question": "James is talking about his university essay. What do they write about?", "options": ["Scientists", "Historians", "Artists"], "answer": "Historians", "explain": "For my final university project this term, I decided to focus on historians and the work they do. Many people think history is only about learning dates and facts, but historians actually spend years researching documents and studying important events from the past. I’ve been reading several books recently to understand how historians collect information and explain historical changes. It’s a difficult topic, but I think it’s really interesting and useful for understanding modern society."}, {"qnum": 9, "question": "David and Anna are waiting for the bus together. Which bus stops near the house?", "options": ["Number six", "Number twelve", "Number eight"], "answer": "Number eight", "explain": "David: Anna, which bus do you usually take home after work? Anna: I normally take bus number eight because it stops right near my house. David: Really? That’s convenient. Anna: Yes, it only takes about ten minutes to walk from the bus stop to my home. David: Great, maybe I’ll take the same bus today."}, {"qnum": 10, "question": "Tom is talking to Sarah at the bus station. How much does the bus ticket cost?", "options": ["$15", "$20", "$35"], "answer": "$20", "explain": "Tom: Excuse me, Sarah. Do you know how much a bus ticket to the city center costs? Sarah: Yes, I asked the driver a few minutes ago. It’s twenty dollars for one ticket. Tom: Wow, that’s a little expensive. Sarah: Yeah, but the trip is quite long. Tom: Alright, I’ll buy one anyway. Thanks for your help."}, {"qnum": 11, "question": "Sophia and Jack are discussing the new medical center. What is the new health center next to?", "options": ["A supermarket", "A train station", "A school"], "answer": "A train station", "explain": "Sophia: Have you seen the new medical center in town yet? Jack: Yes, I walked past it yesterday. Sophia: Where exactly is it located? Jack: It’s next to the train station, across from the supermarket. Sophia: That’s actually a really good location for patients. Jack: I agree. It’s easy to reach by public transport."}, {"qnum": 12, "question": "Sophie is talking about her weekly routine. What does the student do every Tuesday?", "options": ["Attend a meeting", "Write a report", "Play sports"], "answer": "Write a report", "explain": "My weekly routine is usually very busy because I’m studying several subjects this year. Tuesdays are probably the most difficult days for me because I have classes all morning and then extra work in the afternoon. Every Tuesday, I need to write a report for my business course. Sometimes the reports are short, but other times they take many hours to finish. Even though it can be stressful, I know this practice is helping me improve my writing and research skills."}, {"qnum": 13, "question": "Maria is asking the receptionist about her class. What floor is the French class on?", "options": ["Third floor", "First floor", "Second floor"], "answer": "Second floor", "explain": "Maria: Hello, I’m new here. Could you tell me where the French class is? Receptionist: Certainly. The French class is on the second floor. Maria: Do I need to take the elevator? Receptionist: You can, or you can use the stairs on your right. Maria: Thank you. I don’t want to be late for class."}], "part2": {"qnum": 14, "context": "", "speakers": [{"speaker": "Speaker A____", "answer": "On public transport"}, {"speaker": "Speaker B___", "answer": "At home"}, {"speaker": "Speaker C___", "answer": "In the coffee shop"}, {"speaker": "Speaker D___", "answer": "In the park"}], "all_options": ["In the coffee shop___", "In the park___", "On public transport___", "At home____"]}, "part3": {"qnum": 15, "context": "Media exaggerates the benefits of the programme___ Littering will always be a problem___ The volunteers' motivations do not affect the programme outcome___ Punishment is the most effective way to prevent littering___ ", "statements": [{"statement": "Media exaggerates the benefits of the programme", "answer": "Both"}, {"statement": "Littering will always be a problem", "answer": "Man"}, {"statement": "The volunteers' motivations do not affect the programme outcome", "answer": "Woman"}, {"statement": "Punishment is the most effective way to prevent littering", "answer": "Man"}]}, "part4": [{"qnum": 16, "context": "Listen to someone talking about a book critic talks about a biography and answer the questions below. Choose the corrects answer.", "sub_questions": [{"question": "What is the strength of the book?", "options": ["It is a very short story", "It has a good description of a specific period of time", "It focuses only on famous people"], "answer": "It has a good description of a specific period of time"}, {"question": "What do the critics say about the book?", "options": ["It is an unconventional biography", "It is too difficult to understand", "It contains too many fictional details"], "answer": "It is an unconventional biography"}]}, {"qnum": 17, "context": "Listen to someone talking about podcasting and answer the questions below.", "sub_questions": [{"question": "Why did the new podcast fail?", "options": ["The content was too long", "Creators do not promote their shows", "It had too many listeners"], "answer": "Creators do not promote their shows"}, {"question": "What is the speaker’s opinion about podcasting?", "options": ["It is a waste of time", "It is a great way to build a community", "It is only useful for entertainment"], "answer": "It is a great way to build a community"}]}]}, {"test_name": "LISTENING - TEST 13 - APTIS SV", "part1": [{"qnum": 1, "question": "Paul is discussing his schedule with his manager. How many days does the man have to work?", "options": ["3 days", "7 days", "5 days"], "answer": "3 days", "explain": "Manager: Paul, how long do you think this job will take? Paul: I probably need about three days to finish everything. Manager: Three days? That’s quicker than I expected. Paul: Yes, I’ve already completed part of the work. Manager: Excellent. Please keep me updated."}, {"qnum": 2, "question": "Mr. Taylor is reminding students about homework. What does the teacher want the students to do?", "options": ["Read more books", "Complete the assignments on time", "Work in groups"], "answer": "Complete the assignments on time", "explain": "Before the lesson finished today, I spoke to the class about homework and deadlines. Over the last few weeks, several students have been submitting their work late, which has created problems during marking. I reminded everyone that they need to complete the assignments on time this term. Good organization is an important skill, not only at school but also in future jobs. If students are having difficulties, I’m always happy to help them before the deadline arrives."}, {"qnum": 3, "question": "Which door do they need to take to get to Edinburgh?", "options": ["Two", "Three", "Four"], "answer": "Two", "explain": "Attention, please. The train is now preparing to depart, so passengers are advised to move quickly to their boarding doors. Passengers travelling to Edinburgh should proceed through door number two. Door three will be used for passengers going to Glasgow, and door four is reserved for local trains only. Please ensure you are at the correct door before boarding begins."}, {"qnum": 4, "question": "Lisa is explaining why her colleague is absent. Why can’t he work today?", "options": ["He feels sick", "He is visiting family", "He has another appointment"], "answer": "He has another appointment", "explain": "Several people asked me today why Daniel wasn’t at work this morning. Actually, he wanted to come, but he couldn’t because he has another appointment this afternoon. I think it’s an important business meeting that was arranged several weeks ago. He told the manager about it earlier, so everyone already knew he would be absent today. Hopefully, he’ll return tomorrow because we still have a lot of work to finish before the weekend."}, {"qnum": 5, "question": "Linda is talking about her trip preparations. What did she bring with her?", "options": ["A laptop", "A camera", "A games machine"], "answer": "A games machine", "explain": "I’m really excited about my trip tomorrow because it’s going to be a long journey by train. I spent most of the evening packing my suitcase and checking that I didn’t forget anything important. Besides clothes and snacks, I also packed my games machine. I always bring it with me when I travel because it helps me relax and pass the time during long trips. Last time I traveled without it, I got bored very quickly, so this time I wanted to be more prepared."}, {"qnum": 6, "question": "Helen is speaking with the company workers. Where is she taking the employees?", "options": ["To a different country", "To a nearby city", "To a new office"], "answer": "To a different country", "explain": "Worker: Helen, I heard the company is planning a special trip this year. Is that true? Helen: Yes, it is. We’re taking the employees to a different country for training next month. Worker: Really? That sounds amazing. Helen: We want everyone to learn new skills and experience a different culture."}, {"qnum": 7, "question": "Emma is speaking with her brother in the kitchen. How much money is left in the kitchen?", "options": ["25 pounds", "10 pounds", "5 pounds"], "answer": "10 pounds", "explain": "Emma: I need some money to buy bread and milk. Is there any money left in the kitchen drawer? Brother: Let me check… yes, there’s still ten pounds here. Emma: Only ten? I thought there was more yesterday. Brother: Mom used some of it this morning. Emma: Okay, ten pounds should still be enough."}, {"qnum": 8, "question": "Kevin is speaking to his friend after work. What is he going to do?", "options": ["Go shopping.", "Get something to eat.", "Visit a friend."], "answer": "Get something to eat.", "explain": "Friend: You look tired after work today. What are you going to do now? Kevin: I think I’ll get something to eat first. I didn’t have lunch earlier. Friend: That explains why you’re so hungry. Kevin: Yeah, I’ve been busy all day. Friend: Do you want to go to the café near the office? Kevin: Sure, that sounds good."}, {"qnum": 9, "question": "Alex is talking to his friend. What time do they meet?", "options": ["7.30pm", "6.30pm", "9.30pm"], "answer": "6.30pm", "explain": "Hey Alex, it’s me. Just wanted to remind you about our plan for tonight. We’re meeting at 6:30 PM, so try not to be late! I know you usually finish work around 6, so that should give you enough time to get there. If anything changes, just let me know. Oh, and by the way, Jake might join us a bit later, around 7:30 or so. Alright, see you soon!"}, {"qnum": 10, "question": "Kevin is talking about his hotel experience. What did he complain about?", "options": ["The room was small", "The food was expensive", "The place was cold"], "answer": "The place was cold", "explain": "Last week, I stayed in a hotel during a business trip to another city. The hotel was in a convenient location, and the staff were polite and professional. However, there was one major problem that made my stay uncomfortable. The place was very cold, especially during the night. I tried using the heating system several times, but it didn’t seem to work properly. Because of that, I couldn’t sleep very well and felt tired the next morning."}, {"qnum": 11, "question": "Listen to the station announcements. How long does it take to get to the station?", "options": ["15 minutes", "20 minutes", "25 minutes"], "answer": "20 minutes", "explain": "Attention please, passengers travelling to the city centre. Your train will arrive at Riverside Station in approximately twenty minutes. After arriving at the station, you will need to continue your journey for another fifteen minutes to reach your final destination in the city centre. Please remain seated and listen for further announcements."}, {"qnum": 12, "question": "What did she like the most about the movie?", "options": ["the car scenes", "the fight scenes", "the mountain scenes"], "answer": "the mountain scenes", "explain": "I watched the movie last weekend, and overall, I really enjoyed it. There were plenty of exciting moments, especially the fast car scenes at the beginning, which kept me on the edge of my seat. The fight scenes were also quite impressive, with a lot of action and energy. However, what stayed with me the most was the way the film showed the mountains. The wide shots of the snowy peaks and quiet valleys were absolutely beautiful and made the story feel much more powerful. Even days later, those mountain scenes are what I remember most clearly."}, {"qnum": 13, "question": "John is calling May. Where did they meet?", "options": ["The parking lot", "The front entrance", "The school gate"], "answer": "The front entrance", "explain": "Hi May, it’s John. I just wanted to remind you that we’re meeting this afternoon to visit the art exhibition by Leonard Hughes at five o’clock. At first, I thought we could meet near the parking lot, or even wait by the school gate, but that area is usually very crowded at this time of day. So in the end, I think it’s best if we meet at the front entrance of Building A, where the exhibition is being held. I’ll be standing right next to the main doors at 4:45. If you’re running late, just give me a call. See you soon."}], "part2": {"qnum": 14, "context": "", "speakers": [{"speaker": "Speaker A _____", "answer": "Improve work performance"}, {"speaker": "Speaker B________", "answer": "Find exercise tiring"}, {"speaker": "Speaker C _________", "answer": "Have fun exercising with others"}, {"speaker": "Speaker D ________", "answer": "Hate exercising"}], "all_options": ["Have fun exercising with others___", "Improve work performance____", "Hate exercising____", "Find exercise tiring____"]}, "part3": {"qnum": 15, "context": "Children are interested in tech-based learning___ Children find it difficult to communicate offline___ Families require help with management of technology__ Children can learn to regulate their online interactions__ ", "statements": [{"statement": "Children are interested in tech-based learning.", "answer": "Both"}, {"statement": "Children find it difficult to communicate offline.", "answer": "Both"}, {"statement": "Families require help with management of technology.", "answer": "Man"}, {"statement": "Children can learn to regulate their online interactions.", "answer": "Woman"}]}, "part4": [{"qnum": 16, "context": "Listen to someone talking about the music industry and answer the questions below. Choose the corrects answer.", "sub_questions": [{"question": "What is the key to a long career in music?", "options": ["Having a large number of fans", "Believing in her musical instincts", "Winning many awards early"], "answer": "Believing in her musical instincts"}, {"question": "What is the speaker’s opinion about the current music industry?", "options": ["Performers find it hard to get started", "It is easier than ever to become famous", "Most musicians prefer traditional styles"], "answer": "Performers find it hard to get started"}]}, {"qnum": 17, "context": "Listen to someone talking about using time effectively and answer the questions below.", "sub_questions": [{"question": "What is the main idea of the talk?", "options": ["Effective time management", "Working without any plan", "Doing fewer tasks each day"], "answer": "Effective time management"}, {"question": "What is the main problem with productivity strategies?", "options": ["They are too expensive to use", "They require effort to use effectively", "They only work in theory for students"], "answer": "They require effort to use effectively"}]}]}, {"test_name": "LISTENING - TEST 14 - APTIS SV", "part1": [{"qnum": 1, "question": "A teacher is talking to her students. Where are the students now?", "options": ["At the zoo", "In a townhouse", "In a library"], "answer": "In a townhouse", "explain": "I'm really happy about our trip today! This is a fantastic place for us to learn about history - honestly, I think it’s even better than going to the museum. Plus, since this townhouse is so close to our school, it was incredibly easy to get here. I hope you all have a wonderful time exploring!"}, {"qnum": 2, "question": "A man is reading the news about a housing development plan. How many new houses are going to be built?", "options": ["2500", "1500", "2000"], "answer": "2000", "explain": "I just heard the news that the local Authority is planning to build 2000, new houses. I remember they were initially saying it would only be 1500. But then I heard someone mention 2500. That's quite a jump. I wonder how this will affect the neighborhood. Will it bring in more families or just more traffic? It'll be interesting to see how it all unfolds."}, {"qnum": 3, "question": "Two friends are talking with each other. What did they both buy?", "options": ["Clothes", "Tea", "Cakes"], "answer": "clothes", "explain": "M: I just got back from shopping. I found a great jacket. And also picked up some nice tea. What kind of jacket did you get? W: It's a stylish leather jacket. I think it'll be perfect for the fall. What about you? M: I bought a cozy sweater and also grabbed a delicious cake. W: Sounds great. Those are perfect for this weather. M: Thanks. I'm excited to try the cake later. Looks like we both made good choices today. W: Absolutely, new clothes and tasty treats for the chilly days ahead"}, {"qnum": 4, "question": "Louis is calling his friend Standar. Where will Luis meet Standar?", "options": ["Outside the station", "At the cafe", "Near the ticket counter"], "answer": "Outside the station", "explain": ""}, {"qnum": 5, "question": "Tom is calling his mom. Who is visiting Tom this weekend?", "options": ["His mother and uncle", "His sister and children", "His mother and sister"], "answer": "His sister and children", "explain": ""}, {"qnum": 6, "question": "A woman is talking about her plan for the holiday. What will she do during the holiday?", "options": ["Go for a bike ride", "Go for a run", "Go for a walk"], "answer": "Go for a walk", "explain": ""}, {"qnum": 7, "question": "A woman is discussing with her team. How many chairs does she need?", "options": ["12", "15", "20"], "answer": "20", "explain": ""}, {"qnum": 8, "question": "Jane is calling her friend Martha. What time are they going to meet?", "options": ["4.00", "5.30", "6.00"], "answer": "5.30", "explain": ""}, {"qnum": 9, "question": "A woman is going home after shopping. What did she buy?", "options": ["A dress", "A blouse", "A hat"], "answer": "A dress", "explain": ""}, {"qnum": 10, "question": "A woman is talking about her babysitter. How old is the babysitter?", "options": ["20", "21", "22"], "answer": "21", "explain": ""}, {"qnum": 11, "question": "What is the main topic of the announcement?", "options": ["New library hours", "School closure", "Weather warning"], "answer": "New library hours", "explain": "Attention students! Because of the bad weather warning, the university is changing its schedule. The school is not closing, but we have new library hours. Starting tomorrow, the library will open at 9:00 a.m. and close early at 6:00 p.m. Thank you for listening."}, {"qnum": 12, "question": "A man is talking about his job. Where is he working now?", "options": ["At a university", "In a big company", "In a bank"], "answer": "In a bank", "explain": ""}, {"qnum": 13, "question": "The man is talking about his key. Where did he find the key?", "options": ["In his car", "In the front door", "In the bedroom"], "answer": "In the front door", "explain": ""}], "part2": {"qnum": 14, "context": "Finished the visit quickly____ Got lost during visit____ Enjoyed the use of technology___ Wants to visit again___ ", "speakers": [{"speaker": "SPEAKER A___________", "answer": "Finished the visit quickly"}, {"speaker": "SPEAKER B___________", "answer": "Got lost during visit"}, {"speaker": "SPEAKER C___________", "answer": "Enjoyed the use of technology"}, {"speaker": "SPEAKER D___________", "answer": "Wants to visit again"}], "all_options": ["Finished the visit quickly", "Got lost during visit", "Enjoyed the use of technology", "Wants to visit again"]}, "part3": {"qnum": 15, "context": "", "statements": [{"statement": "People share similar ideas about beauty", "answer": "Man"}, {"statement": "Ideas about beauty change over time", "answer": "Woman"}, {"statement": "Beauty can be found in unlikely places", "answer": "Both"}, {"statement": "Traditional ideas about beauty are going to change", "answer": "Woman"}]}, "part4": [{"qnum": 16, "context": "Listen to a man discussing goal setting. Choose the correct answers.", "sub_questions": [{"question": "What does the speaker say about short-term goals?", "options": ["It allows you to be more flexible", "It creates pressure and limits creativity", "It only apply to specific situations or certain types of people"], "answer": "It allows you to be more flexible"}, {"question": "What is the speaker's opinion about goal setting?", "options": ["It can lead to confusion and distraction", "It can prevent you from making mistakes", "It can bring about opportunities for individuals"], "answer": "It can prevent you from making mistakes"}]}, {"qnum": 17, "context": "Listen to a reviewer talking about a book on the life of a famous scientist and answer the questions.", "sub_questions": [{"question": "What does the reviewer say about the style of the book?", "options": ["It uses simple language to describe complex ideas", "It focuses mainly on scientific data.", "It is written mainly for academic readers."], "answer": "It uses simple language to describe complex ideas"}, {"question": "What does the reviewer say about the book compared to others?", "options": ["It presents completely new information.", "It is more detailed than earlier biographies.", "It is similar to the previous book about the scientist."], "answer": "It is similar to the previous book about the scientist."}]}]}, {"test_name": "LISTENING - TEST 15 - APTIS SV", "part1": [{"qnum": 1, "question": "A man is calling his mother. How long will he be late?", "options": ["10 minutes", "15 minutes", "20 minutes"], "answer": "10 minutes", "explain": "Man: Hi Mom, it's me. I'm stuck in traffic right now, so I'll be late. The train takes about 20 minutes, but I'll arrive 10 minutes late. Don't worry, though! We still have 15 minutes until our appointment with Mr. Smith. I'll hurry as much as I can. I just wanted to let you know, so you're not waiting too long!"}, {"qnum": 2, "question": "A woman is going to the cinema with her husband. What time does the movie begin?", "options": ["6:40", "7:00", "9:20"], "answer": "6:40", "explain": "Woman: I just checked the movie schedule, and the film actually begins at 6:40, not at 7:00 like I thought. After the movie, we'll finish around 9:20. Do you want to grab something to eat afterward? We can go to that new restaurant nearby and relax after the movie. It'll be nice to talk about the film while enjoying a meal together!"}, {"qnum": 3, "question": "Where should students submit their assignments?", "options": ["Online portal", "Teacher's office", "Main reception"], "answer": "Online portal", "explain": "Hello class! Please do not bring your paper assignments to my teacher's office or leave them at the main reception. This semester, all students must submit their work through the university's online portal. The deadline is Friday at 5:00 p.m. Thank you!"}, {"qnum": 4, "question": "Dan is going to university. Where should Dan turn right?", "options": ["At the Main Street", "At the hospital", "At the traffic lights"], "answer": "At the traffic lights", "explain": "Man: Today is my first day at university, and I want to make sure I'm on the right route. First, I'll go straight to Main Street. After that, I need to turn left at the hospital. I've heard that the university is not far from there. Once I reach the traffic lights, I'll turn right, and I should be able to see the campus soon. Is that the correct way?"}, {"qnum": 5, "question": "A saleswoman is talking to her customer. How much is the cheapest computer in the shop?", "options": ["135 pounds", "145 pounds", "155 pounds"], "answer": "135 pounds", "explain": "Woman: So, we have several options for your computer. The one priced at £145 is great for light gaming and everyday use. If you need something more powerful for complex tasks, I recommend the £155 model, which offers better performance. However, if you're looking for something basic for simple tasks, the cheapest option at £135 would be perfect."}, {"qnum": 6, "question": "A tour guide is introducing a famous building. What is this building currently used for?", "options": ["A museum", "A department store", "A cinema"], "answer": "A department store", "explain": "Man: Welcome, everyone! Today, I'd like to introduce you to this iconic building. Originally built in the 1920s, it served as a museum until 1940. After World War II, it was transformed into a cinema, showcasing films for the public. Today, this beautiful structure is now a bustling department store, offering a wide range of products."}, {"qnum": 7, "question": "David is in an interview. What was his last job?", "options": ["An engineer", "A teacher", "An electrician"], "answer": "An electrician", "explain": "Man: I studied engineering in school, but after graduation, I decided to pursue a different path. I found a teaching position that was very rewarding, as I enjoyed sharing knowledge with students. However, I eventually transitioned to working as an electrician, which has allowed me to apply my technical skills in a hands-on way. This job has been a great fit for me."}, {"qnum": 8, "question": "A man is talking to his friend. Why does he choose to be a doctor?", "options": ["To help people", "To make his family proud", "To make a lot of money"], "answer": "To help people", "explain": "Man: I've always wanted to be a doctor. It's fulfilling to know that I can make a difference in someone's life. My family is also proud of this career choice, and they have encouraged me along the way. Some friends say doctors earn a lot of money, which is a nice bonus, but my main goal remains to save lives and provide care to those who need it most"}, {"qnum": 9, "question": "A woman is talking to the police. What did she lose?", "options": ["A necklace", "A bag", "A wallet"], "answer": "A bag", "explain": "Woman: I need to report a loss. I went shopping for jewelry to buy a necklace for my friend's wedding. Afterward, I took the 7.30pm train home and realized I left my bag on the seat. Thankfully, I was holding my wallet, so I still have that. The bag had some important items in it, and I really hope to find it."}, {"qnum": 10, "question": "Tom is talking with his friend about his teachers. Who is his favourite teacher?", "options": ["Miss Taylor", "Mr. Styles", "Miss Brown"], "answer": "Miss Brown", "explain": "Man: This semester, I'm in Miss Taylor's class. She's a new teacher, so I'm still getting to know her style. I've heard great things, but I really miss Miss. Brown. She was my favorite teacher! Miss Brown was so engaging and made learning fun. Unlike Mr. Styles, who is quite strict, Miss Brown always encouraged us to ask questions and express ourselves. I hope Miss Taylor will be just as inspiring!"}, {"qnum": 11, "question": "A woman is talking to a shop assistant. Why does the woman return the dress?", "options": ["Because of its size", "Because of its color", "Because of its pattern"], "answer": "Because of its size", "explain": "Woman: I'd like to return this dress, please. The pattern is really beautiful, and I love it! The color is a bit unusual for me, but it looks nice when I wear it. The main issue is the size; it's too small. I hoped to lose weight, but I don't think I can do it in time. I just bought it yesterday, so I hope the return process is easy."}, {"qnum": 12, "question": "Louis is having dinner in a new restaurant. What is his opinion about that restaurant?", "options": ["The price is cheap", "The food is delicious", "The service is slow"], "answer": "The service is slow", "explain": "Man: I'm not impressed with this new restaurant. Honestly, we shouldn't have chosen to eat here. The prices are high, and I'm not even sure if the food is good or not. But what really bothers me is the slow service. It's taking forever to get our orders. It's been 25 minutes and I'm so hungry!"}, {"qnum": 13, "question": "A teacher is talking to her students. Where are the students now?", "options": ["At school", "In a townhouse", "In a museum"], "answer": "In a townhouse", "explain": "Woman: I'm so glad we decided to take this field trip. It's a great way to learn about history in a more interactive way. I know some of you were hoping we could visit the museum instead, but I think this townhouse trip is a more unique experience. It is also near our school, which is more convenient for you. I hope you're all enjoying yourselves and learning a lot today!"}], "part2": {"qnum": 14, "context": "Doesn't like reading books Likes reading books when at school Prefers other activities over reading books Doesn't have time to read books ", "speakers": [{"speaker": "Speaker A____", "answer": "Doesn't like reading books"}, {"speaker": "Speaker B___", "answer": "Likes reading books when at school"}, {"speaker": "Speaker C___", "answer": "Prefers other activities over reading books"}, {"speaker": "Speaker D___", "answer": "Doesn't have time to read books"}], "all_options": ["Doesn't like reading books___", "Likes reading books when at school___", "Prefers other activities over reading books___", "Doesn't have time to read books____"]}, "part3": {"qnum": 15, "context": "Singer can be good models for the young___ Taste in music is a highly personal thing___ Music is a universal languag___ Music can be used to manipulate people's feelings___ ", "statements": [{"statement": "Singer can be good models for the young", "answer": "Woman"}, {"statement": "Taste in music is a highly personal thing", "answer": "Both"}, {"statement": "Music is a universal language", "answer": "Man"}, {"statement": "Music can be used to manipulate people's feelings", "answer": "Both"}]}, "part4": [{"qnum": 16, "context": "A man is sharing a new guidebook. Choose the corrects answer.", "sub_questions": [{"question": "What does this guidebook offer to its audience?", "options": ["It focuses solely on historical landmarks.", "It creates an adventure.", "It is difficult to navigate."], "answer": "It creates an adventure."}, {"question": "What is the speaker's opinion about this guidebook?", "options": ["It caters only to seasoned travelers.", "It is outdated and irrelevant.", "It is suitable for particular generations."], "answer": "It is suitable for particular generations."}]}, {"qnum": 17, "context": "Listen to a literary reviewer giving her opinion about a newly released novel and answer the questions.", "sub_questions": [{"question": "What did the reviewer think was a positive aspect of the novel?", "options": ["The writing style was highly original.", "The characters were interesting.", "The storyline was unpredictable."], "answer": "The characters were interesting."}, {"question": "What does the reviewer suggest about the impact of the novel?", "options": ["It may divide readers’ opinions.", "It will establish the author's popularity.", "It will mainly appeal to academic audiences."], "answer": "It will establish the author's popularity."}, {"question": "Why do some readers struggle to connect with the characters in the novel?", "options": ["Their motivations are explained too clearly.", "There are too many main characters to follow.", "They are difficult to relate to."], "answer": "They are difficult to relate to."}, {"question": "What criticism do readers have about the storyline?", "options": ["It is too complex for a general audience.", "It lacks originality.", "The plot twists are too predictable for experts."], "answer": "It lacks originality."}]}]}, {"test_name": "LISTENING - TEST 2 - APTIS SV", "part1": [{"qnum": 1, "question": "A woman is talking about her house. What is she going to change in their house?", "options": ["The window", "The car", "The computer"], "answer": "The window", "explain": "Woman: I've always loved the ocean, that is why I initially wanted to install a big window that looks out to the river at my house. But now my husband and I realized it was too big and now too much sunshine got in. My car got heated and the computer next to the window always seemed like it would explode. I have no choice but to change it into another window that can close entirely."}, {"qnum": 2, "question": "A receptionist is checking the client list of a clinic. How many clients are Americans?", "options": ["One", "Two", "Three"], "answer": "One", "explain": "Receptionist: Alright, let me go over the list of clients for today. We've got Carl, Harry, and Matthew, all from the UK. Leslie, who's from the US, is also scheduled for an appointment. Then, we have two more clients coming in from France. So that gives us one American, a few from the UK, and the rest from France. It looks like everything's in order!"}, {"qnum": 3, "question": "Listen to Anna talking about her routine. Where does Anna go for a walk every morning?", "options": ["park", "neighborhood", "college"], "answer": "college", "explain": "I really like to walk in the mornings. Every day, I take a nice walk before my classes start. I could walk around my neighborhood, but I prefer going to college. It's a great way for me to get a bit of exercise and clear my mind before the day begins. The campus is so peaceful in the mornings."}, {"qnum": 4, "question": "Listen to a girl calling the cafe. What did she forget, and where did she leave it?", "options": ["on the counter", "in the corner", "near the door"], "answer": "in the corner", "explain": "\"Hi, I was at your cafe this afternoon, and I think I left something there. I remember having it when I sat at a small table in the corner. I checked the counter and near the door before I left, but I must have forgotten it in the corner after all. Could you please look there?\""}, {"qnum": 5, "question": "Helen is calling a friend about the place her whole family is standing while seeing her off to college. Where are they standing?", "options": ["library complex", "university area", "Residential area"], "answer": "Residential area", "explain": "Hi! I just wanted to call quickly before we head off. My family is all here to see me, and we're standing in this big area with lots of houses and apartments. It's a nice residential area, with some trees and small shops nearby. We're not right by the university, but it's close enough. There are lots of other students and families here, too, saying goodbye. It feels a bit emotional, but I'm also really excited to start this new journey."}, {"qnum": 6, "question": "A tour guide is talking about the vacation list of activities. What can people do in the afternoon?", "options": ["Join a dance class", "Play golf", "Go shopping"], "answer": "Play golf", "explain": "Man: Now, let's talk about the afternoon activities. For those interested, we have a golf course available where you can spend your afternoon playing golf. If golf isn't your thing, don't worry, there's also a dance class scheduled in the evening. And of course, you can always go shopping in the nearby stores later on, but bear in mind, the store will only open in the morning."}, {"qnum": 7, "question": "Doctor's office is calling about a change in the appointment. When is the new appointment?", "options": ["On Thursday 13th", "On Thursday 30th", "On Friday 14th"], "answer": "On Thursday 13th", "explain": "Hello! This is the doctor's office calling to change your appointment. I wanted to let you know that the new appointment is on Thursday the 13th. I understand you might have been expecting it to be on Friday the 14th. but we're all off this day due to the national dentist holiday. Please let us know if that works for you!"}, {"qnum": 8, "question": "Alice is calling her friend. What did she lose?", "options": ["A book", "A laptop", "A phone"], "answer": "A phone", "explain": "Hey, it's Alice. I think I might have left something at your house. I had my book with me. It's in my backpack. My laptop's here too. But I can't find my phone anywhere! Did you happen to see it after I left? I think I might have left it on the table."}, {"qnum": 9, "question": "Max is calling his friend. How much can Max pay for the computer?", "options": ["150 pounds", "250 pounds", "350 pounds"], "answer": "250 pounds", "explain": "Hi.  It's me Max. I'm calling about the computer that you are selling. You see. My computer is old and slow. I can't play any games on it any more and would like to replace it with a new one. How much do you offer! I can pay 250 pounds. This afternoon I am busy but we can discuss this tomorrow morning, is that okay? Call me back soon."}, {"qnum": 10, "question": "Listen to a man talking about their train journey. What time did the train depart?", "options": ["9:00", "9:30", "10:00"], "answer": "9:30", "explain": "\"This morning was rough at the station. I thought the train would leave around 9:00, but I heard it would be delayed. It finally departed at 9:30, though some people said it might be even later. Usually, if it's delayed, it could leave as late as 10:00. I'm glad it didn't take that long today!\""}, {"qnum": 11, "question": "Listen to a woman asking about a flight. How much does the flight in the morning cost?", "options": ["300 pounds", "350 pounds", "400 pounds"], "answer": "350 pounds", "explain": "\"I'm looking at flights and comparing prices. The morning flight I want is 350 pounds, which is a bit more than the 300-pound one later in the day. There's also another option that costs 400 pounds, but it includes extra services I don't need. So, I think I'll stick with the 350-pound one since it leaves at the right time for me.\""}, {"qnum": 12, "question": "Listen to a friend talking about selling her music player. How much did she sell it for?", "options": ["50 dollars", "60 dollars", "40 dollars"], "answer": "50 dollars", "explain": "\"I sold my old music player last week. I considered selling it for around 60 dollars since it was in good condition, but I thought 40 dollars would be a bit too low. I finally sold it for 50 dollars, which felt just right. Now, I have a bit of extra cash to save or spend on something new.\""}, {"qnum": 13, "question": "Listen to a woman explaining why she was late. What is the main reason she gets late?", "options": ["Overslept", "Forgot something", "Missed the train"], "answer": "Missed the train", "explain": "\"I've been late several times recently. Sometimes, I oversleep, but that wasn't the case today. I actually left on time, but I missed the train at the last minute. It's always the main reason I end up late. I try to double-check everything I need, so forgetting something isn't usually an issue for me either.\""}], "part2": {"qnum": 14, "context": "", "speakers": [{"speaker": "Speaker A _____", "answer": "Improve work performance"}, {"speaker": "Speaker B________", "answer": "Find exercise tiring"}, {"speaker": "Speaker C _________", "answer": "Have fun exercising with others"}, {"speaker": "Speaker D ________", "answer": "Hate exercising"}], "all_options": ["Have fun exercising with others", "Improve work performance", "Hate exercising", "Find exercise tiring"]}, "part3": {"qnum": 15, "context": "Young people are more into politics _______ Social media change politics. _______ People are now better informed on politic. _______ More women pursuit politics. _______ ", "statements": [{"statement": "Young people are more into politics", "answer": "Both"}, {"statement": "Social media change politics.", "answer": "Woman"}, {"statement": "People are now better informed on politic.", "answer": "Man"}, {"statement": "More women pursuit politics.", "answer": "Both"}]}, "part4": [{"qnum": 16, "context": "Listen to a writer talking about her experience in writing and choose the correct answer.", "sub_questions": [{"question": "What does the writer believe helps her the most in her writing process?", "options": ["Writing every day for 15-20 minutes", "Create dedicated periods for writing", "Finding a quiet space to work"], "answer": "Create dedicated periods for writing"}, {"question": "What does the writer regret doing during her experience with writer's block?", "options": ["Refuse to seek advice of others", "Ignoring feedback from editors", "Writing without a plan"], "answer": "Refuse to seek advice of others"}]}, {"qnum": 17, "context": "The radio is talking about a musician's career and latest albums. Listen and choose the correct answer.", "sub_questions": [{"question": "What has the musician decided regarding his singing career?", "options": [". He wilt retire from singing professionally", ". He will make a comeback after a long break", ". He will inform fans about new albums"], "answer": "He will retire from singing professionally"}, {"question": "What could the musician have achieved with his recent albums?", "options": [". He could have been more successful", ". He could have inspired future generations in general.", ". He could have gotten a bigger fan base."], "answer": "He could have been more successful"}]}]}, {"test_name": "LISTENING - TEST 3 - APTIS SV", "part1": [{"qnum": 1, "question": "A mom is calling her son to remind him about picking up groceries. How much is an egg?", "options": ["£1.50 (One pounds fifty)", "£2.50 (Two pounds fifty)", "£3.50 (Three pounds fifty)"], "answer": "£1.50 (One pounds fifty)", "explain": "Hey sweetie, it's Mom! Can you please pick up three things on your way home? I need a dozen eggs, they're one pound fifty each. Also, grab a loaf of bread and some milk, please. Thanks, love you!"}, {"qnum": 2, "question": "An author is talking about her daily routine. When does she usually write?", "options": ["In the mornings", "In the afternoons", "In the evenings"], "answer": "In the afternoons", "explain": "Every morning, I start my day by going for a run. It helps me clear my mind and gives me energy. After lunch, at around two o'clock, I sit down at my working table, ready to write. My husband is my best critic, so I try to produce something before he gets home in the afternoon. I want to show him what I've been working on! At night, I seek motivation by watching movies or reading books. This helps me find new ideas for my stories. Writing is a journey, and each day brings something new."}, {"qnum": 3, "question": "Jack is calling to invite a friend to his house. What color is Jack's house?", "options": ["Blue", "Green", "Red"], "answer": "Red", "explain": "Hey! It's Jack. I just moved to a new house in this busy neighborhood, and it's really cool! There are so many houses here in different colors- purple, blue, and white. My house is big and red! I'd love for you to come over and check it out. Let me know when you're free!"}, {"qnum": 4, "question": "A man is calling his wife. Where will they meet?", "options": ["At home", "In the garden", "Outside the shop"], "answer": "Outside the shop", "explain": "Hi honey, it's me! Just a reminder that the train leaves at 5, so you should arrive around 6 o'clock. I'll be there to pick you up at the train station. Let's meet outside the shop opposite the station. I can't wait to have dinner together! See you soon!"}, {"qnum": 5, "question": "A man is talking about his eating habit. What time does he usually eat?", "options": ["6 o'clock", "7 o'clock", "8 o'clock"], "answer": "7 o'clock", "explain": "I usually have dinner every evening. It's become a habit for me to enjoy a meal at that time after a long day. I find it's the perfect time to unwind and relax. Plus, I love to spend time with my family during dinner. It's our chance to catch up and enjoy some good food together. We usually have dinner at 7 o'clock and it is definitely my favorite meal of the day!"}, {"qnum": 6, "question": "Julie is asking her professor about the assignment. When is the work due?", "options": ["On Thursday morning", "On Friday morning", "On Saturday morning"], "answer": "On Saturday morning", "explain": "Professor: Come in! Julie: Hi, Professor! It is me, Julie! I wanted to ask about the assignment. Is it possible to get an extension until Friday? Professor: What's the matter, Julie? Do you have any difficulties? Julie: I have a lot of work lately, so I can't complete it by Thursday. Professor. Actually, all assignments need to be submitted by Saturday morning, so you have two more days. Julie: Oh, that's great! Thank you so much!"}, {"qnum": 7, "question": "James is talking about his family members. In what way does his mother and his aunt alike?", "options": ["They were both thin", "They both had blue eyes.", "They both had long hair"], "answer": "They were both thin", "explain": "This picture is of my aunt and my mom. Many people say they look alike. I find it funny, though, because when they were teenagers, my mom had long hair, while my aunt had short hair. They were both equally thin back then, but their eyes were different. My mom has lovely brown eyes, and my aunt has strikingly beautiful blue eyes. Even with their differences, they share a special bond that makes them so similar in spirit."}, {"qnum": 8, "question": "A tour guide is introducing a tourist destination. How many people live in the town?", "options": ["8,000", "9,000", "10,000"], "answer": "10,000", "explain": "Welcome, everyone! Today, I'm excited to introduce you to our charming small town. Right here in the town square, you'll find local shops, cozy cafes, and a beautiful fountain where people gather to relax. This square is the heart of our community, often filled with cool events like farmers' markets and live music. Currently, there are 10,000 people living in this town. As we explore, you'll see the unique blend of history and modern life that makes our town so special."}, {"qnum": 9, "question": "A man and a woman are talking about their old school days. What was the man's favorite thing about school?", "options": ["Math classes", "Geography classes", "History classes"], "answer": "History classes", "explain": "Woman: What do you remember most about our school days? Man: Honestly, I don't remember much. Woman: I remember that I was terrible at math! It was my worst subject. Also, I remember that you were really good at history. Man: That's right! I loved history. Actually, those classes were the ones I remember the most. All those stories and events were so fascinating!"}, {"qnum": 10, "question": "Jorge is calling his friend about their plan for the weekend. What time does the football match start?", "options": ["11 p.m", "1 p.m", "6 p.m"], "answer": "1 p.m", "explain": "Hey, it's Jorge! I want to check in about our plans for the weekend. I'll be busy in the morning, but how about we meet at 11:30 for lunch? The football match starts at 1 p.m., and since it takes about 30 minutes to drive there, we'll have just enough time to grab something to eat. After the match, we can head back to my place and play some video games. It's going to be a fun day! Let me know if that works for you. Can't wait!"}, {"qnum": 11, "question": "A man is talking about his routine after work. What is the man going to do after work?", "options": ["Goes running", "Cycles home", "Meets his client"], "answer": "Goes running", "explain": "After work, I'm usually exhausted because my job can be really tough. I always look forward to 5 o'clock, so can finally check out and head home. Luckily, I live close by, which makes my evening routine a bit easier. I like to go for a run after work to clear my mind and shake off the stress. It helps me feel refreshed and ready for the next day."}, {"qnum": 12, "question": "A professor is talking to his student. What does the professor ask his student to do?", "options": ["Speak at a conference", "Write another thesis", "Tutor another student"], "answer": "Speak at a conference", "explain": "Professor: Good morning, Alex. I've just finished reading your thesis, and I must say, it's very well done. You've put a lot of effort into it. Student: Thank you, Professor! I'm glad you liked it. I worked hard on it. Professor. It shows. Your research is thorough, and your arguments are clear. I actually think you should consider presenting it at the upcoming student conference. Student: Wow, really? That sounds exciting! But, I'm not sure how that works. Could you tell me more about it? Professor. Of course. The conference is a great opportunity to share your findings with a wider audience. You would prepare a short presentation, around 10-15 minutes, and then answer some questions from the audience. It's a good way to get feedback and gain experience speaking publicly."}, {"qnum": 13, "question": "Two friends are talking about their favorite activities. What is the woman's favorite form of entertainment?", "options": ["Reading books", "Going to the theatre", "Playing chess with her cousin"], "answer": "Going to the theatre", "explain": "Sleep is very important for our hearth, but there are many ideas about it that are not entirely true. Many people say you should sleep at fixed hours to get enough rest, but that isn't always necessary according to science. Our bodies can adjust to different sleep schedules so it really depends on the individual. Another common belief is that you should always sleep on a bed instead of a hard floor, but this is questionable. What everyone agrees on, and what studies show, is that blocking out light and noise can help improve sleep quality. Darkness helps our body produce melatonin which is the hormone that makes us feel sleepy while silence allows us to rest better Some say that sleep is getting worse for people today, but there is no solid proof to support this claim. Critics often point fingers at the younger generation for their unhealthy sleep patterns, but this is sometimes unfair. What we can agree on is that the media tends to overemphasize the subject, making it seem more serious than it really is. In the end, finding what works best for you is key to getting a good night’s sleep. PHIÊN BẢN 2: 17.1 What is the way to have a good sleep according to the speaker? Drinking coffee before bed helps relax the mind Blocking out noise and light is key Sleeping fewer hours increases deep sleep quality Đáp án đúng: Blocking noise and light is the key 17.2 What is the speaker's view on insomnia in general? Insomnia is caused only by physical health problems Most people with insomnia actually sleep too much People can't always recognize the symptoms of tiredness Đáp án đúng: People can't always recognize the symptoms of tiredness"}], "part2": {"qnum": 14, "context": "", "speakers": [{"speaker": "Speaker A _____", "answer": "protects the environment by using less electricity."}, {"speaker": "Speaker B _____", "answer": "protects the environment by not driving to work"}, {"speaker": "Speaker C_____", "answer": "protects the environment by shopping online."}, {"speaker": "Speaker D_____", "answer": "protects the environment by using less water."}], "all_options": ["protects the environment by using less electricity.", "protects the environment by using less water.", "protects the environment by shopping online.", "protects the environment by not driving to work"]}, "part3": {"qnum": 15, "context": "Two professional educators are talking about university. Read the opinions below and decide whose opinion matches the statements, the man, the woman, or both the man and the woman. You can listen to the discussion twice. ", "statements": [{"statement": "The internet makes education more accessible", "answer": "Both"}, {"statement": "Social interactions are essential to university life", "answer": "Man"}, {"statement": "A diverse curriculum is not always a good thing", "answer": "Woman"}, {"statement": "Competitions between universities should be encouraged", "answer": "Man"}]}, "part4": [{"qnum": 16, "context": "Listen to an office worker talking about working from home and answer the questions below.", "sub_questions": [{"question": "What does she say about working at home?", "options": ["There are no distractions", "Not good as expected", "Video calls are superior to face-to-face conversation", "Needs a big home office", "Do not require self-motivation.", "It depends on your situation and personality"], "answer": "It depends on your situation and personality"}]}, {"qnum": 17, "context": "Listen to an expert talking about the importance of sleep and answer the questions below. The most important things to help sleep well is", "sub_questions": []}]}, {"test_name": "LISTENING - TEST 4 - APTIS SV", "part1": [{"qnum": 1, "question": "A man is calling his friend, Maria. When will he see her?", "options": ["at 9 am on Sunday", "at 10 am on Saturday", "at 8 am on Sunday"], "answer": "at 9 am on Sunday", "explain": "Hey Maria, it's me! I wanted to give you a quick call to let you know that I'll be visiting your town this weekend. I've got a few things planned—going to check out the local market and maybe explore some of the nearby parks. But the best part? I'll finally get to see you! I'll be at your place at 9 a.m. on Sunday, so we can catch up. Can't wait to hang out!"}, {"qnum": 2, "question": "A man is calling his colleague about a meeting with clients. When will the meeting start?", "options": ["at 9.15", "at 10.15", "at 11.15"], "answer": "at 10.15", "explain": "Hey, just wanted to give you a quick heads-up. I won't be able to join the meeting with the clients at 10:15 like we planned—I've got something that suddenly came up. I know it's last minute, but could you go ahead and handle the presentation on your own? You're familiar with everything, so I trust you've got this. Let me know how it goes afterward. Thanks, I really appreciate it!"}, {"qnum": 3, "question": "A customer is calling the hotline of a department store. Which number to press in order to buy a computer?", "options": ["One", "Two", "Three"], "answer": "Three", "explain": "Thank you for calling our customer service hotline. To file a complaint about a recent purchase, please press 1. For assistance with maintenance or repairs, press 2. If you'd like a free consultation on buying a new computer, press 3. For all other inquiries, please stay on the line, and a representative wiII assist you shortly."}, {"qnum": 4, "question": "An expert is talking about the lack of satisfaction at work. What should be the solution?", "options": ["Raise the salary", "Seek a new job", "Request a transfer"], "answer": "Request a transfer", "explain": "Many people feel unhappy at work, and often, they think a higher salary or less work will fix it. But that's not always the solution. Sometimes, the problem is the work environment. A change of place can help improve how we feel at work. However, looking for a new job can be stressful and take time. One option is to ask for a transfer to another branch within the same company. This can offer the same benefits as getting a new job, without the challenges of starting over somewhere new."}, {"qnum": 5, "question": "A man is talking to his friend. Why does he need to learn to drive?", "options": ["He lost his driving license.", "He has to drive to work", "He bought a new car."], "answer": "He has to drive to work", "explain": "Man: Hey, Sarah. I've got some news—I'm moving to a new place. Woman: Oh really? That sounds exciting! Where's your new place? Man: It's actually pretty far from my workplace. and the public transport there isn't great. So, I've been thinking. I need to learn how to drive. Woman: Yeah, that makes sense. It's hard to rely on public transport if it's not reliable. Have you ever driven before? Man: Not really. I've always used buses and trains, but now it looks like I don't have a choice. I need to get a license. Woman: You'll get the hang of it. Driving will definitely make your commute easier. Are you planning to take lessons soon? Man: Yeah, I'm going to sign up for a driving school next week. Hopefully, I can get it done quickly."}, {"qnum": 6, "question": "A tour guide is talking about birds' behaviors. What do birds do in the winter?", "options": ["Stay together for group protection", "Building nests", "Migrate to a new place"], "answer": "Stay together for group protection", "explain": "Welcome, everyone! Today, we'll explore some interesting bird behaviors throughout the year. In spring, birds are busy building nests and finding mates, preparing for the arrival of their young. During summer, they’re focused on feeding their chicks and teaching them how to fly. As autumn approaches, many birds begin to migrate, gathering food and energy for their long trips south. In winter, birds tend to stay together in groups for protection from predators. Each season brings out different survival strategies in these amazing creatures!"}, {"qnum": 7, "question": "Two friends are talking about their school days. What was the woman good at?", "options": ["Swimming", "Plays football", "Running"], "answer": "Plays football", "explain": "Man: Hey, do you remember our old school days? You were on the football team, right? Woman: Yeah, I played for the school team. Those were some of my best memories! We even won a few medals. What about you? Were you into football? Man: Not really. I wasn't great at football, but I was pretty good at swimming. I actually won a medal in a competition once. Woman: That's right, I remember! Swimming was totally your strength. Just like football was mine. My team also brought home some medals—it was such a good feeling! Man: Yeah, those were good times. We really had our own things going on back then!"}, {"qnum": 8, "question": "Pierre and Emma are talking together about the picnic on the weekend. What will they bring to the picnic?", "options": ["Drinks", "Salads", "Food"], "answer": "Food", "explain": "Pierre: Hey, Emma, are you ready for the picnic this weekend? Emma: Definitely! I'm really looking forward to it. Do you know what everyone's bringing? Pierre: Yeah, I spoke with a few people. Sarah's bringing cups and bowls, and Tom said he'll take care of drinks. He’s got some lemonade and iced tea ready. Emma: Sounds great! I think Clara mentioned she's making a fruit salad, right? Pierre: Yep, and Leo's bringing chips and dips. I guess we're pretty covered on snacks. Em ma: Awesome! So, what should we bring? Maybe some food in case we might get hungry? Pierre: That's a good idea. How about we prepare some chicken and french fries? Emma: Perfect! This picnic is going to be amazing!"}, {"qnum": 9, "question": "A tour guide is talking about the group's traveling schedule. Where will the group wait for the bus?", "options": ["by the hotel's side entrance", "behind the hotel's main entrance", "by the hotel's main entrance"], "answer": "by the hotel's main entrance", "explain": "Good morning, everyone! Let me walk you through today's schedule. First, we'll start the day at 9:00 AM with a visit to the City Museum, where you'll have about two hours to explore the exhibits. After that, at 12:30 PM, we'll head to the Central Park for a picnic lunch and a relaxing stroll. Around 3:00 PM, we'll make our way to the Old Town Market, where you can shop for souvenirs and enjoy some local treats. We'll wrap up our activities by 6:00 PM, giving you a little free time back at the hotel. Finally, at 8:00 PM. we'll meet at the hotel's main entrance to catch the bus to the airport. Make sure to be on time, and we'll head to the airport together!"}, {"qnum": 10, "question": "Listen to the announcement from a travel agent representative. Why is the air travel cancelled?", "options": ["Engine failure", "Poor weather conditions", "Delay at transit spot"], "answer": "Poor weather conditions", "explain": "Good afternoon, everyone. I'd like to start by saying that we're doing everything we can to assist you with your travel plans today. Unfortunately, due to poor weather conditions, our flight has been cancelled. I know this isn't the news you were hoping for, but your safety comes first. That said, we do have alternatives available. The train services are still running, and buses are also operating, so you have options to continue your journey, if you'd like to explore these alternatives, please come see us, and we'll help with the arrangements. Thank you for your patience and understanding."}, {"qnum": 11, "question": "A saleswoman is talking to a customer about a house. What is not original?", "options": ["Floor", "Furniture", "Architecture"], "answer": "Furniture", "explain": "Welcome! I'm so glad you're interested in this beautiful property. This house was built in the 1920s and has maintained much of its original charm. The hardwood floors you see here are completely original, and they’ve been carefully preserved over the years. The same goes for the architecture—those high ceilings and detailed moldings are a testament to the craftsmanship of that era. However, the furniture you see isn't original. It was replaced a few years ago to give the home a more modern, functional feel. But don't worry, the updates blend well with the classic features, giving you the best of both worlds—historic charm with modern comfort."}, {"qnum": 12, "question": "Listen to a weather forecast. Where will the weather be best?", "options": ["In the south", "In the west", "In the east"], "answer": "In the east", "explain": "Good evening, everyone! Here's your weather update for today. Unfortunately, the weather down south isn't looking too great—strong winds and heavy rain are expected throughout the day, so it might be best to avoid any outdoor plans in that region. On a brighter note, the west will have decent weather with clear skies and mild temperatures, making it a nice option if you're looking for some fresh air. However, the best weather can be found in the east, where we're expecting sunny skies and perfect temperatures for any outdoor activities. If you're planning to travel, I'd highly recommend heading east for the best conditions. Safe travels, and make sure to check local forecasts for any changes!"}, {"qnum": 13, "question": "Adam is calling his friend. When will he need the computer?", "options": ["Tuesday", "Friday", "Saturday"], "answer": "Friday", "explain": "Hey James, it's Adam! I just wanted to give you a quick call. I know you need a computer for your project, so I'm happy to let you borrow mine on Tuesday. Just make sure to take good care of it! But I need it back by Friday because I have a group presentation on Saturday. I really appreciate it, and I'm sure you'll get a lot done with it. Let me know if that works for you. See you soon!"}], "part2": {"qnum": 14, "context": "", "speakers": [{"speaker": "Speaker A _____", "answer": "Doing as a social activity"}, {"speaker": "Speaker B _____", "answer": "Doing arts with children"}, {"speaker": "Speaker C_____", "answer": "Doing arts as part of the job"}, {"speaker": "Speaker D_____", "answer": "Doing arts alone"}], "all_options": ["Doing as a social activity.", "Doing arts with children.", "Doing arts as part of the job.", "Doing arts alone."]}, "part3": {"qnum": 15, "context": "A man and a woman are talking about urban farming. Read the opinions below and decide whose opinion matches the statements, the man, the woman. or both the man and the woman. You can listen to the discussion twice. Living space is more important than farming space______ Farming space is appealing ______ Farming space will benefit the urban economy ______ Farming space is in need of more food ______ ", "statements": [{"statement": "Living space is more important than farming space", "answer": "Man"}, {"statement": "Farming space is appealing", "answer": "Woman"}, {"statement": "Farming space will benefit the urban economy", "answer": "Woman"}, {"statement": "Farming space is in need of more food", "answer": "Both"}]}, "part4": [{"qnum": 16, "context": "Listen to a critic talking about a newly broadcast TV series.", "sub_questions": [{"question": "What happened to the TV series?", "options": ["It didn't receive enough investment in the early stage.", "It was overlooked by critics.", "It caught the audience's attention from the start.", "New seasons will be produced due to great demand.", "It inspires young filmmakers to follow a new movie-making style.", "It can help reach new customers."], "answer": "It can help reach new customers."}]}, {"qnum": 17, "context": "Listen to an advertising expert talking about the advertising industry.", "sub_questions": [{"question": "What does the expert say about the negative side of advertising?", "options": ["Series are damaged by overexposure.", "Advertisements might sometimes be repetitive, which is annoying.", "Advertising costs the same amount of money to produce a movie.", "They help to attract more fans.", "They can generate negative publicity for the sport"], "answer": "They can generate negative publicity for the sport"}]}]}, {"test_name": "LISTENING - TEST 5 - APTIS SV", "part1": [{"qnum": 1, "question": "Listen to an announcement. Which platform to wait for the train?", "options": ["Platform 2", "Platform 5", "Platform 8"], "answer": "Platform 2", "explain": "Attention, all passengers! The 10:30 train to Greenfield is now arriving at Platform 2. Please make sure you have your ticket ready before boarding. This train will stop at River Station and Oakwood before reaching its final destination. Be careful when stepping onto the train, and mind the gap. For your safety, please keep your belongings close and follow all instructions from the staff. Thank you for traveling with us today!"}, {"qnum": 2, "question": "An artist is talking about her job. What is the difference in her job?", "options": ["She works from 9 to 5", "She doesn't work on weekends", "She works irregular hours"], "answer": "She works irregular hours", "explain": "Hello, my name is Sarah, and I'm an artist. I paint pictures of nature, like trees, rivers, and animals. I love using bright colors to make my art happy and full of life. My job is very fun, but I work irregular hours, sometimes late at night or on weekends. When I have inspiration, I paint for many hours without a break. I sell my paintings in galleries and online, and it makes me really happy when people like my work. Creating art is the best job for me!"}, {"qnum": 3, "question": "Listen to a conversation between the teacher and a parent What will the father do?", "options": ["Enroll him in summer school", "Arrange private classes for his son", "Talk to the principal"], "answer": "Arrange private classes for his son", "explain": "Teacher: Hello, Mr. Johnson. Thank you for coming in today. I wanted to talk about your son, Jai. Father: Hi, Mrs.Lee. Yes, I’ve noticed he's been struggling a bit lately. Teacher: Yes, his performance is not so good in math and reading. He seems to have some difficulties understanding the lessons. Father: I'm worried about that. What can we do to help him? Teacher: I know a private tutor who works well with children. She can provide extra help and support. Father: That sounds like a good idea! Can you give me her contact information? Teacher: Of course! I will write it down for you. I think Jake will really benefit from it."}, {"qnum": 4, "question": "A woman is talking about her weekends. What did she do last week?", "options": ["Went hiking", "Stayed at home", "Attended a party"], "answer": "Stayed at home", "explain": "My weekends are not always the same. This week has been busy, but I always look forward to my free time. Last weekend, I stayed at home and enjoyed some quiet moments with a book. I also watched a few movies and cooked a nice dinner for myself. This weekend, I plan to go out with friends. We might visit a new cafe or go for a walk in the park. I love spending time with my friends and relaxing after a busy week!"}, {"qnum": 5, "question": "A teacher and a student are talking about transportation. How does the teacher go to school?", "options": ["He drives", "He takes the bus", "He walks"], "answer": "He walks", "explain": "Teacher: Good morning. Sarah! You are early today! How do you get to school every day? Student: Hi, Mr. Smith! I usually take the bus. It's not far from my house, but sometimes I have to wait a long time for it Teacher: I understand. I walk to school every day. It helps me get some exercise, and I enjoy the fresh air. Student: That sounds nice! Do you walk alone? Teacher: No. I often walk with a few other teachers. We chat while walking, and it makes the time go by faster. Student: I wish I could walk to school too, but the bus is faster for me, especially when I have to get here early."}, {"qnum": 6, "question": "Anne is calling her daughter Sally. What does Anne need?", "options": ["Eggs", "Bread", "Milk"], "answer": "Eggs", "explain": "Hi Sally, it's Mom. How are you? just wanted to remind you about dinner tonight. We're having your favorite, spaghetti! Don't forget to pick up your brother from school at 4 o'clock. Oh, and can you stop by the store on your way home? We're out of eggs, and I need some to finish baking the cake. Thanks, sweetie!"}, {"qnum": 7, "question": "A mom is talking to her son. What does he like to study?", "options": ["Art", "Science", "History"], "answer": "Art", "explain": "Hey sweetheart. I'm so proud of you! Your art project looks amazing, you're really talented. I love how you used all those bright colors. You always do such a great job with your drawings. But remember, you also need to spend some time on your other subjects too, like math and science. I know you can do well in those if you try hard, just like you do with art. Let's work on it together, okay?"}, {"qnum": 8, "question": "A woman is talking about her family's holidays. What did the family do last year?", "options": ["Traveled abroad", "Camping", "Went to the beach"], "answer": "Camping", "explain": "This year, my family and I are going to the beach for our holiday. I'm really excited because I love swimming and relaxing by the sea. Last year, we went camping on the mountain, which was fun, but this time we wanted to do something different. We're staying in a small house near the beach, and I can't wait to watch the sunset every evening. My kids are excited too, they want to build sandcastles and play in the water. I think it's going to be a great holiday!"}, {"qnum": 9, "question": "A man is talking about how he goes to work. Why does he prefer traveling by train?", "options": ["It's cheaper than biking", "It's practical", "It’s faster than flying"], "answer": "It's practical", "explain": "I've been thinking about how to get to work every day. At first, I considered driving, but the traffic is always really bad in the morning. Then, I thought about riding my bike, but it's too far, and I'd be tired before I even start my day. The bus is another option, but it's often late. After thinking about all the choices, I decided to travel by train. It’s practical because it's on time, and I can relax during the trip. Plus, the station is close to my office!"}, {"qnum": 10, "question": "Listen to the instructions of a university. Where is the main office?", "options": ["On the third floor", "On the first floor", "In the basement"], "answer": "On the first floor", "explain": "Welcome to our university! When you enter the campus, you'll see the library on your left and the cafeteria on your right. If you need help with anything, the main office is on the first- floor of the center campus building. There, you can ask about classes, schedules, or anything else. Behind the main building you'll find the gym and sports area. For quiet study, there are some nice spots in the garden near the science building. Make sure to explore and enjoy your time here!"}, {"qnum": 11, "question": "A woman is talking about shopping places. Where is she going to go shopping?", "options": ["At the downtown market", "At a new shopping center", "At the mall"], "answer": "At a new shopping center", "explain": "I love shopping, and there are so many places to choose from in our city. The downtown market is great for fresh fruit and vegetables, and there are lots of small shops there too. I need clothes, I usually go to the mall, but it can get very crowded on weekends. There's also a little boutique near my house with some unique items, but it's a bit expensive. This time, I’m excited to check out the new shopping center that just opened. I've heard it has everything I need in one place!"}, {"qnum": 12, "question": "A tour guide is making an announcement. Why was the tour canceled", "options": ["Not enough people", "Bad weather", "Transportation problems"], "answer": "Not enough people", "explain": "Hello everyone, hope you're all having a good day. I'm your tour guide, and I was really looking forward to showing you around the city today. However, there is a small issue. The weather is perfect and transportation is not a problem, everything is ready for our trip. Certainly, these are not the problems. Unfortunately, we don't have enough people for the tour today. Because of this, we have to cancel the tour. I'm really sorry for the Inconvenience, and I hope we can see you next time."}, {"qnum": 13, "question": "A man is talking about his job. What does the man want to do next?", "options": ["Become a writer", "Become a chef again", "Start teaching history again"], "answer": "Become a writer", "explain": "\"Welcome back to our behind-the-scenes series update. Overall, I’m really excited about the core premise of the new show. But there are a few critical adjustments we need to make right off the bat. First, the dialogue: while the overall plot beats are strong, the way the characters speak lacks the necessary authenticity. We need to make sure every line of conversation does more than just move the story forward-it should reveal their personalities and lived experiences. That’s why the biggest gap right now is that we haven’t adequately explored the characters’ backstories through their dialogue. Their lines need to show who they are, not just what they’re doing in the moment. Second, the industry-wide production pressure is hitting us hard right now. Market demand and tight broadcast deadlines are pushing us to rush through the script development cycle. When you cut corners on editing and refinement, the final quality of the project takes a hit. We’re trading depth for speed, and that’s a dangerous tradeoff right now. We need to find a way to balance fast turnaround with thoughtful, intentional writing.\""}], "part2": {"qnum": 14, "context": "", "speakers": [{"speaker": "Speaker A _____", "answer": "It saves time"}, {"speaker": "Speaker B _____", "answer": "It is cheaper"}, {"speaker": "Speaker C_____", "answer": "Products are delivered"}, {"speaker": "Speaker D_____", "answer": "There are more choices"}], "all_options": ["It saves time.", "It is cheaper.", "Products are delivered.", "There are more choices."]}, "part3": {"qnum": 15, "context": "Exhibitions should be different and diverse ______ Traditional customs are gradually losing their significance ______ Local festivals will disappear in the near future ______ Schools are important in shaping future generations ______ ", "statements": [{"statement": "Exhibitions should be different and diverse", "answer": "Man"}, {"statement": "Traditional customs are gradually losing their significance", "answer": "Both"}, {"statement": "Local festivals will disappear in the near future", "answer": "Woman"}, {"statement": "Schools are important in shaping future generations", "answer": "Woman"}]}, "part4": [{"qnum": 16, "context": "Listen to a TV producer sharing his thoughts on the latest scripts for a new show. Choose the correct answers. • What does the producer think about the dialogues in the new show?", "sub_questions": []}, {"qnum": 17, "context": "Listen to a critic is giving opinions about a restaurant", "sub_questions": [{"question": "What are the critic's opinions about the restaurant?", "options": ["The food is not fresh", "The service is not good", "The chief lack of experience"], "answer": "The service is not good"}, {"question": "What can compete with online food delivery?", "options": ["Organic ingredients", "Providing a ready-made pack for customers", "Customers feel valued and welcome"], "answer": "Customers feel valued and welcome"}]}]}, {"test_name": "LISTENING - TEST 6 - APTIS SV", "part1": [{"qnum": 1, "question": "Tom is calling his friend. What time will they meet?", "options": ["6 PM", "5 PM", "7 PM"], "answer": "7 PM", "explain": "Hey Mike, it's Tom! How are you? I was thinking, why don't we meet up tonight? I'm free, and it would be fun to hang out. Let's meet at the park at 7 P.M. Does that work for you? We can grab some snacks and maybe play basketball or just talk. Let me know if you're in, and if anyone else wants to join, we can invite them too! See you later!"}, {"qnum": 2, "question": "Lucy is calling her friend. What is her sister like?", "options": ["She is young", "They have similar characters", "She will be wearing a red coat"], "answer": "They have similar characters", "explain": "Hi Emma, it's Lucy. I hope you're doing well! I need a small favor from you today. Could you pick up my sister after school? She'll be standing at the school gate at 3 P.M. She looks just like me, so you'll recognize her easily. I have a meeting, and I won't make it in time. Thank you so much! Let me know if that's okay with you."}, {"qnum": 3, "question": "A finance expert is giving advice to young people. What shouldn't they do?", "options": ["Spend too much on clothes.", "Ask for more money.", "Save for emergencies."], "answer": "Ask for more money.", "explain": "Managing money is very important for everyone. I always make sure to plan my spending carefully, like saving some for emergencies and not buying things I don't need. It's easy to lose control if you don't keep track of your budget. Young people, especially, need to be careful about borrowing money. Many ask for loans from the bank, but that creates debt. It's better to avoid borrowing too much and focus on saving instead."}, {"qnum": 4, "question": "A man is talking about his daily routine. What does he do after work?", "options": ["Goes to the gym.", "Plays football.", "Reads books."], "answer": "Plays football.", "explain": "Every day, I wake up at 7 A.M. and have a quick breakfast before going to work. I usually take the bus, and it takes about 30 minutes to get to the office. At work, I spend most of my time on the computer, answering emails and working on projects. I have lunch at noon and get back to work until 5 P.M. After work, I like to relax by playing football with my friends. It's a great way to stay active and have fun!"}, {"qnum": 5, "question": "Lily is talking about her daily routine. What does she do in the evening?", "options": ["Goes for a walk", "Plays video games.", "Cooks dinner."], "answer": "Goes for a walk.", "explain": "I'm Lilly, and I want to tell you about my daily routine. I wake up early around 6:30 AM. and have breakfast before going to work. I work in a small office, and my job keeps me busy until about 5 P.M. After dinner, I usually go for a walk to relax, but today I'm going to try something different-do some yoga at home. It sounds fun and peaceful. After that, I'll probably watch a movie before going to bed. It's a simple day, but I like."}, {"qnum": 6, "question": "A woman is talking about her vacation. What is the relationship between the speaker and Lisa?", "options": ["Best friends", "Mother and daughter", "Teacher and student"], "answer": "Best friends", "explain": "Woman: I just got back from an amazing vacation with Lisa! We've been friends for years, and this trip really brought us closer. I can't imagine going with anyone else. Some people think we look like mother and daughter because we care for each other so much, but it's really just best friends hanging out!"}, {"qnum": 7, "question": "A man and a woman are going shopping. What does he buy in the store?", "options": ["AT-shirt", "A suit for the office", "A pair of shoes"], "answer": "A suit for the office", "explain": "Man: Hey, Sarah! Let's check out this store. I need something for work. Woman: Sure, John. How about this T-shirt? It looks nice. Man: Hmm, it's cool, but I don't really need a T-shirt right now. I'm actually looking for something more formal. Woman: Oh, okay. What about this hat? It would look great on you Mans Haha, maybe, but not today. I really need a suit for the office. Look, this one seems perfect. Woman: That's a good choice! It's smart and looks comfortable. Man: Great! I'll buy the suit. Let's keep looking for other things we might need."}, {"qnum": 8, "question": "A student is talking about housing. Where does he live now?", "options": ["In a small village", "In an apartment", "In a town hall"], "answer": "In a town hall", "explain": "Hi, I'm Jack, and I want to talk about where I live. Right now, I'm staying in a town hall near my university. It's a nice place, and I've met a lot of other students here. Before this, I used to live with my parents in a small village. It was quiet, but I needed to be closer to school. Soon, I'll move to an apartment nearby with a few friends. I think it'll be fun to share a place with them. I'm excited about the change!"}, {"qnum": 9, "question": "Listen to a radio man talking about a new popular song. Which is the most attractive part of the song?", "options": ["The words", "The instruments", "The cover art"], "answer": "The words", "explain": "Good evening, listeners! Today I want to talk about a new song that's quickly becoming popular - You're my everything. The tune is really catchy, and it makes you want to dance right away. The instruments used are simple but create a great rhythm. However, the most attractive part of all is the words. The lyrics tell a beautiful story that everyone can relate to. It's no wonder so many people are loving this song! If you haven't heard it yet, make sure to give it a listen soon!"}, {"qnum": 10, "question": "Listen to a saleswoman talking about a property. Which room is the largest?", "options": ["Bedroom", "Kitchen", "Bathroom"], "answer": "Kitchen", "explain": "Hello, and welcome! Let me tell you about this lovely property. It has two spacious bedrooms, both with big windows that let in lots of natural light. The bathroom is modern, with a large shower and plenty of storage space. The living room is cozy, perfect for relaxing after a long day. But the kitchen is the star of the house-it's the largest room, with lots of counter space for cooking, and it's great for hosting dinners. You'll love it here."}, {"qnum": 11, "question": "Listen to a student talking about his study. What course is the student going to take this year?", "options": ["Math", "Computer", "Science"], "answer": "Computer", "explain": "Hi. I'm Ben, and I want to share a bit about my studies. Last term. I took English, math, and science. They were all interesting, but math was a bit tough for me. I worked hard, though, and got good results in the end. This year. I'm really excited because I'm going to take a computer course. I've always wanted to learn more about technology, so I'm looking forward to it!"}, {"qnum": 12, "question": "A girl is talking about a show she will attend. What will end with?", "options": ["A dance performance", "A big celebration", "A surprise performance"], "answer": "A surprise performance", "explain": "Hi, I'm Emma, and I'm super excited about a show I'm going to this weekend! It's happening on Saturday at 7 P.M at the city theater. There will be different performances, like dancing and singing. I've heard the show is really fun, and I can't wait to see it. But the best part is that it will end with a surprise performance! I'm really curious to find out what it is!"}, {"qnum": 13, "question": "A boy is talking about his cat. What does he feed the cat?", "options": ["Mice", "Insects", "Fish"], "answer": "Fish", "explain": "Hi, I'm Alex, and I want to tell you about my cat, Whiskers. He's really friendly and loves to play. Whiskers is a bit picky about food, though. He doesn't like eating mice or insects, which is funny for a cad But he absolutely loves fish. Every time I give him some, he gets so excited! He also enjoys sleeping by the window and watching the birds outside. He's the best pet ever!"}], "part2": {"qnum": 14, "context": "", "speakers": [{"speaker": "Speaker A _____", "answer": "Prefer to study late at night"}, {"speaker": "Speaker B _____", "answer": "Prefer to study at various places"}, {"speaker": "Speaker C_____", "answer": "Prefer to study with music"}, {"speaker": "Speaker D_____", "answer": "Prefer to study in a quiet place"}], "all_options": ["Prefer to study late at night.", "Prefer to study at various places.", "Prefer to study with music.", "Prefer to study in a quiet place."]}, "part3": {"qnum": 15, "context": "Art is only suitable for the privileged few___ The government should invest more in arts___ Children should be exposed to art early___ In the future, art will become more accessible___ ", "statements": [{"statement": "Art is only suitable for the privileged few", "answer": "Man"}, {"statement": "The government should invest more in arts", "answer": "Woman"}, {"statement": "Children should be exposed to art early", "answer": "Both"}, {"statement": "In the future, art will become more accessible", "answer": "Woman"}]}, "part4": [{"qnum": 16, "context": "Listen to a lecturer talking about two big writers of history, which are Shakespares William and Louis Michael.", "sub_questions": [{"question": "What was the lecturer's opinion about both authors' past work?", "options": ["They have both been overlooked by ACADEMICS.", "They make reference to each other's work.", "One was less successful than the other."], "answer": "They have both been overlooked by ACADEMICS."}, {"question": "What did the lecturer say about both authors?", "options": ["Their reputation goes beyond their target audience.", "They should have been more popular.", "It is not always easy for the meanings to be IDENTIFIED."], "answer": "It is not always easy for the meanings to be IDENTIFIED."}, {"question": "What these two writers have in common is that they both challenge readers to look beyond the surface. It is not always easy for the meanings in their works to be identified. With Shakespeare, the language can be dense, making it difficult to grasp the deeper themes. Louis Michael, in contrast, weaves intricate layers of metaphor and allegory into his writing, requiring careful thought and analysis. Yet, once these hidden meanings are uncovered, the richness of their works becomes undeniable.", "options": [], "answer": ""}]}, {"qnum": 17, "context": "Listen to an educational expert talking about sport competition in school", "sub_questions": [{"question": "What is the expert's opinion about sport competitions?", "options": ["Provide school with external investments", "Nature potential sportsmen for the country.", "They can cause harmful effects"], "answer": "They can cause harmful effects"}, {"question": "What is the expert's advice for schools?", "options": ["Should consider sports as a mandatory subject.", "Provides them with a balance in their lives.", "Keep students focus on academic subjects"], "answer": "Provides them with a balance in their lives."}]}]}, {"test_name": "LISTENING - TEST 7 - APTIS SV", "part1": [{"qnum": 1, "question": "A woman is talking about her family's weekend. What does the family do most weekends?", "options": ["Goes for a walk", "Goes picnic", "Goes to the beach"], "answer": "Goes for a walk", "explain": "Hello, everyone! I want to share what my family usually does on weekends. We love spending time together and often go for a walk in the park. It's a nice way to relax and enjoy nature. We like to see the flowers and sometimes have a picnic. However, this weekend is different! My sister is visiting us, and we have planned a small family gathering at home. We will cook a big meal together and play some games. It will be fun to catch up and spend quality time as a family. I'm really looking forward to it!"}, {"qnum": 2, "question": "A man is talking to a shop assistant. What does the man buy in the shop?", "options": ["Mugs", "Candles", "Clothes"], "answer": "Clothes", "explain": "Man: Hi there! I need some help buying gifts for my friends. Shop Assistant: Of course! What kind of gifts are you looking for? Man: I'm not sure yet. What do you have? Shop Assistant: How about mugs? We have many colorful designs. Would you like to buy some? Man: They're nice, but I think my friends have enough mugs already. Is there anything else? Shop Assistant: Candles can also be a great choice! We have some lovely scented ones. Man: Hmm, I like them, but I'm looking for something else. Shop Assistant: How about clothes? We have some stylish shirts and sweaters. Man: That sounds good! I think I'll buy some clothes for my friends in the end. Thank you for your help!"}, {"qnum": 3, "question": "A man is talking on the phone. What did the man lose?", "options": ["Jacket", "Glasses", "Books"], "answer": "Glasses", "explain": "Hello! This is Mark. I think I might have lost my glasses when I was at your store earlier today. I remember trying on a jacket, and I may have left them there. They are brown and round. I really need them for reading and driving! I want to come back and check if they are still there. Can you please hold them for me if you find them? Thank you so much for your help! I'll be there in about 20 minutes."}, {"qnum": 4, "question": "Jack is phoning his mom. What does Jack need to buy for his sister?", "options": ["Chocolates", "Milk", "Fruit"], "answer": "Chocolates", "explain": "Hi, Mom! It's Jack. I hope you're doing well! I'm out shopping, and I need to buy some chocolates for my sister's birthday. She loves dark chocolate, so I want to get her some nice ones. By the way, do you need anything while I'm here? I can pick up some milk or fruit if you want. Let me know! I'll talk to you soon!"}, {"qnum": 5, "question": "Lucy is calling her brother. What does the brother have to drink?", "options": ["Milk", "Medicine", "Water"], "answer": "Water", "explain": "Hi, Jake! It's Lucy. I just wanted to check in on you. How are you doing? I know you've been busy with work and school lately. I'm worried that you're not drinking enough water. Staying hydrated is really important, especially when you're working hard! Remember to keep a bottle with you. Anyway, I hope you're taking care of yourself. Let's catch up soon!"}, {"qnum": 6, "question": "Anna is calling her friend. Where will they meet?", "options": ["At the marketplace", "At the mall", "At the park"], "answer": "At the marketplace", "explain": "Hi, Mia. It's Anna. I hope you're having a great day! I wanted to see if we are still meeting at the marketplace later. I'm really excited because I want to try that new ice cream shop we talked about. I heard they have some amazing flavors! I'll be there around 3 P.M. Let's also check out the fresh fruits and vegetables. It's always fun to shop together! See you soon!"}, {"qnum": 7, "question": "Listen to an auction man talking about a cabinet. Which part of the cabinet is original?", "options": ["The drawer", "The doors", "The handles"], "answer": "The drawer", "explain": "Ladies and gentlemen, welcome to today's auction! I have a beautiful cabinet here that I want to show you. This cabinet is made of high-quality wood, and it has a lovely design that will fit in any room. What makes it special is that the drawer is kept original, which adds to its charm and value. You can store your favorite items or use it as a display for your beautiful decorations. Don't miss this chance to own a unique piece of furniture! Let's start the bidding!"}, {"qnum": 8, "question": "Listen to a voice message. How does Even feel?", "options": ["Sick", "Happy", "Tired"], "answer": "Sick", "explain": "Hi, Evan! This is Mom. I just wanted to leave you a message to check on you. I heard you're not feeling well, and I'm really worried about you. Make sure you're resting and drinking plenty of fluids. Do you need anything? I can bring you some soup or your favorite snacks. Please take care of yourself! I love you and hope you feel better soon. Call me back when you can!"}, {"qnum": 9, "question": "Two friends are talking about their trip. What will the weather be like?", "options": ["Cold and wet", "Hot and sunny", "Warm and dry"], "answer": "Cold and wet", "explain": "Friend 1: Hey, Sarah! Are you excited about our trip next week? Friend 2: Hi, Mike! Yes, I can't wait! I've been looking forward to it for a long time. Friend 1: Me too! But I heard the weather is going to be cold and wet. We should prepare for that. Friend 2: Oh no! I hope it doesn't rain too much. We need to pack our rain jackets and warm clothes. Friend 1: Definitely! I'll also bring an umbrella just in case. Friend 2: Good idea! Let's plan some fun indoor activities if the weather is bad. Friend 1: Yes! We can visit museums or try some local food. It will still be a great trip!"}, {"qnum": 10, "question": "A man is talking about his holiday. How is he going to travel to the city?", "options": ["by car", "by train", "by bus"], "answer": "by train", "explain": "Hello, everyone. I want to share my plans for the holiday. This year, I'm going to travel to the city for a few days. I'm very excited because I love exploring new places. I plan to visit some interesting museums and try different foods at local restaurants. The best part is that I will travel by train, which is fun and also very cheap! I will leave early in the morning to enjoy the day. I can't wait to see all the sights and take lots of pictures! It will be an amazing holiday!"}, {"qnum": 11, "question": "Listen to a nutrition expert. What time is the best for children to eat fruit?", "options": ["In the evening", "In the afternoon", "In the morning"], "answer": "In the morning", "explain": "Hello, everyone! I'm here to talk about nutrition and how important it is for our health. Eating fruits is very beneficial, especially for children. Fruits have vitamins and minerals that help kids grow strong and stay healthy. The best time for children to eat fruit is in the morning. This gives them energy for the day ahead. You can add fruit to breakfast, like in a smoothie or with yogurt. It's a delicious and healthy way to start the day! So, let's encourage our kids to eat more fruit in the morning! Thank you!"}, {"qnum": 12, "question": "Greg is talking about a working day in his life. How does he go to work?", "options": ["By bus", "By bike", "On foot"], "answer": "By bus", "explain": "Hi, everyone! I'm Greg, and I want to tell you about a typical working day in my life. I usually wake up early, around 7 A.M. After a quick breakfast, I get ready for work. I like to wear smart clothes because I work in an office. I go by bus every day, which takes about 30 minutes. I enjoy looking out the window and listening to music on my way. When I arrive at the office, I start my day by checking emails and planning my tasks. I have meetings with my team, and we work together on projects."}, {"qnum": 13, "question": "Listen to a tour guide. Where is the office located?", "options": ["Next to the park", "Opposite the hotel", "Above a restaurant"], "answer": "Opposite the hotel", "explain": "Hello, everyone! Welcome to our tour! My name is Sam, and I'm your tour guide today. I'm excited to show you around this beautiful city. We will visit many interesting places, including parks, museums, and local markets. As we walk, I'll share fun facts and stories about each location. If you have any questions, feel free to ask! Now, before we start, I want to let you know that our office is opposite the hotel where you are staying. If you need any help or information during your stay, you can always come to us. Let's begin our adventure and enjoy exploring together!"}], "part2": {"qnum": 14, "context": "", "speakers": [{"speaker": "Speaker A _____", "answer": "Walk with friends"}, {"speaker": "Speaker B _____", "answer": "Go by bus"}, {"speaker": "Speaker C_____", "answer": "Walk alone"}, {"speaker": "Speaker D_____", "answer": "Drive car"}], "all_options": ["Walk with friends.", "Go by bus.", "Walk alone.", "Drive car."]}, "part3": {"qnum": 15, "context": "Singer can be good models for the young___ Taste in music is highly personal thing___ Music is a universal language___ Music can be used to manipulate people's feelings___ ", "statements": [{"statement": "Singer can be good models for the young", "answer": "Woman"}, {"statement": "Taste in music is highly personal thing", "answer": "Both"}, {"statement": "Music is a universal language", "answer": "Man"}, {"statement": "Music can be used to manipulate people's feelings", "answer": "Both"}]}, "part4": [{"qnum": 16, "context": "A Radio MC is talking about research on happiness. Choose the corrects answer.", "sub_questions": [{"question": "What does the radio MC say about how the research on happiness has been covered by the media?", "options": ["It has been accurately reported by the media", "It has not been accurately reported by the media", "It has been ignored completely by the media", "To find personal happiness", "To find a conclusive answer", "To discuss happiness in the media"], "answer": "To find a conclusive answer"}]}, {"qnum": 17, "context": "Listen to an advertising expert talking about the advertising industry.", "sub_questions": [{"question": "What does the expert say about advertising?", "options": ["It helps to reach new customers.", "Advertisements might sometimes be repetitive which is annoying.", "Advertising costs the same amount of money to produce a movie.", "They help to attract more fans.", "They can boost ticket sales and sales of sports related items.", "They are not always good for sport fans"], "answer": "They are not always good for sport fans"}]}]}, {"test_name": "LISTENING - TEST 8 - APTIS SV", "part1": [{"qnum": 1, "question": "Listen to the announcement. When does the train leave?", "options": ["At 9:15", "At 9.30", "At 9.45"], "answer": "At 9:15", "explain": "Woman: Good morning, everyone. This is an important announcement about a change in the train schedule. The train to London will now leave at 9:15, not 9:30 as planned. Please listen carefully to this information. If you are taking this train, please go to Platform 3 now. Thank you for your attention, and have a good day."}, {"qnum": 2, "question": "Listening to a tour guide talking about Rock city. How old is the city?", "options": ["2500 years", "1500 years", "3500 years"], "answer": "1500 years", "explain": "Welcome to Rock City, everyone! I'm excited to show you around this amazing place. Rock City has a very long and interesting history. People first started living here about 1500 years ago. Can you believe how old that is? It's older than many famous cities in the world! The city got its name because of all the big rocks you can see around us. Over time, people built houses and roads between these rocks. Today, we can still see many old buildings from long ago."}, {"qnum": 3, "question": "Listening to Sarah leaving a message for her friend. When does she want to meet?", "options": ["Two o'clock", "Three o'clock", "One o'dock"], "answer": "Three o'clock", "explain": "Girl: Hi John, this is Sarah calling. I'm leaving you a message about our meeting today. I know we said we'd meet at two, but something's come up. Can we change the time to three o'clock instead? I'll be at the usual coffee shop at three. Please call me back if this doesn't work for you."}, {"qnum": 4, "question": "Listen to a woman talking about what she has just bought. What is Dress she wears like?", "options": ["black and white", "long and white", "long and red"], "answer": "long and red", "explain": "Girl: I want to tell you about something special I just bought. It's a beautiful dress. The dress is long and red, just like a sunset! I feel so happy when I wear it. The fabric is soft, and it flows nicely when I walk. I can wear it to a party or a nice dinner. I love my new dress!"}, {"qnum": 5, "question": "A man is seeking advice on future career. What is he going to do?", "options": ["To work in business", "To become a teacher", "To study at college"], "answer": "To work in business", "explain": "Woman: Welcome, how may I help you? Man: Yes, I would like to have some advice for my future job. I majored in Mathematics. Is there anything that I could do? Woman: Well there are a variety of career paths you can take, let say becoming a teacher, a businessman, or continue to study higher to become a researcher. Man: I have a friend who also majors in Mathematics and he is now a businessman with his own company. I guess that would be my choice then. I am not suitable to become a teacher since I think I am a bit impatient."}, {"qnum": 6, "question": "Listen to Anna talk about his old manager, George. What did Anna say about George?", "options": ["he didn't like her", "he taught her a lot", "he was very strict"], "answer": "he taught her a lot", "explain": "Woman: You know, I want to talk about my old manager, George. He was a very smart man, and he taught me a lot about work. I remember the first time I joined the team; he showed me how to do my job well. George was not very strict, but he had high expectations. I learned to be better because of him. Overall, I am thankful for his guidance and support during my early days."}, {"qnum": 7, "question": "Listen to Sarah talking about her hobby. What does she do in her free time?", "options": ["Read books and paint", "Watch movies and go shopping", "go to the theater and play sports"], "answer": "go to the theater and play sports", "explain": "Woman: In my free time, I love to go to the theater. There is something magical about watching a live performance. It makes me feel alive and happy. I also enjoy playing sports with my friends. We have so much fun together, whether it's soccer or basketball. These activities help me relax and make my days brighter."}, {"qnum": 8, "question": "Linda is talking about what she likes to eat. What does she have for lunch?", "options": ["Tea", "Coffee", "Juice"], "answer": "Tea", "explain": "Woman: When it comes to lunch, I have a simple pleasure: I really enjoy a warm cup of tea. It's my favorite drink to have while I eat. I find it calming, and it makes my meal feel special. Sometimes people ask me why I don't choose coffee or juice, but for me, tea is just perfect. It warms my heart and gives me a moment to relax."}, {"qnum": 9, "question": "A woman is talking about her holiday plan. Where is she going on holidays?", "options": ["the cave", "the beach", "the mountains"], "answer": "the mountains", "explain": "Woman: I'm so excited about my upcoming holiday! I've been thinking about where to go for a long time. Some of my friends suggested going to a nice beach. Others talked about exploring interesting caves. But I've made up my mind - I'm going to the mountains! The mountains are so beautiful with their green forests. I can't wait to breathe the fresh air up there. They are perfect for relaxing and enjoying nature."}, {"qnum": 10, "question": "A man is talking about the environment of the countryside. What is the main cause of poor air quality?", "options": ["Smokes from factories", "Vehicles on the roads", "Fires in the countryside"], "answer": "Fires in the countryside", "explain": "I really like living in the countryside. There are many green fields, tall trees, and small rivers. The air usually smells fresh and clean. But sometimes, the air becomes dirty and hard to breathe. Many people think cars on the roads make the air bad. Others say the smoke from big factories is the problem. These things can make the air dirty, but in the countryside, there's a bigger issue. Farmers often start fires to clean their fields. They burn old plants and grass. These fires make a lot of smoke that goes into the air. It's sad because the smoke can hurt animals and make people sick. We need to find better ways to clean fields without using fire."}, {"qnum": 11, "question": "A man is calling his friend to meet for coffee. Where is the Coffee shop located?", "options": ["opposite the gift shop", "next to the gift shop", "behind the gift shop"], "answer": "opposite the gift shop", "explain": "Man: Hey, are you free for coffee later? I found a great new place in town. It's not hard to find at all. You know the big gift shop on Main Street? Well, the coffee shop is right across from it. Just look for the gift shop, then cross the street. You'll see the coffee shop right there, opposite the gift shop. They have amazing pastries too. Let's meet there at 3 PM, okay?"}, {"qnum": 12, "question": "Two colleges talk about meeting. When do they want to meet?", "options": ["On Tuesday", "On Sunday", "On Saturday"], "answer": "On Tuesday", "explain": "Woman: Hey there! I've been thinking we should get together soon to discuss our upcoming project. I know weekends are usually good for meetings, but this time they're a bit tricky. Saturday is out because I've got a family event all day. And Sunday? Well, I usually use that day to catch up on rest and prepare for the week ahead. So, I was wondering if we could meet on Tuesday instead, it works really well for me. What do you think about that?"}, {"qnum": 13, "question": "A man is calling his teacher to meet for the assignment. When is the meeting?", "options": ["On Thursday afternoon", "On Tuesday morning", "On Thursday morning"], "answer": "On Thursday morning", "explain": "Man: Hi Professor Smith, this is John calling about our meeting for the assignment. I wanted to confirm our appointment time. I know we discussed a few options earlier. At first, I thought we agreed on Tuesday morning. But then I remembered that doesn't work with your schedule. Then I considered Thursday afternoon, but I have another class then. So, I'm pretty sure we settled on Thursday morning at 10 AM in your office. That's what I have written down. I'll bring my draft and notes for the project. If I've got the day or time wrong, or if you need me to bring anything else, please let me know. Looking forward to discussing the assignment with you. Have a great day!"}], "part2": {"qnum": 14, "context": "", "speakers": [{"speaker": "Speaker A___", "answer": "watch film"}, {"speaker": "Speaker B___", "answer": "communicate with friends"}, {"speaker": "Speaker C___", "answer": "complete school assignments"}, {"speaker": "Speaker D___", "answer": "find transport information"}], "all_options": ["watch film___", "communicate with friends___", "complete school assignments___", "find transport information___"]}, "part3": {"qnum": 15, "context": "Auditions are most important for an actor's career._____ Actors tend to respond best to strong and engaging scripts._____ Theater acting and screen acting are quite different from each other._____ Actors should be praised and recognized as much as possible._____ ", "statements": [{"statement": "Auditions are most important for an actor's career.", "answer": "Man"}, {"statement": "Actors tend to respond best to strong and engaging scripts.", "answer": "Woman"}, {"statement": "Theater acting and screen acting are quite different from each other.", "answer": "Both"}, {"statement": "Actors should be praised and recognized as much as possible.", "answer": "Both"}]}, "part4": [{"qnum": 16, "context": "Listen to a city planner talk at a press conference about a Regional Development Planning and answer the questions below.", "sub_questions": [{"question": "What is one of the main criticisms of the Regional Development Plan?", "options": ["It doesn't provide enough alternatives to driving.", "It places too much emphasis on public transportation.", "It is too expensive to implement the plan."], "answer": "It doesn't provide enough alternatives to driving."}, {"question": "What challenge is the Regional Development Plan likely to face?", "options": ["It may be delayed due to funding issues.", "It could face difficulties in gaining government approval.", "It is likely to meet resistance from local communities."], "answer": "It is likely to meet resistance from local communities."}]}, {"qnum": 17, "context": "Listen to a former student talking about taking a year off before university and answer the questions below.", "sub_questions": [{"question": "Why didn’t he go straight to the university?", "options": ["He wanted to earn money before studying.", "His family advised him to wait.", "He wasn’t ready to start higher education"], "answer": "He wasn’t ready to start higher education."}, {"question": "What did he think he learnt from the year’s break?", "options": ["How to manage academic pressure.", "To be more independent", "The importance of choosing the right degree."], "answer": "To be more independent."}]}]}, {"test_name": "LISTENING - TEST 9 - APTIS SV", "part1": [{"qnum": 1, "question": "The woman is walking into a local store. How much are the cleaning products?", "options": ["One pound fifty", "Two pounds fifty", "Three pounds fifty"], "answer": "One pound fifty", "explain": "As I walk into the store, I notice that the cleaning products are on sale. They're usually a bit more expensive, but today they're only one pound fifty. I was expecting to pay three pounds fifty, so it's a nice surprise. I grab a few items since I know I'll need them later. It's a small store, but the deals are always good here. Time to check out!"}, {"qnum": 2, "question": "Listen to the chief announce to students. When is lunch ready?", "options": ["12:30 p.m", "2:00 p.m", "1:15 p.m"], "answer": "2:00 p.m", "explain": "Good afternoon, everyone. I have an important announcement regarding lunch today. Lunch will be ready at 2:00 p.m, not at 12:30 p.m. as some may have expected. Please be patient as we prepare everything for you. If you have any questions, feel free to ask. Thank you for your understanding, and enjoy your day!"}, {"qnum": 3, "question": "Listen to David talking about the conference. How long did he talk in the speech?", "options": ["30 minutes", "45 minutes", "15 minutes"], "answer": "15 minutes", "explain": "Hello everyone. Today, I want to tell you about the conference that took place last week. It was very interesting, and many people attended. I spoke about new ideas in business. My presentation wasn't very long, but I had a lot to say. The other speakers talked about technology and education. After the talks, there were some questions from the audience. My speech lasted about 15 minutes, shorter than expected. However, the audience was very attentive, and I was happy to see that."}, {"qnum": 4, "question": "Listen to the director talking about sales of his company. How many copies of Freeze Frame magazine were sold?", "options": ["Over 300,000 copies", "Over 3,000 copies", "Over 30,000 copies"], "answer": "Over 300,000 copies", "explain": "I am excited to share the latest sales figures for our company. This month, we had a fantastic response to our magazine, Freeze Frame. I'm proud to announce that we sold over 300,000 copies! This is a big increase from last month. Many people are buying our magazine, and we are very happy. Thank you for your support! We hope to sell even more in the future."}, {"qnum": 5, "question": "Listen to the conversation between Douglas and Kay. Why does Douglas call Kay?", "options": ["ask for a favor", "suggest a meeting", "say thank you"], "answer": "say thank you", "explain": "Hi, Kay! Its Douglas. I hope you are doing well. I wanted to call you today to say thank you for all your help with the project. Your advice was really valuable, and it made a big difference. I also wanted to ask for a favor. If you have some time, I would love to meet and discuss a few ideas I have. Let me know when you are free!"}, {"qnum": 6, "question": "A man and woman are discussing their plans for the evening. What do the man and woman decide to do in the evening?", "options": ["Make plans later", "Go to the movie", "Stay at home"], "answer": "Make plans later", "explain": "I'm thinking about what to do this evening. I could go to the movies, but I'm not sure if that's the best idea. I might prefer to stay at home and relax. However, I want to discuss this with my friend first. It might be better to plan when we can decide together. I believe keeping our options open is a good idea. So for now, I'll wait and see what we want to do."}, {"qnum": 7, "question": "Listen to Marry talking to Jane while waiting for James. What did they decide to do?", "options": ["Have meeting without him", "Continue to waiting for him", "Cancel the meeting"], "answer": "Have meeting without him", "explain": "Hi, Jane! It looks like James is running late again. I'm starting to wonder if we should wait for him. I don't want to waste too much time. I feel like we could have the meeting without him. We have a lot to discuss, and we can always update him later. I think it's better to move forward instead of just waiting. So, let's go ahead."}, {"qnum": 8, "question": "A woman shares her job with her friend. Why does she want to become a writer?", "options": ["to earn much money", "to help people", "to become famous"], "answer": "to help people", "explain": "I have been thinking a lot about my job, and I really want to become a writer. It’s not just about earning a lot of money or becoming famous for me. My main reason is to help people improve themselves. I believe stories can inspire and support others during hard times. I hope my writing can make a difference in their lives, and that’s why I’m choosing this path."}, {"qnum": 9, "question": "A woman tells her friend about her plans for the day. What is the woman going to do?", "options": ["Have coffee", "Have lunch", "Drink tea"], "answer": "Have coffee", "explain": "Hey there! I have some fun plans for today. First, I’m going to meet a friend at a cozy café. We want to sit down and enjoy a nice warm drink together. It’s been a while since we caught up, so I’m really looking forward to it. I think starting the day with a good conversation over cup will be perfect. After that, I might think about what to have for lunch, but for now, coffee is definitely on my mind!"}, {"qnum": 10, "question": "Listen to a woman explaining her morning routine to her friend. Why do women get up early?", "options": ["have some quiet time", "to go to work early", "to take care of children."], "answer": "have some quiet time", "explain": "“I am quite a busy person in my daily work. So in the morning I usually wake up early to enjoy some quiet time. This time of day helps me calm down and I have time to prepare for the work of the day. Overall, this is a healthy habit and I have been doing it for many years”."}, {"qnum": 11, "question": "Doctor's office is calling to change the appointment. When is the new appointment?", "options": ["On Friday 14th", "On Thursday 30th", "On Thursday 13th"], "answer": "On Thursday 13th", "explain": "Hello! This is the doctor's office calling to change your appointment. I wanted to let you know that the new appointment is on Thursday the 13th. I understand you might have been expecting it to be on Friday the 14th, but we're all off this day due to the national dentist holiday. Please let us know if that works for you!"}, {"qnum": 12, "question": "Linda is talking about her mother. What do mother and daughter have in common?", "options": ["Similar appearance", "Similar interests", "Similar personalities"], "answer": "Similar interests", "explain": "My mom is such an important person in my life. We both enjoy many of the same activities, like reading and gardening. It’s always nice to talk about our favorite books and spend time planting flowers together. While we might have some different tastes in fashion and music, our shared hobbies really bring us closer. I love how we can bond over these interests and have fun together."}, {"qnum": 13, "question": "Listen to a tour guide introducing the tour. Where will tea be served?", "options": ["On the Mountain Boat", "On the River Boat", "On the beach Boat"], "answer": "On the River Boat", "explain": "Welcome to our scenic tour! I’m excited to show you this beautiful area. We’ll start with a drive along the coast to enjoy the amazing ocean views. Then, we’ll go up to the mountain looking for some breathtaking views. After that, we’ll head down to the harbor and take a relaxing riverboat cruise. While on the boat, you can enjoy afternoon tea and see the charming riverside scenery. After the boat trip, we’ll end the day with a walk on the beach. Don’t forget your camera – there will be lots of chances for great photos!"}], "part2": {"qnum": 14, "context": "", "speakers": [{"speaker": "Speaker A _____", "answer": "Đáp án đúng: give away used items"}, {"speaker": "Speaker B _____", "answer": "Đáp án đúng: buy environmentally friendly products"}, {"speaker": "Speaker C _____", "answer": "Đáp án đúng: reuse containers for storing food"}, {"speaker": "Speaker D _____", "answer": "Đáp án đúng: not buy commercial cleaning products"}], "all_options": ["give away used items", "buy environmentally friendly products", "reuse containers for storing food", "not buy commercial cleaning products"]}, "part3": {"qnum": 15, "context": "Community design can influence people's behavior_____ Creating a community can take time. _____ Work communities and social communities are the same. _____ Technology has changed how community forms. _____ ", "statements": [{"statement": "Community design can influence people's behavior.", "answer": "Both"}, {"statement": "Creating a community can take time.", "answer": "Man"}, {"statement": "Work communities and social communities are the same.", "answer": "Woman"}, {"statement": "Technology has changed how community forms.", "answer": "Both"}]}, "part4": [{"qnum": 16, "context": "Listen to a man talk about Life after university and answer the questions below.", "sub_questions": [{"question": "How does life change for graduates after university?", "options": ["They feel more stressed about job seeking", "They are likely to stick to their academic routines", "They are likely to be more flexible and open-minded"], "answer": "They are likely to be more flexible and open-minded"}, {"question": "What is a common characteristic of the job market after university?", "options": ["More opportunities for networking", "More competitive", "Many jobs offer great benefits"], "answer": "More competitive"}]}, {"qnum": 17, "context": "Listen to a man talk about a promotion campaign for a product and answer the questions below.", "sub_questions": [{"question": "What is the main issue with the product's promotion campaign?", "options": ["It is using outdated advertising methods", "They use exaggerated claims", "It is not targeting the correct market"], "answer": "They use exaggerated claims"}, {"question": "Why is the product struggling to stand out in the market?", "options": ["It is priced too high compared to its competitors", "It is too similar to many existing products", "It is not available in enough stores"], "answer": "It is too similar to many existing products"}]}]}];
+
+let mode = 'mix';
+
+initTestGrid();
+
+function initTestGrid() {
+  const tGrid = $('test-grid');
+  if(!tGrid) return;
+  tGrid.innerHTML = '';
+  ALL_TESTS.forEach((t, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'mode-btn';
+    btn.style.padding = '8px';
+    btn.style.fontSize = '13px';
+    btn.innerHTML = `Đề ${i+1}`;
+    btn.onclick = () => startSpecificTest(i);
+    tGrid.appendChild(btn);
+  });
+}
+
+function backToSetup() {
+  $('quiz-area').style.display = 'none';
+  $('setup-area').style.display = 'block';
+}
+
+function submitAll() {
+  const scoreCard = $('score-card');
+  if(scoreCard) scoreCard.style.display = 'block';
+  $('submit-btn').style.display = 'none';
+  $('submit-btn-mobile').style.display = 'none';
+  $('score-chip').style.display = 'none';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+
+function $(id) { return document.getElementById(id); }
+
+function selectMode(m) {
+  mode = m;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  const btn = $('btn-' + m);
+  if(btn) btn.classList.add('active');
+}
+
+function startQuiz() {
+  $('setup-area').style.display='none';
+  $('quiz-area').style.display='block';
+  $('score-card').style.display='none';
+  $('submit-btn').style.display='';
+  $('submit-btn-mobile').style.display='';
+  $('score-chip').style.display='';
+  $('home-btn').style.display='flex';
+  liveCorrect=0; answeredCount=0; totalAnswerable=0; cid=0;
+  $('live-score').textContent='0';
+  $('prog-correct').textContent='0';
+
+  const badges={mix:'🔀 Mix',part1:'🎯 Phần 1',part2:'🎤 Phần 2',part3:'💬 Phần 3',part4:'📝 Phần 4'};
+  $('quiz-badge').textContent=badges[mode]||'Custom';
+  $('quiz-title').textContent='Luyện tập theo Phần';
+  
+  const c = $('q-container');
+  c.innerHTML='';
+
+  if(mode==='mix') {
+    if(ALL_TESTS.length>0) startSpecificTest(0);
+  } else if(mode==='part1') {
+    ALL_TESTS.forEach(t=>{
+      if(t.part1) t.part1.forEach(q => c.appendChild(mkP1Card({...q, tn: t.test_name})));
+    });
+  } else if(mode==='part2') {
+    ALL_TESTS.forEach(t=>{
+      if(t.part2) c.appendChild(mkP2Card({...t.part2, tn: t.test_name}));
+    });
+  } else if(mode==='part3') {
+    ALL_TESTS.forEach(t=>{
+      if(t.part3) c.appendChild(mkP3Card({...t.part3, tn: t.test_name}));
+    });
+  } else if(mode==='part4') {
+    ALL_TESTS.forEach(t=>{
+      if(t.part4) t.part4.forEach(qp => c.appendChild(mkP4Card(qp, t.test_name)));
+    });
+  }
+}
+
+function startSpecificTest(index) {
+  mode = 'specific';
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  $('setup-area').style.display='none';
+  $('quiz-area').style.display='block';
+  $('score-card').style.display='none';
+  $('submit-btn').style.display='';
+  $('submit-btn-mobile').style.display='';
+  $('score-chip').style.display='';
+  $('home-btn').style.display='flex';
+  liveCorrect=0; answeredCount=0; totalAnswerable=0; cid=0;
+  $('live-score').textContent='0';
+  $('prog-correct').textContent='0';
+  
+  const t = ALL_TESTS[index];
+  $('quiz-badge').textContent=`Full Test ${index+1}`;
+  $('quiz-title').textContent=t.test_name;
+  
+  const c = $('q-container');
+  c.innerHTML='';
+
+  
+  if(t.part1) {
+    const sec = document.createElement('div');
+    sec.className = 'section-title';
+    sec.innerHTML = `<h3>Phần 1 (Q1-13)</h3>`;
+    c.appendChild(sec);
+    t.part1.forEach(q => c.appendChild(mkP1Card({...q, tn: t.test_name})));
+  }
+
+  if(t.part2 && t.part2.speakers) {
+    const sec = document.createElement('div');
+    sec.className = 'section-title';
+    sec.innerHTML = `<h3>Phần 2 (Q14)</h3>`;
+    c.appendChild(sec);
+    c.appendChild(mkP2Card({...t.part2, tn: t.test_name}));
+  }
+
+  if(t.part3) {
+    const sec = document.createElement('div');
+    sec.className = 'section-title';
+    sec.innerHTML = `<h3>Phần 3 (Q15)</h3>`;
+    c.appendChild(sec);
+    c.appendChild(mkP3Card({...t.part3, tn: t.test_name}));
+  }
+
+  if(t.part4) {
+    const sec = document.createElement('div');
+    sec.className = 'section-title';
+    sec.innerHTML = `<h3>Phần 4 (Q16-17)</h3>`;
+    c.appendChild(sec);
+    t.part4.forEach(qp => c.appendChild(mkP4Card(qp, t.test_name)));
+  }
+} // end of startSpecificTest
+
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function ej(s){return (s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;');}
+function norm(s){return (s||'').trim().toLowerCase().replace(/[^a-z0-9]/g,'');}
+function shortTest(tn){return (tn||'').replace('LISTENING - TEST ','T').replace(' - APTIS SV','');}
+
+/* ========== PART 1 ========== */
+function mkP1Card(q){
+  const id='c'+(cid++);
+  const el=document.createElement('div');
+  el.className='question-card';
+  el.id=id;
+  el.dataset.ans=q.answer||'';
+  el.dataset.type='p1';
+  const tn=shortTest(q.tn);
+  const letters=['A','B','C','D'];
+  let opts='';
+  (q.options||[]).forEach((o,i)=>{
+    opts+=`<button class="option-btn" id="${id}o${i}" onclick="doP1('${id}',${i},'${ej(o)}','${ej(q.answer||'')}')">
+      <span class="opt-letter">${letters[i]}</span><span class="opt-text">${esc(o)}</span><span class="opt-icon" id="${id}i${i}"></span>
+    </button>`;
+  });
+  el.innerHTML=`
+    <div class="question-meta"><span class="q-num-badge">Q${q.qnum}</span><span class="test-badge">${esc(tn)}</span><button class="preview-btn" onclick="openPreview('${ej(q.tn)}', ${q.qnum})">📄 Tapescript</button></div>
+    <div class="question-text">${esc(q.question)}</div>
+    <div class="options-list">${opts}</div>
+    <div class="ans-hint" id="${id}h">✅ Đáp án đúng: <strong>${esc(q.answer||'')}</strong></div>
+    <button class="preview-btn" style="margin-top:12px;" onclick="showExplain(this, decodeURIComponent('${ej(encodeURIComponent(q.explain || ''))}'))">💡 Xem Giải Thích</button>`;
+  return el;
+}
+
+function doP1(id,idx,chosen,correct){
+  const el=$(id); if(el.dataset.done==='1') return;
+  el.dataset.done='1';
+  const ok=norm(chosen)===norm(correct);
+  el.querySelectorAll('.option-btn').forEach((b,i)=>{
+    b.classList.add('answered');
+    const txt=b.querySelector('.opt-text').textContent;
+    const icon=$(id+'i'+i);
+    if(norm(txt)===norm(correct)){ b.classList.add('correct'); if(icon)icon.textContent='✅'; }
+    else if(i===idx && !ok){ b.classList.add('wrong'); if(icon)icon.textContent='❌'; }
+  });
+  if(!ok){$(id+'h').style.display='block';}
+  answeredCount++; liveCorrect+=ok?1:0; updateProg();
+}
+
+/* ========== PART 2 ========== */
+function mkP2Card(q2){
+  const id='c'+(cid++);
+  const el=document.createElement('div');
+  el.className='question-card'; el.id=id;
+  el.dataset.type='p2';
+  const tn=shortTest(q2.tn);
+  const opts=(q2.all_options&&q2.all_options.length>0)?q2.all_options:q2.speakers.map(s=>s.answer).filter(Boolean);
+  let rows='';
+  q2.speakers.forEach((spk,i)=>{
+    const rid=id+'r'+i;
+    const lbl=spk.speaker.replace(/_{2,}/g,'').trim();
+    let selOpts=`<option value="">— Chọn —</option>`;
+    opts.forEach(o=>selOpts+=`<option value="${esc(o)}">${esc(o)}</option>`);
+    rows+=`<div class="speaker-row" id="${rid}">
+      <span class="spk-label">${esc(lbl)}</span>
+      <div class="spk-bottom-row">
+        <select class="spk-select" id="${rid}s" data-ans="${esc(spk.answer)}">${selOpts}</select>
+        <button class="spk-check-btn" onclick="doP2('${rid}')">Kiểm tra</button>
+        <span class="spk-icon" id="${rid}k"></span>
+      </div>
+      <button class="preview-btn" style="margin-top:8px; margin-bottom:8px;" onclick="showExplain(this, decodeURIComponent('${ej(encodeURIComponent(spk.explain || ''))}'))">💡 Xem Giải Thích</button>
+    </div>`;
+  });
+  const ctx=(q2.context||'').trim()||'Nghe 4 người nói và chọn đúng nội dung của mỗi người.';
+  el.innerHTML=`
+    <div class="question-meta"><span class="q-num-badge">Q14</span><span class="test-badge">${esc(tn)}</span><button class="preview-btn" onclick="openPreview('${ej(q2.tn)}', 14)">📄 Tapescript</button></div>
+    <div class="question-text">${esc(ctx)}</div>
+    <div class="speakers-grid">${rows}</div>`;
+  return el;
+}
+
+function doP2(rid){
+  const row=$(rid); const sel=$(rid+'s'); const icon=$(rid+'k');
+  if(!sel.value||sel.disabled) return;
+  const ok=norm(sel.value)===norm(sel.dataset.ans);
+  row.classList.remove('correct','wrong'); row.classList.add(ok?'correct':'wrong');
+  icon.textContent=ok?'✅':'❌';
+  sel.disabled=true; row.querySelector('.spk-check-btn').disabled=true;
+  answeredCount++; liveCorrect+=ok?1:0; updateProg();
+}
+
+/* ========== PART 3 ========== */
+function mkP3Card(q3){
+  const id='c'+(cid++);
+  const el=document.createElement('div');
+  el.className='question-card'; el.id=id;
+  el.dataset.type='p3';
+  const tn=shortTest(q3.tn);
+  let stmts='';
+  q3.statements.forEach((st,i)=>{
+    const sid=id+'s'+i;
+    stmts+=`<div class="statement-row" id="${sid}">
+      <div class="stmt-text">${esc(st.statement)}</div>
+      <div class="mwb-options">
+        <button class="mwb-btn" id="${sid}m" onclick="doMWB('${sid}','Man','${ej(st.answer)}')">👨 Man</button>
+        <button class="mwb-btn" id="${sid}w" onclick="doMWB('${sid}','Woman','${ej(st.answer)}')">👩 Woman</button>
+        <button class="mwb-btn" id="${sid}b" onclick="doMWB('${sid}','Both','${ej(st.answer)}')">👥 Both</button>
+      </div>
+      <div class="ans-hint" id="${sid}h">✅ Đáp án đúng: <strong>${esc(st.answer)}</strong></div>
+    </div>`;
+  });
+  const ctx=(q3.context||'').trim()||'Nghe cuộc trò chuyện. Xác định mỗi ý kiến là của Man, Woman, hoặc Both.';
+  el.innerHTML=`
+    <div class="question-meta"><span class="q-num-badge">Q15</span><span class="test-badge">${esc(tn)}</span><button class="preview-btn" onclick="openPreview('${ej(q3.tn)}', 15)">📄 Tapescript</button></div>
+    <div class="question-text">${esc(ctx)}</div>
+    <div class="statements-list">${stmts}</div>
+    <button class="preview-btn" style="margin-top:12px;" onclick="showExplain(this, decodeURIComponent('${ej(encodeURIComponent(q3.explain || ''))}'))">💡 Xem Giải Thích chung Phần 3</button>`;
+  return el;
+}
+
+function doMWB(sid,choice,correct){
+  const row=$(sid); if(row.dataset.done==='1') return;
+  row.dataset.done='1';
+  const ok=choice.toLowerCase()===correct.toLowerCase();
+  const map={Man:sid+'m',Woman:sid+'w',Both:sid+'b'};
+  Object.values(map).forEach(bid=>{const b=$(bid);if(b)b.classList.add('answered');});
+  $(map[choice]).classList.add(ok?'correct':'wrong');
+  if(!ok&&map[correct]) $(map[correct]).classList.add('show-correct');
+  if(!ok){$(sid+'h').style.display='block';}
+  answeredCount++; liveCorrect+=ok?1:0; updateProg();
+}
+
+/* ========== PART 4 ========== */
+function mkP4Card(qp,testName){
+  const id='c'+(cid++);
+  const el=document.createElement('div');
+  el.className='pair-card'; el.id=id;
+  const tn=shortTest(testName);
+  const letters=['A','B','C','D'];
+  let sqs='';
+  qp.sub_questions.forEach((sq,qi)=>{
+    if(!sq.options||sq.options.length===0) return;
+    const sqid=id+'q'+qi;
+    let opts='';
+    sq.options.forEach((o,oi)=>{
+      opts+=`<button class="option-btn" id="${sqid}o${oi}" onclick="doP4('${sqid}',${oi},'${ej(o)}','${ej(sq.answer||'')}')">
+        <span class="opt-letter">${letters[oi]}</span><span class="opt-text">${esc(o)}</span><span class="opt-icon" id="${sqid}i${oi}"></span>
+      </button>`;
+    });
+    sqs+=`<div class="sub-q" id="${sqid}">
+      <div class="sub-q-text">${esc(sq.question)}</div>
+      <div class="options-list">${opts}</div>
+      <div class="ans-hint" id="${sqid}h">✅ Đáp án đúng: <strong>${esc(sq.answer||'')}</strong></div>
+    </div>`;
+  });
+  el.innerHTML=`
+    <div class="pair-head">
+      <span class="q-num-badge">Q${qp.qnum}</span>
+      <span class="pair-ctx">${esc((qp.context||'').trim())}</span>
+      <span class="test-badge">${esc(tn)}</span>
+      <button class="preview-btn" style="margin-left:8px;" onclick="openPreview('${ej(testName)}', ${qp.qnum})">📄 Tapescript</button>
+    </div>
+    <div class="pair-body">${sqs}</div>
+    <button class="preview-btn" style="margin-top:12px;" onclick="showExplain(this, decodeURIComponent('${ej(encodeURIComponent(qp.explain || ''))}'))">💡 Xem Giải Thích</button>`;
+  return el;
+}
+
+function doP4(sqid,idx,chosen,correct){
+  const el=$(sqid); if(el.dataset.done==='1') return;
+  el.dataset.done='1';
+  const ok=norm(chosen)===norm(correct);
+  el.querySelectorAll('.option-btn').forEach((b,i)=>{
+    b.classList.add('answered');
+    const txt=b.querySelector('.opt-text').textContent;
+    const icon=$(sqid+'i'+i);
+    if(norm(txt)===norm(correct)){ b.classList.add('correct'); if(icon)icon.textContent='✅'; }
+    else if(i===idx && !ok){ b.classList.add('wrong'); if(icon)icon.textContent='❌'; }
+  });
+  if(!ok){$(sqid+'h').style.display='block';}
+  answeredCount++; liveCorrect+=ok?1:0; updateProg();
+}
+
+function updateProg(){
+  $('live-score').textContent=liveCorrect;
+  $('prog-correct').textContent=liveCorrect;
+}
+
+
+function openPreview(testName, qnum) {
+    if (!testName) return;
+    const modal = document.getElementById('preview-modal');
+    const iframe = document.getElementById('preview-frame');
+    document.getElementById('preview-title').textContent = testName + (qnum ? ` - Q${qnum}` : '');
+    document.getElementById('preview-download').href = testName + '.docx';
+    
+    // We fetch the original docx from the deploy folder
+    const filePath = 'data/listening/' + testName.replace(/ /g, '_') + '.docx';
+    
+    // Using docx-preview to render the docx natively without iframe limitations
+    iframe.style.display = 'none'; // hide iframe
+    
+    let docContainer = document.getElementById('docx-container');
+    if (!docContainer) {
+      docContainer = document.createElement('div');
+      docContainer.id = 'docx-container';
+      docContainer.style = 'flex:1; width:100%; overflow:auto; background:white; padding: 20px;';
+      iframe.parentNode.insertBefore(docContainer, iframe);
+    }
+    docContainer.style.display = 'block';
+    docContainer.innerHTML = '<div style="text-align:center; padding: 40px; color:black;">Đang tải file gốc...</div>';
+    
+    modal.style.display = 'flex';
+    
+    fetch(filePath)
+      .then(res => res.blob())
+      .then(blob => {
+        docx.renderAsync(blob, docContainer).then(() => {
+          console.log("docx rendered");
+        });
+      })
+      .catch(err => {
+        docContainer.innerHTML = '<div style="color:red; padding:20px;">Lỗi khi tải file. Vui lòng thử dùng nút Tải file gốc ở trên.</div>';
+      });
+  }
+</script>
+
+<!-- Preview Modal -->
+<div id="preview-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center; padding: 20px; box-sizing: border-box;">
+  <div style="background:var(--bg2); width:100%; max-width:800px; height:85vh; border-radius:12px; display:flex; flex-direction:column; overflow:hidden; border:1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 20px; background:var(--surface); border-bottom:1px solid var(--border);">
+      <h3 style="margin:0; font-size:16px; font-weight: 600; color:var(--text);" id="preview-title">Tapescript Preview</h3>
+      <div style="display:flex; gap:10px;">
+        <a id="preview-download" href="#" download style="background:var(--accent); color:#fff; text-decoration:none; padding:6px 12px; border-radius:6px; font-size:13px; font-weight:600; display:flex; align-items:center;">📥 Tải file gốc (.docx)</a>
+        <button onclick="document.getElementById('preview-modal').style.display='none'" style="background:var(--bg); border:1px solid var(--border); color:var(--text); font-size:18px; width:32px; height:32px; border-radius:8px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition: all 0.2s;">&times;</button>
+      </div>
+    </div>
+    <iframe id="preview-frame" style="flex:1; width:100%; border:none; background:white;"></iframe>
+  </div>
+</div>
+
+<script>
+async function translateText(text) {
+  try {
+    const url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=vi&dt=t&q=" + encodeURIComponent(text);
+    const res = await fetch(url);
+    const data = await res.json();
+    return data[0].map(x => x[0]).join("");
+  } catch (err) {
+    return "Lỗi dịch thuật: " + err.message;
+  }
+}
+
+async function showExplain(btn, text) {
+  if(!text || text === 'undefined') {
+    alert("Không có dữ liệu giải thích cho câu hỏi này.");
+    return;
+  }
+  
+  // Find or create explain box
+  let box = btn.nextElementSibling;
+  if(!box || !box.classList.contains('explain-box')) {
+    box = document.createElement('div');
+    box.className = 'explain-box';
+    box.style.marginTop = '12px';
+    box.style.padding = '12px';
+    box.style.background = 'rgba(99,102,241,0.1)';
+    box.style.borderLeft = '3px solid var(--accent)';
+    box.style.borderRadius = '4px';
+    box.style.fontSize = '14px';
+    btn.parentNode.insertBefore(box, btn.nextSibling);
+  }
+  
+  if(box.style.display === 'block') {
+    box.style.display = 'none';
+    btn.innerHTML = '💡 Xem Giải Thích';
+    return;
+  }
+  
+  box.style.display = 'block';
+  btn.innerHTML = '💡 Ẩn Giải Thích';
+  box.innerHTML = `<strong>🇬🇧 English:</strong><p>${text}</p><p style="color:var(--text2)">⏳ Đang dịch sang Tiếng Việt...</p>`;
+  
+  let translated = await translateText(text);
+  box.innerHTML = `<strong>🇬🇧 English:</strong><p>${text}</p><strong>🇻🇳 Tiếng Việt:</strong><p>${translated}</p>`;
+}
+</script>
+
+</body>
+</html>
