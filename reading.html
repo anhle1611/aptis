@@ -17,7 +17,7 @@
   nav { background: var(--bg2); padding: 12px 24px; display: flex; gap: 24px; border-bottom: 1px solid var(--border); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
   nav a { color: var(--text2); font-weight: 500; font-size: 15px; text-decoration: none; display: flex; align-items: center; gap: 6px; padding-bottom: 4px; transition: color 0.2s; }
   nav a.active { color: var(--accent); font-weight: 700; border-bottom: 2px solid var(--accent); }
-  .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+  .container { max-width: 920px; margin: 40px auto; padding: 0 20px; }
   
   /* Setup Area */
   .setup-card { background: var(--bg2); border-radius: 16px; padding: 32px; border: 1px solid var(--border); margin-bottom: 24px; }
@@ -38,28 +38,36 @@
   .question-text { font-size: 16px; line-height: 1.6; margin-bottom: 16px; }
   select { background: var(--surface); color: var(--text); padding: 8px 12px; border: 1px solid var(--border2); border-radius: 6px; font-family: 'Inter'; outline: none; font-size: 15px; margin: 4px; }
   select:focus { border-color: var(--accent); }
-  select.correct { border-color: var(--green); background: rgba(34,197,94,0.1); }
-  select.wrong { border-color: var(--red); background: rgba(239,68,68,0.1); }
+  select.correct { border-color: var(--green) !important; background: rgba(34,197,94,0.15) !important; color: #4ade80 !important; font-weight: 700; }
+  select.wrong { border-color: var(--red) !important; background: rgba(239,68,68,0.15) !important; color: #f87171 !important; }
   
   /* Drag and drop styles */
   .draggable-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
-  .draggable-item { background: var(--surface); padding: 16px; border-radius: 8px; border: 1px solid var(--border); cursor: grab; display: flex; align-items: center; gap: 12px; user-select: none; transition: transform 0.2s; }
-  .draggable-item.fixed { cursor: default; background: rgba(255,255,255,0.05); border-color: var(--border2); }
+  .draggable-item { background: var(--surface); border: 1px solid var(--border); padding: 12px 16px; border-radius: 8px; display: flex; align-items: center; gap: 12px; cursor: grab; user-select: none; transition: transform 0.15s, background-color 0.15s; }
   .draggable-item:active { cursor: grabbing; }
-  .drag-handle { color: var(--text2); font-size: 20px; cursor: grab; }
-  .draggable-item.over { border: 2px dashed var(--accent); }
+  .draggable-item.over { border: 2px dashed var(--accent); background: rgba(99,102,241,0.1); }
+  .drag-handle { color: var(--text2); cursor: grab; }
+  .draggable-item.fixed { cursor: default; background: var(--bg); opacity: 0.8; border-style: dashed; }
   
-  .preview-btn { background: var(--surface); border: 1px solid var(--border2); color: var(--text2); padding: 4px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; transition: 0.2s; margin-left: 10px; }
-  .preview-btn:hover { background: var(--border); color: var(--text); }
+  .preview-btn { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+  .preview-btn:hover { background: var(--border); color: #fff; }
   
-  .score-chip { background: var(--surface); padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border); font-weight: 600; display: flex; gap: 10px; align-items: center; }
-  
-  .person-block { margin-bottom: 20px; padding: 16px; border: 1px solid var(--border2); border-radius: 8px; }
+  .person-block { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+  .person-block strong { color: var(--accent); font-size: 15px; }
   .person-block p { margin-top: 8px; color: var(--text2); line-height: 1.5; font-size: 14px; }
 
   .draggable-item.correct { border: 2px solid #10b981 !important; background-color: rgba(16, 185, 129, 0.1) !important; }
   .draggable-item.wrong { border: 2px solid #ef4444 !important; background-color: rgba(239, 68, 68, 0.1) !important; }
 
+  /* Highlight for search in docx */
+  .docx-highlight {
+    background-color: #fef08a !important;
+    color: #000000 !important;
+    padding: 2px 6px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
+    display: inline-block;
+  }
 </style>
 </head>
 <body>
@@ -101,33 +109,36 @@
         <button class="btn-home" onclick="backToSetup()">← Quay lại</button>
         <div>
           <h2 id="quiz-title" style="margin:0; font-size:20px;">Reading</h2>
-          <span id="quiz-badge" class="quiz-title-badge">Mix</span>
+          <div style="display:flex; gap:10px; margin-top:4px;">
+            <span class="quiz-title-badge" id="quiz-badge">Phần 1</span>
+            <span class="quiz-title-badge" id="score-chip" style="display:none; background:rgba(34,197,94,0.15); color:var(--green);">0/0</span>
+          </div>
         </div>
-      </div>
-      <div class="score-chip" id="score-chip" style="display:none;">
-        <span>Score: </span>
-        <span id="live-score">0</span> / <span id="live-total">0</span>
       </div>
     </div>
     
     <div id="q-container"></div>
     
-    <button class="btn-primary" id="submit-btn" onclick="submitQuiz()" style="margin-top:20px;">Nộp Bài</button>
+    <button class="btn-primary" id="submit-btn" onclick="submitQuiz()" style="margin-top:20px;">Nộp Bài / Kiểm Tra</button>
   </div>
 
 </div>
 
 <!-- Preview Modal -->
 <div id="preview-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center; padding: 20px; box-sizing: border-box;">
-  <div style="background:var(--bg2); width:100%; max-width:800px; height:85vh; border-radius:12px; display:flex; flex-direction:column; overflow:hidden; border:1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-    <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 20px; background:var(--surface); border-bottom:1px solid var(--border);">
-      <h3 style="margin:0; font-size:16px; font-weight: 600; color:var(--text);" id="preview-title">Reading File Preview</h3>
-      <div style="display:flex; gap:10px;">
-        <a id="preview-download" href="#" download style="background:var(--accent); color:#fff; text-decoration:none; padding:6px 12px; border-radius:6px; font-size:13px; font-weight:600;">📥 Tải file gốc</a>
-        <button onclick="document.getElementById('preview-modal').style.display='none'" style="background:var(--bg); border:1px solid var(--border); color:var(--text); font-size:18px; width:32px; height:32px; border-radius:8px; cursor:pointer;">&times;</button>
+  <div style="background:var(--bg2); width:100%; max-width:860px; height:88vh; border-radius:12px; display:flex; flex-direction:column; overflow:hidden; border:1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+    <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:12px 18px; background:var(--surface); border-bottom:1px solid var(--border); gap:10px;">
+      <h3 style="margin:0; font-size:15px; font-weight: 600; color:var(--text);" id="preview-title">Reading File Preview</h3>
+      
+      <!-- Toolbar Tìm kiếm & Nhảy nhanh trong file gốc -->
+      <div style="display:flex; align-items:center; gap:8px;">
+        <input type="text" id="doc-search-input" placeholder="🔍 Tìm trong file..." style="background:var(--bg); border:1px solid var(--border2); color:var(--text); padding:5px 10px; border-radius:6px; font-size:12px; width:160px;" onkeydown="if(event.key==='Enter') searchInDoc(this.value)">
+        <button onclick="searchInDoc(document.getElementById('doc-search-input').value)" class="preview-btn" style="padding:5px 10px; font-size:12px;">Tìm</button>
+        <a id="preview-download" href="#" download style="background:var(--accent); color:#fff; text-decoration:none; padding:5px 10px; border-radius:6px; font-size:12px; font-weight:600; display:flex; align-items:center;">📥 Tải (.docx)</a>
+        <button onclick="closePreview()" style="background:var(--bg); border:1px solid var(--border); color:var(--text); font-size:18px; width:30px; height:30px; border-radius:6px; cursor:pointer; display:flex; align-items:center; justify-content:center;">&times;</button>
       </div>
     </div>
-    <div id="docx-container" style="flex:1; width:100%; overflow:auto; background:white; padding:20px;"></div>
+    <div id="docx-container" style="flex:1; width:100%; overflow:auto; background:white; padding:20px; box-sizing:border-box;"></div>
   </div>
 </div>
 
@@ -206,43 +217,60 @@ let ALL_TESTS = [
         "After playing, the children were very hungry and ate with their parents."
       ]
     },
-    "part4": [
-      {
-        "person": "A",
-        "statement": "like to play with children",
-        "paragraph": "In the past, I really liked playing board games. Now to limit the children from using computers, I often spend time playing with them, but I have struggled with them, the games nowadays have more characters and rules, making us think a lot every time we play, but my children and I still like it and have a good time and laugh together."
+    "part4": {
+      "title": "Part 4: Choose the answer according to each person's opinion.",
+      "topic": "childhood",
+      "paragraphs": {
+        "A": "In the past, I really liked playing board games. Now to limit the children from using computers, I often spend time playing with them, but I have struggled with them, the games nowadays have more characters and rules, making us think a lot every time we play, but my children and I still like it and have a good time and laugh together.",
+        "B": "When I was a child, I often played soccer with other children of the same age. We often played football in the school yard and sometimes in the open spaces of the neighborhood. We divided into small teams and chased the ball until we were all tired.",
+        "C": "When I was a child, I didn't like going out to play, so I chose reading books as a form of entertainment. The stories described in the pages of books helped me discover my own world. Later, when I grow up, I like playing modern games with eye-catching interfaces, which helps me relax and increase my creativity.",
+        "D": "When I was a child, I really liked playing outdoor activities. I remember on bad weather days, I was always by the window, glued to the window to look outside, praying for the rain to stop. At those times, my mother often gave me a paper and a box of crayons. I really liked that drawing activity and often drew at home when the weather was not good."
       },
-      {
-        "person": "A",
-        "statement": "find the games nowadays much more difficult",
-        "paragraph": "In the past, I really liked playing board games. Now to limit the children from using computers, I often spend time playing with them, but I have struggled with them, the games nowadays have more characters and rules, making us think a lot every time we play, but my children and I still like it and have a good time and laugh together."
-      },
-      {
-        "person": "B",
-        "statement": "like to play with other children in the past.",
-        "paragraph": "When I was a child, I often played soccer with other children of the same age. We often played football in the school yard and sometimes in the open spaces of the neighborhood. We divided into small teams and chased the ball until we were all tired."
-      },
-      {
-        "person": "C",
-        "statement": "liked reading books when he was a child",
-        "paragraph": "When I was a child, I didn't like going out to play, so I chose reading books as a form of entertainment. The stories described in the pages of books helped me discover my own world. Later, when I grow up, I like playing modern games with eye-catching interfaces, which helps me relax and increase my creativity."
-      },
-      {
-        "person": "C",
-        "statement": "now I like modern games when I grow up",
-        "paragraph": "When I was a child, I didn't like going out to play, so I chose reading books as a form of entertainment. The stories described in the pages of books helped me discover my own world. Later, when I grow up, I like playing modern games with eye-catching interfaces, which helps me relax and increase my creativity."
-      },
-      {
-        "person": "D",
-        "statement": "liked arts when he was a child",
-        "paragraph": "When I was a child, I really liked playing outdoor activities. I remember on bad weather days, I was always by the window, glued to the window to look outside, praying for the rain to stop. At those times, my mother often gave me a paper and a box of crayons. I really liked that drawing activity and often drew at home when the weather was not good."
-      },
-      {
-        "person": "D",
-        "statement": "looked forward to going out to play",
-        "paragraph": "When I was a child, I really liked playing outdoor activities. I remember on bad weather days, I was always by the window, glued to the window to look outside, praying for the rain to stop. At those times, my mother often gave me a paper and a box of crayons. I really liked that drawing activity and often drew at home when the weather was not good."
-      }
-    ],
+      "questions": [
+        {
+          "qnum": 1,
+          "question": "Who likes to play with children?",
+          "answer": "A",
+          "statement": "like to play with children"
+        },
+        {
+          "qnum": 2,
+          "question": "Who likes to play with other children in the past?",
+          "answer": "B",
+          "statement": "like to play with other children in the past."
+        },
+        {
+          "qnum": 3,
+          "question": "Who looked forward to going out to play?",
+          "answer": "D",
+          "statement": "looked forward to going out to play"
+        },
+        {
+          "qnum": 4,
+          "question": "Who liked arts when he was a child?",
+          "answer": "D",
+          "statement": "liked arts when he was a child"
+        },
+        {
+          "qnum": 5,
+          "question": "Who likes modern games when growing up?",
+          "answer": "C",
+          "statement": "now I like modern games when I grow up"
+        },
+        {
+          "qnum": 6,
+          "question": "Who finds the games nowadays much more difficult?",
+          "answer": "A",
+          "statement": "find the games nowadays much more difficult"
+        },
+        {
+          "qnum": 7,
+          "question": "Who liked reading books when he was a child?",
+          "answer": "C",
+          "statement": "liked reading books when he was a child"
+        }
+      ]
+    },
     "part5": [
       {
         "header": "Our changing the perspective towards mountain",
@@ -348,43 +376,60 @@ let ALL_TESTS = [
         "Thanks to the great development of means of transport, today people can travel to other parts of the world."
       ]
     },
-    "part4": [
-      {
-        "person": "A",
-        "statement": "finds training before participating is important.",
-        "paragraph": "Before trying any extreme sport, I believe it’s absolutely essential to train properly. These kinds of activities are exciting, but they can also be dangerous if you don’t know what you’re doing. I’ve seen people get hurt because they didn’t prepare well. That’s why I always make sure to take a training course and understand the safety rules before I try anything new. With the right preparation, I think extreme sports can be a great experience."
+    "part4": {
+      "title": "Part 4: Choose the answer according to each person's opinion.",
+      "topic": "extreme sports",
+      "paragraphs": {
+        "A": "",
+        "B": "I’ve always been more into traditional sports like swimming, running, or playing tennis. They’re fun and easy to do regularly. But a few months ago, I went bungee jumping during a holiday, and it was an incredible experience. I didn’t expect to enjoy it so much! I still prefer regular sports for everyday fitness, but now I’m definitely more open to trying extreme sports once in a while for the adventure.",
+        "C": "What I love most about extreme sports is how they let me enjoy nature in a different way. Activities like rock climbing or mountain biking allow me to explore amazing places while challenging myself physically and mentally. It’s a way to disconnect from daily life and feel completely alive. If I had more time and money, I’d love to do these kinds of sports more often, especially in wild, remote areas.",
+        "D": "I know some people find extreme sports exciting, but for me, they’ve never been important. I actually avoid them as much as possible. I don’t like the idea of putting myself in danger just for fun. There are plenty of safer ways to stay active and enjoy life. I’d rather go for a walk or do yoga than jump out of a plane or climb a mountain. It’s just not my thing."
       },
-      {
-        "person": "B",
-        "statement": "likes traditional sports like swimming",
-        "paragraph": "I’ve always been more into traditional sports like swimming, running, or playing tennis. They’re fun and easy to do regularly. But a few months ago, I went bungee jumping during a holiday, and it was an incredible experience. I didn’t expect to enjoy it so much! I still prefer regular sports for everyday fitness, but now I’m definitely more open to trying extreme sports once in a while for the adventure."
-      },
-      {
-        "person": "B",
-        "statement": "still likes extreme sports after playing once.",
-        "paragraph": "I’ve always been more into traditional sports like swimming, running, or playing tennis. They’re fun and easy to do regularly. But a few months ago, I went bungee jumping during a holiday, and it was an incredible experience. I didn’t expect to enjoy it so much! I still prefer regular sports for everyday fitness, but now I’m definitely more open to trying extreme sports once in a while for the adventure."
-      },
-      {
-        "person": "C",
-        "statement": "enjoys nature",
-        "paragraph": "What I love most about extreme sports is how they let me enjoy nature in a different way. Activities like rock climbing or mountain biking allow me to explore amazing places while challenging myself physically and mentally. It’s a way to disconnect from daily life and feel completely alive. If I had more time and money, I’d love to do these kinds of sports more often, especially in wild, remote areas."
-      },
-      {
-        "person": "C",
-        "statement": "wants to play more extreme sports.",
-        "paragraph": "What I love most about extreme sports is how they let me enjoy nature in a different way. Activities like rock climbing or mountain biking allow me to explore amazing places while challenging myself physically and mentally. It’s a way to disconnect from daily life and feel completely alive. If I had more time and money, I’d love to do these kinds of sports more often, especially in wild, remote areas."
-      },
-      {
-        "person": "D",
-        "statement": "finds extreme sports unimportant",
-        "paragraph": "I know some people find extreme sports exciting, but for me, they’ve never been important. I actually avoid them as much as possible. I don’t like the idea of putting myself in danger just for fun. There are plenty of safer ways to stay active and enjoy life. I’d rather go for a walk or do yoga than jump out of a plane or climb a mountain. It’s just not my thing."
-      },
-      {
-        "person": "D",
-        "statement": "always avoid playing extreme sports.",
-        "paragraph": "I know some people find extreme sports exciting, but for me, they’ve never been important. I actually avoid them as much as possible. I don’t like the idea of putting myself in danger just for fun. There are plenty of safer ways to stay active and enjoy life. I’d rather go for a walk or do yoga than jump out of a plane or climb a mountain. It’s just not my thing."
-      }
-    ],
+      "questions": [
+        {
+          "qnum": 1,
+          "question": "Who still likes extreme sports after playing once?",
+          "answer": "B",
+          "statement": "still likes extreme sports after playing once."
+        },
+        {
+          "qnum": 2,
+          "question": "Who enjoys nature?",
+          "answer": "C",
+          "statement": "enjoys nature"
+        },
+        {
+          "qnum": 3,
+          "question": "Who finds extreme sports unimportant?",
+          "answer": "D",
+          "statement": "finds extreme sports unimportant"
+        },
+        {
+          "qnum": 4,
+          "question": "Who finds training before participating is important?",
+          "answer": "A",
+          "statement": "finds training before participating is important."
+        },
+        {
+          "qnum": 5,
+          "question": "Who wants to play more extreme sports?",
+          "answer": "C",
+          "statement": "wants to play more extreme sports."
+        },
+        {
+          "qnum": 6,
+          "question": "Who likes traditional sports like swimming?",
+          "answer": "B",
+          "statement": "likes traditional sports like swimming"
+        },
+        {
+          "qnum": 7,
+          "question": "Who always avoid playing extreme sports?",
+          "answer": "D",
+          "statement": "always avoid playing extreme sports."
+        }
+      ]
+    },
     "part5": [
       {
         "header": "An alternative history of settlement",
@@ -490,43 +535,60 @@ let ALL_TESTS = [
         "After this time, other students will have questions for you and you have to answer them."
       ]
     },
-    "part4": [
-      {
-        "person": "A",
-        "statement": "thinks they got benefits from working for free",
-        "paragraph": "When I was a student, I decided to do an unpaid internship at organizations and companies. At first, my friends said it was a waste of time because I didn’t earn any money. However, I learned a lot of practical skills and gained real working experience. I also built good relationships with my colleagues, which later helped me find a full-time job more easily."
+    "part4": {
+      "title": "Part 4: Choose the answer according to each person's opinion.",
+      "topic": "Careers",
+      "paragraphs": {
+        "A": "fter graduating, it took me a long time to find my first job. Many companies required experience, which made the process quite stressful. Luckily, I finally found a position that suits me well in a gaming company. I now work in a flexible working environment where I can manage my own time and work from home, and this helps me balance my work and personal life better.",
+        "B": "My dream job is becoming a teacher, and I have never thought about changing to another career. Teaching has always been my goal because I enjoy working with students and helping them learn new things. At the moment, I am studying hard to become a good teacher in the future. While I am still in training, I also work part-time at a school so that I can gain real teaching experience. I really enjoy working while studying because it helps me improve my skills and become more confident in the classroom. Even though it can be challenging sometimes, I believe this experience is very valuable, and I am happy to continue on this career path without changing my job plans.",
+        "C": "When I was a child I worked with a plumber and helped her with fixing things. I love a career in mechanical engineering because I enjoy making and repairing things by hand. However, the training period was much longer than I expected, about 2 years. Sometimes I felt tired of studying theory for so many years before actually starting work. Still, I believe the skills I learned will be useful in the long run.",
+        "D": ""
       },
-      {
-        "person": "B",
-        "statement": "does not want to change to another job",
-        "paragraph": "My dream job is becoming a teacher, and I have never thought about changing to another career. Teaching has always been my goal because I enjoy working with students and helping them learn new things. At the moment, I am studying hard to become a good teacher in the future. While I am still in training, I also work part-time at a school so that I can gain real teaching experience. I really enjoy working while studying because it helps me improve my skills and become more confident in the classroom. Even though it can be challenging sometimes, I believe this experience is very valuable, and I am happy to continue on this career path without changing my job plans."
-      },
-      {
-        "person": "B",
-        "statement": "enjoys working while training",
-        "paragraph": "My dream job is becoming a teacher, and I have never thought about changing to another career. Teaching has always been my goal because I enjoy working with students and helping them learn new things. At the moment, I am studying hard to become a good teacher in the future. While I am still in training, I also work part-time at a school so that I can gain real teaching experience. I really enjoy working while studying because it helps me improve my skills and become more confident in the classroom. Even though it can be challenging sometimes, I believe this experience is very valuable, and I am happy to continue on this career path without changing my job plans."
-      },
-      {
-        "person": "C",
-        "statement": "thinks their training is too long",
-        "paragraph": "When I was a child I worked with a plumber and helped her with fixing things. I love a career in mechanical engineering because I enjoy making and repairing things by hand. However, the training period was much longer than I expected, about 2 years. Sometimes I felt tired of studying theory for so many years before actually starting work. Still, I believe the skills I learned will be useful in the long run."
-      },
-      {
-        "person": "C",
-        "statement": "likes doing things with their hands",
-        "paragraph": "When I was a child I worked with a plumber and helped her with fixing things. I love a career in mechanical engineering because I enjoy making and repairing things by hand. However, the training period was much longer than I expected, about 2 years. Sometimes I felt tired of studying theory for so many years before actually starting work. Still, I believe the skills I learned will be useful in the long run."
-      },
-      {
-        "person": "D",
-        "statement": "thinks it was difficult to get the first job",
-        "paragraph": "After graduating, it took me a long time to find my first job. Many companies required experience, which made the process quite stressful. Luckily, I finally found a position that suits me well in a gaming company. I now work in a flexible working environment where I can manage my own time and work from home, and this helps me balance my work and personal life better."
-      },
-      {
-        "person": "D",
-        "statement": "enjoys working in a flexible working environment",
-        "paragraph": "After graduating, it took me a long time to find my first job. Many companies required experience, which made the process quite stressful. Luckily, I finally found a position that suits me well in a gaming company. I now work in a flexible working environment where I can manage my own time and work from home, and this helps me balance my work and personal life better."
-      }
-    ],
+      "questions": [
+        {
+          "qnum": 1,
+          "question": "Who does not want to change to another job?",
+          "answer": "B",
+          "statement": "does not want to change to another job"
+        },
+        {
+          "qnum": 2,
+          "question": "Who thinks their training is too long?",
+          "answer": "C",
+          "statement": "thinks their training is too long"
+        },
+        {
+          "qnum": 3,
+          "question": "Who enjoys working while training?",
+          "answer": "B",
+          "statement": "enjoys working while training"
+        },
+        {
+          "qnum": 4,
+          "question": "Who enjoys working in a flexible working environment?",
+          "answer": "D",
+          "statement": "enjoys working in a flexible working environment"
+        },
+        {
+          "qnum": 5,
+          "question": "Who thinks it was difficult to get the first job?",
+          "answer": "D",
+          "statement": "thinks it was difficult to get the first job"
+        },
+        {
+          "qnum": 6,
+          "question": "Who thinks they got benefits from working for free?",
+          "answer": "A",
+          "statement": "thinks they got benefits from working for free"
+        },
+        {
+          "qnum": 7,
+          "question": "Who likes doing things with their hands?",
+          "answer": "C",
+          "statement": "likes doing things with their hands"
+        }
+      ]
+    },
     "part5": [
       {
         "header": "A way of life now out of date",
@@ -631,43 +693,60 @@ let ALL_TESTS = [
         "Some of those include growing plants and animals in a spaceship"
       ]
     },
-    "part4": [
-      {
-        "person": "A",
-        "statement": "thinks it should help local community",
-        "paragraph": "Some people enjoy volunteering abroad, but honestly, I feel most people are more interested in travelling. I believe we should use our time more meaningfully. Each town has many people in need. Their situations are difficult, and they don’t have the means to improve their quality of life. They are individuals who have contributed a lot to the country. Sharing stories with them helps us understand the differences between generations. We can also broaden our knowledge about local history, traditions, and culture through their experiences."
+    "part4": {
+      "title": "Part 4: Choose the answer according to each person's opinion.",
+      "topic": "Volunteering",
+      "paragraphs": {
+        "A": "Some people enjoy volunteering abroad, but honestly, I feel most people are more interested in travelling. I believe we should use our time more meaningfully. Each town has many people in need. Their situations are difficult, and they don’t have the means to improve their quality of life. They are individuals who have contributed a lot to the country. Sharing stories with them helps us understand the differences between generations. We can also broaden our knowledge about local history, traditions, and culture through their experiences.",
+        "B": "My mother told me to do local volunteering because she is part of that organisation, but I’m not into it. I prefer volunteering abroad because I can develop soft skills – something that will benefit my future career. Also, meeting new people helps me expand my network and create valuable connections I can use later in my professional life.",
+        "C": "I’m too busy and rarely have any free time to do anything, so spending even a few hours volunteering is difficult. I would have to take half a day off work. I see many people in need and they genuinely require some extra financial support. That’s something I can help with because I earn a good salary. Making monthly donations is not a problem for me – it's how I show my support and contribution.",
+        "D": "I believe there are many ways we can show kindness through volunteering. I'm a retired carpenter now, and I currently help build houses for people in need. I work with a volunteering organisation that already has clear plans in place. Through this work, I’ve had the chance to experience different foreign cultures. We’re often sent to various countries to carry out these projects, so it’s also a great way to travel while doing something meaningful. The job involves manual labour, so we’re able to improve our physical health – something that some people only begin to notice after a while."
       },
-      {
-        "person": "A",
-        "statement": "thinks it can improve knowledge about culture",
-        "paragraph": "Some people enjoy volunteering abroad, but honestly, I feel most people are more interested in travelling. I believe we should use our time more meaningfully. Each town has many people in need. Their situations are difficult, and they don’t have the means to improve their quality of life. They are individuals who have contributed a lot to the country. Sharing stories with them helps us understand the differences between generations. We can also broaden our knowledge about local history, traditions, and culture through their experiences."
-      },
-      {
-        "person": "B",
-        "statement": "wants to enhance future career",
-        "paragraph": "My mother told me to do local volunteering because she is part of that organisation, but I’m not into it. I prefer volunteering abroad because I can develop soft skills – something that will benefit my future career. Also, meeting new people helps me expand my network and create valuable connections I can use later in my professional life."
-      },
-      {
-        "person": "B",
-        "statement": "wants to make new friends",
-        "paragraph": "My mother told me to do local volunteering because she is part of that organisation, but I’m not into it. I prefer volunteering abroad because I can develop soft skills – something that will benefit my future career. Also, meeting new people helps me expand my network and create valuable connections I can use later in my professional life."
-      },
-      {
-        "person": "C",
-        "statement": "helps support charity work with money",
-        "paragraph": "I’m too busy and rarely have any free time to do anything, so spending even a few hours volunteering is difficult. I would have to take half a day off work. I see many people in need and they genuinely require some extra financial support. That’s something I can help with because I earn a good salary. Making monthly donations is not a problem for me – it's how I show my support and contribution."
-      },
-      {
-        "person": "D",
-        "statement": "thinks volunteering helps improve physical health",
-        "paragraph": "I believe there are many ways we can show kindness through volunteering. I'm retired now, and I currently help build houses for people in need. I work with a volunteering organisation that already has clear plans in place. Through this work, I’ve had the chance to experience different foreign cultures. We’re often sent to various countries to carry out these projects, so it’s also a great way to travel while doing something meaningful. The job involves manual labour, so we’re able to improve our physical health – something that some people only begin to notice after a while."
-      },
-      {
-        "person": "D",
-        "statement": "thinks it is a way to travel",
-        "paragraph": "I believe there are many ways we can show kindness through volunteering. I'm retired now, and I currently help build houses for people in need. I work with a volunteering organisation that already has clear plans in place. Through this work, I’ve had the chance to experience different foreign cultures. We’re often sent to various countries to carry out these projects, so it’s also a great way to travel while doing something meaningful. The job involves manual labour, so we’re able to improve our physical health – something that some people only begin to notice after a while."
-      }
-    ],
+      "questions": [
+        {
+          "qnum": 1,
+          "question": "Who wants to enhance future career?",
+          "answer": "B",
+          "statement": "wants to enhance future career"
+        },
+        {
+          "qnum": 2,
+          "question": "Who helps support charity work with money?",
+          "answer": "C",
+          "statement": "helps support charity work with money"
+        },
+        {
+          "qnum": 3,
+          "question": "Who thinks it should help local community?",
+          "answer": "A",
+          "statement": "thinks it should help local community"
+        },
+        {
+          "qnum": 4,
+          "question": "Who thinks volunteering helps improve physical health?",
+          "answer": "D",
+          "statement": "thinks volunteering helps improve physical health"
+        },
+        {
+          "qnum": 5,
+          "question": "Who thinks it can improve knowledge about culture?",
+          "answer": "A",
+          "statement": "thinks it can improve knowledge about culture"
+        },
+        {
+          "qnum": 6,
+          "question": "Who thinks it is a way to travel?",
+          "answer": "D",
+          "statement": "thinks it is a way to travel"
+        },
+        {
+          "qnum": 7,
+          "question": "Who wants to make new friends?",
+          "answer": "B",
+          "statement": "wants to make new friends"
+        }
+      ]
+    },
     "part5": [
       {
         "header": "Who is in charge?",
@@ -773,43 +852,60 @@ let ALL_TESTS = [
         "Many people follow him on social media and he becomes a famous singer"
       ]
     },
-    "part4": [
-      {
-        "person": "A",
-        "statement": "enjoyed the last day",
-        "paragraph": "This was my first time attending the Music Festival, and to be honest, the weather really didn’t cooperate. It rained heavily on the first two days, which made it difficult to enjoy the outdoor activities. I still got wet in the tent. But I didn’t let that ruin the experience. On the final day, the skies cleared up and the performances were truly amazing — especially the final act in the evening. That last day made it all worthwhile, and I left with some great memories despite the poor weather."
+    "part4": {
+      "title": "Part 4: Choose the answer according to each person's opinion.",
+      "topic": "Music Festival",
+      "paragraphs": {
+        "A": "This was my first time attending the Music Festival, and to be honest, the weather really didn’t cooperate. It rained heavily on the first two days, which made it difficult to enjoy the outdoor activities. I still got wet in the tent. But I didn’t let that ruin the experience. On the final day, the skies cleared up and the performances were truly amazing — especially the final act in the evening. That last day made it all worthwhile, and I left with some great memories despite the poor weather.",
+        "B": "I’ve been to this festival a couple of times in the past, the quality was good the last times I came, but this time is completely different. The sound quality wasn’t great, and the whole event just felt disorganised. There weren’t enough facilities, and the staff didn’t seem prepared to handle the crowd. I couldn’t even interact with the band. I don’t think I’ll be coming back next year. It’s simply not worth the money or the time anymore.",
+        "C": "I really enjoyed the music of this festival and I danced to the music, I felt every second of the festival was worth it. I absolutely loved the energy of the performances, and the music was spot on throughout the weekend. However, I have to say the ticket prices were far too high, especially for students. I paid almost double what I did two years ago, and although I enjoyed the music, I’m not sure it offered good value for money. If they don’t lower the prices next year, a lot of people might skip it.",
+        "D": "We were playing in a band and we finished our performance in the morning. However, I stayed at the festival to meet up with some old band mates. We talked a lot. However, I didn’t like the venue. It was too crowded and not well organised. The road to the tent village was also congested. I think they should choose a better location next year."
       },
-      {
-        "person": "A",
-        "statement": "disliked the bad weather",
-        "paragraph": "This was my first time attending the Music Festival, and to be honest, the weather really didn’t cooperate. It rained heavily on the first two days, which made it difficult to enjoy the outdoor activities. I still got wet in the tent. But I didn’t let that ruin the experience. On the final day, the skies cleared up and the performances were truly amazing — especially the final act in the evening. That last day made it all worthwhile, and I left with some great memories despite the poor weather."
-      },
-      {
-        "person": "B",
-        "statement": "disappointed with the festival",
-        "paragraph": "I’ve been to this festival a couple of times in the past, the quality was good the last times I came, but this time is completely different. The sound quality wasn’t great, and the whole event just felt disorganised. There weren’t enough facilities, and the staff didn’t seem prepared to handle the crowd. I couldn’t even interact with the band. I don’t think I’ll be coming back next year. It’s simply not worth the money or the time anymore."
-      },
-      {
-        "person": "C",
-        "statement": "enjoyed the music at the event",
-        "paragraph": "I really enjoyed the music of this festival and I danced to the music, I felt every second of the festival was worth it. I absolutely loved the energy of the performances, and the music was spot on throughout the weekend. However, I have to say the ticket prices were far too high, especially for students. I paid almost double what I did two years ago, and although I enjoyed the music, I’m not sure it offered good value for money. If they don’t lower the prices next year, a lot of people might skip it."
-      },
-      {
-        "person": "C",
-        "statement": "found the ticket prices expensive",
-        "paragraph": "I really enjoyed the music of this festival and I danced to the music, I felt every second of the festival was worth it. I absolutely loved the energy of the performances, and the music was spot on throughout the weekend. However, I have to say the ticket prices were far too high, especially for students. I paid almost double what I did two years ago, and although I enjoyed the music, I’m not sure it offered good value for money. If they don’t lower the prices next year, a lot of people might skip it."
-      },
-      {
-        "person": "D",
-        "statement": "liked to meet old friends",
-        "paragraph": "We were playing in a band and we finished our performance in the morning. However, I stayed at the festival to meet up with some old band mates. We talked a lot. However, I didn’t like the venue. It was too crowded and not well organised. The road to the tent village was also congested. I think they should choose a better location next year."
-      },
-      {
-        "person": "D",
-        "statement": "didn’t like the venue",
-        "paragraph": "We were playing in a band and we finished our performance in the morning. However, I stayed at the festival to meet up with some old band mates. We talked a lot. However, I didn’t like the venue. It was too crowded and not well organised. The road to the tent village was also congested. I think they should choose a better location next year."
-      }
-    ],
+      "questions": [
+        {
+          "qnum": 1,
+          "question": "Who disappointed with the festival?",
+          "answer": "B",
+          "statement": "disappointed with the festival"
+        },
+        {
+          "qnum": 2,
+          "question": "Who didn’t like the venue?",
+          "answer": "D",
+          "statement": "didn’t like the venue"
+        },
+        {
+          "qnum": 3,
+          "question": "Who found the ticket prices expensive?",
+          "answer": "C",
+          "statement": "found the ticket prices expensive"
+        },
+        {
+          "qnum": 4,
+          "question": "Who enjoyed the last day?",
+          "answer": "A",
+          "statement": "enjoyed the last day"
+        },
+        {
+          "qnum": 5,
+          "question": "Who liked to meet old friends?",
+          "answer": "D",
+          "statement": "liked to meet old friends"
+        },
+        {
+          "qnum": 6,
+          "question": "Who disliked the bad weather?",
+          "answer": "A",
+          "statement": "disliked the bad weather"
+        },
+        {
+          "qnum": 7,
+          "question": "Who enjoyed the music at the event?",
+          "answer": "C",
+          "statement": "enjoyed the music at the event"
+        }
+      ]
+    },
     "part5": [
       {
         "header": "1. Gender obscure achievements",
@@ -918,7 +1014,7 @@ function renderTestPart(t, part, container) {
   div.className = 'part-card';
   
   let header = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-    <h3 style="margin:0;">${part.toUpperCase()}</h3>
+    <h3 style="margin:0; font-size:18px; color:var(--text);">${part.toUpperCase()}</h3>
     <button class="preview-btn" onclick="openPreview('${t.test_name}')">📄 Xem File Gốc</button>
   </div>`;
   div.innerHTML = header;
@@ -929,7 +1025,7 @@ function renderTestPart(t, part, container) {
     let html = '';
     t.part1.forEach(q => {
       let htmlQ = q.question.replace('___', makeSelect(q.options, q.answer));
-      html += `<p>${htmlQ}</p>`;
+      html += `<p style="margin-bottom:12px; line-height:1.6;">${htmlQ}</p>`;
     });
     content.innerHTML = html;
   } 
@@ -940,7 +1036,6 @@ function renderTestPart(t, part, container) {
     if(pObj.fixed) {
       html += `<li class="draggable-item fixed"><strong>0.</strong> ${pObj.fixed}</li>`;
     }
-    // shuffle
     let sents = pObj.sentences.map((s, i) => ({text: s, idx: i}));
     sents.sort(() => Math.random() - 0.5);
     
@@ -981,32 +1076,100 @@ function renderTestPart(t, part, container) {
       });
     }, 100);
   }
-  else if (part === 'part4' && t.part4 && t.part4.length > 0) {
-    let html = `<p style="color:var(--text2);margin-bottom:16px;">Đọc đoạn văn và điền Người (A/B/C/D) vào chỗ trống phù hợp:</p>`;
-    
-    // Get unique people
-    let uniquePeople = [...new Set(t.part4.map(p => p.person))].sort();
-    
-    // Shuffle the statements so they are not in order A, B, B, C, C, D, D
-    let statements = [...t.part4];
-    statements.sort(() => Math.random() - 0.5);
-    
-    // show questions
-    statements.forEach((p, idx) => {
-      html += `<p style="margin-bottom:12px;"><strong>${idx+1}. </strong> ${makeSelect(uniquePeople, p.person)} ${p.statement}</p>`;
-    });
-    
-    html += `<div style="margin-top:24px; border-top:1px solid var(--border); padding-top:16px;">`;
-    // Render unique paragraphs
-    let renderedPeople = new Set();
-    t.part4.forEach(p => {
-      if (!renderedPeople.has(p.person)) {
-        renderedPeople.add(p.person);
-        html += `<div class="person-block" style="margin-bottom:16px; padding:12px; background:var(--bg2); border-radius:8px;"><strong>Person ${p.person}</strong><p style="margin-top:8px;">${p.paragraph}</p></div>`;
-      }
-    });
-    html += `</div>`;
-    content.innerHTML = html;
+  else if (part === 'part4' && t.part4) {
+    const p4 = t.part4;
+    // Check if new structured dictionary format
+    if (p4.questions && p4.paragraphs) {
+      let html = `
+        <!-- 1. Đề bài & Topic gộp vào đề bài -->
+        <div style="margin-bottom: 20px; background: rgba(99,102,241,0.06); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px;">
+          <div style="font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px;">
+            ${p4.title || "Part 4: Choose the answer according to each person's opinion."}
+          </div>
+          ${p4.topic ? `<div style="display:inline-flex; align-items:center; gap:6px; background:rgba(99,102,241,0.18); color:var(--accent); padding:3px 10px; border-radius:6px; font-size:13px; font-weight:600;">🏷️ Topic: ${p4.topic}</div>` : ''}
+        </div>
+
+        <!-- 2. Đoạn văn của 4 người: A, B, C, D -->
+        <div style="margin-bottom: 28px;">
+          <div style="font-size: 13px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; display:flex; align-items:center; gap:6px;">
+            <span>📖</span> Đoạn văn của 4 người:
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+      `;
+
+      const peopleKeys = Object.keys(p4.paragraphs).sort();
+      peopleKeys.forEach(p => {
+        html += `
+          <div class="person-card" style="background: var(--surface); border: 1px solid var(--border2); border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+              <span style="background: var(--accent); color: #fff; width: 26px; height: 26px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">${p}</span>
+              <strong style="font-size: 15px; color: var(--text);">Person ${p}</strong>
+            </div>
+            <p style="margin: 0; color: var(--text); font-size: 14px; line-height: 1.6;">${p4.paragraphs[p]}</p>
+          </div>
+        `;
+      });
+
+      html += `
+          </div>
+        </div>
+
+        <!-- 3. 7 Câu hỏi và chọn câu trả lời -->
+        <div style="border-top: 1px solid var(--border); padding-top: 20px;">
+          <div style="font-size: 13px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; display:flex; justify-content:space-between; align-items:center;">
+            <span>❓ 7 Câu hỏi (Chọn người theo quan điểm):</span>
+            <span style="font-size:12px; color:var(--text2); font-weight:normal;">Chọn đúng người ứng với nhận định</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+      `;
+
+      p4.questions.forEach((q, idx) => {
+        const safeQText = q.question.replace(/'/g, "\'");
+        const safeStmt = (q.statement || '').replace(/'/g, "\'");
+        html += `
+          <div class="p4-q-row" style="background: var(--surface); border: 1px solid var(--border2); border-radius: 10px; padding: 14px 18px; transition: all 0.2s;">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;">
+              <div style="font-size: 15px; font-weight: 500; color: var(--text); flex: 1; min-width: 250px; line-height: 1.5;">
+                <strong style="color: var(--accent); font-size: 16px;">${idx + 1}.</strong> ${q.question}
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <label style="font-size: 13px; color: var(--text2); font-weight: 500;">Chọn:</label>
+                <select data-ans="${q.answer}" onchange="checkP4Select(this, '${q.answer}', '${safeStmt}')" style="background: var(--bg2); border: 1px solid var(--border2); color: var(--text); padding: 7px 12px; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer;">
+                  <option value="">--</option>
+                  <option value="A">Person A</option>
+                  <option value="B">Person B</option>
+                  <option value="C">Person C</option>
+                  <option value="D">Person D</option>
+                </select>
+                <button class="preview-btn" style="padding: 5px 9px; font-size: 12px; display: inline-flex; align-items: center; gap: 4px;" onclick="openPreview('${t.test_name}', '${safeQText}')" title="Xem vị trí câu hỏi trong file gốc">📄 File gốc</button>
+              </div>
+            </div>
+            
+            <!-- Box hiển thị đáp án mapping -->
+            <div class="p4-ans-box" style="display: none; margin-top: 10px; padding: 8px 12px; background: rgba(99, 102, 241, 0.1); border-left: 3px solid var(--accent); border-radius: 4px; font-size: 13px;">
+              <span style="font-weight: 700; color: var(--accent);">[Đáp án] Person ${q.answer}:</span>
+              <span style="color: var(--text); margin-left: 6px;">${q.statement}</span>
+            </div>
+          </div>
+        `;
+      });
+
+      html += `
+          </div>
+        </div>
+      `;
+      content.innerHTML = html;
+    } else if (Array.isArray(p4) && p4.length > 0) {
+      // Fallback for legacy list format
+      let html = `<p style="color:var(--text2);margin-bottom:16px;">Đọc đoạn văn và chọn Người (A/B/C/D) tương ứng:</p>`;
+      let uniquePeople = [...new Set(p4.map(p => p.person))].sort();
+      let statements = [...p4];
+      statements.sort(() => Math.random() - 0.5);
+      statements.forEach((p, idx) => {
+        html += `<p style="margin-bottom:12px;"><strong>${idx+1}. </strong> ${makeSelect(uniquePeople, p.person)} ${p.statement}</p>`;
+      });
+      content.innerHTML = html;
+    }
   }
   else if (part === 'part5' && t.part5 && t.part5.length > 0) {
     let html = `<p style="color:var(--text2);margin-bottom:16px;">Chọn Header đúng cho mỗi đoạn văn:</p>`;
@@ -1032,7 +1195,6 @@ function renderTest(t, container) {
   ['part1', 'part2', 'part3', 'part4', 'part5'].forEach(p => renderTestPart(t, p, container));
 }
 
-
 function checkSelect(sel) {
   sel.classList.remove('correct', 'wrong');
   if(!sel.value) return;
@@ -1041,6 +1203,35 @@ function checkSelect(sel) {
     sel.disabled = true;
   } else {
     sel.classList.add('wrong');
+  }
+}
+
+function checkP4Select(sel, ans, statement) {
+  sel.classList.remove('correct', 'wrong');
+  const card = sel.closest('.p4-q-row');
+  const ansBox = card ? card.querySelector('.p4-ans-box') : null;
+  
+  if (!sel.value) {
+    if (ansBox) ansBox.style.display = 'none';
+    return;
+  }
+  
+  if (sel.value.trim().toUpperCase() === ans.trim().toUpperCase()) {
+    sel.classList.add('correct');
+    if (ansBox) {
+      ansBox.style.display = 'block';
+      ansBox.style.borderColor = 'var(--green)';
+      ansBox.style.background = 'rgba(34,197,94,0.1)';
+      ansBox.innerHTML = `<span style="font-weight:700; color:var(--green);">✓ Chính xác! [Đáp án] Person ${ans}:</span> <span style="color:var(--text); margin-left:6px;">${statement}</span>`;
+    }
+  } else {
+    sel.classList.add('wrong');
+    if (ansBox) {
+      ansBox.style.display = 'block';
+      ansBox.style.borderColor = 'var(--red)';
+      ansBox.style.background = 'rgba(239,68,68,0.08)';
+      ansBox.innerHTML = `<span style="font-weight:700; color:var(--red);">✗ Chưa đúng. [Gợi ý] Đáp án là Person ${ans}:</span> <span style="color:var(--text); margin-left:6px;">${statement}</span>`;
+    }
   }
 }
 
@@ -1061,32 +1252,111 @@ function checkDrag(btn) {
 }
 
 function submitQuiz() {
+  let total = 0;
+  let correct = 0;
+  
   document.querySelectorAll('select').forEach(sel => {
-    sel.classList.remove('correct', 'wrong');
     if(sel.dataset.ans) {
-      if (sel.value.trim().toLowerCase() === sel.dataset.ans.trim().toLowerCase()) sel.classList.add('correct');
-      else sel.classList.add('wrong');
+      total++;
+      sel.classList.remove('correct', 'wrong');
+      if (sel.value.trim().toLowerCase() === sel.dataset.ans.trim().toLowerCase()) {
+        sel.classList.add('correct');
+        correct++;
+      } else {
+        sel.classList.add('wrong');
+      }
     }
   });
-  document.getElementById('submit-btn').style.display = 'none';
+  
+  // Show all Part 4 answer boxes with explanations
+  document.querySelectorAll('.p4-ans-box').forEach(box => {
+    box.style.display = 'block';
+  });
+  
+  const chip = document.getElementById('score-chip');
+  if(chip && total > 0) {
+    chip.style.display = 'inline-block';
+    chip.textContent = `Kết quả: ${correct}/${total} câu đúng`;
+  }
+  
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
-function openPreview(testName) {
-  document.getElementById('preview-modal').style.display = 'flex';
+let currentRenderedDoc = null;
+
+function openPreview(testName, targetKeyword) {
+  const modal = document.getElementById('preview-modal');
+  modal.style.display = 'flex';
   document.getElementById('preview-title').textContent = testName;
   document.getElementById('preview-download').href = 'data/reading/' + testName.replace(/ /g, '_') + '.docx';
   
+  const searchInput = document.getElementById('doc-search-input');
+  if(searchInput) {
+    searchInput.value = targetKeyword || '';
+  }
+  
   const docContainer = document.getElementById('docx-container');
-  docContainer.innerHTML = '<div style="text-align:center; padding: 40px; color:black;">Đang tải file gốc...</div>';
+  docContainer.innerHTML = '<div style="text-align:center; padding: 40px; color:black; font-weight:500;">⏳ Đang tải và hiển thị file Word gốc...</div>';
   
   fetch('data/reading/' + testName.replace(/ /g, '_') + '.docx')
     .then(res => res.blob())
     .then(blob => {
-      docx.renderAsync(blob, docContainer);
+      docx.renderAsync(blob, docContainer).then(() => {
+        currentRenderedDoc = docContainer;
+        if (targetKeyword) {
+          searchInDoc(targetKeyword);
+        }
+      });
     }).catch(err => {
-      docContainer.innerHTML = '<div style="color:red">Lỗi tải file.</div>';
+      docContainer.innerHTML = '<div style="color:red; padding:20px; text-align:center;">Lỗi khi tải file gốc. Vui lòng bấm Tải file ở trên.</div>';
     });
+}
+
+function closePreview() {
+  document.getElementById('preview-modal').style.display = 'none';
+}
+
+function searchInDoc(keyword) {
+  if (!keyword || !keyword.trim()) return;
+  const docContainer = document.getElementById('docx-container');
+  if (!docContainer) return;
+  
+  // Remove existing highlights
+  docContainer.querySelectorAll('.docx-highlight').forEach(el => {
+    el.classList.remove('docx-highlight');
+  });
+  
+  const cleanKey = keyword.trim().toLowerCase();
+  // Try exact or keyword search across p, span, tr, td
+  const candidates = docContainer.querySelectorAll('p, span, td, li');
+  let matchedEl = null;
+  
+  for (let el of candidates) {
+    const text = el.textContent || '';
+    if (text.toLowerCase().includes(cleanKey)) {
+      matchedEl = el;
+      break;
+    }
+  }
+  
+  // If not found full text, try keywords (first 4 words)
+  if (!matchedEl) {
+    const words = cleanKey.split(/\s+/).filter(w => w.length > 3);
+    if (words.length > 0) {
+      const subKey = words.slice(0, 3).join(' ');
+      for (let el of candidates) {
+        if (el.textContent && el.textContent.toLowerCase().includes(subKey)) {
+          matchedEl = el;
+          break;
+        }
+      }
+    }
+  }
+  
+  if (matchedEl) {
+    matchedEl.classList.add('docx-highlight');
+    matchedEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 }
 </script>
 </body>

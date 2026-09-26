@@ -72,43 +72,60 @@
         "After playing, the children were very hungry and ate with their parents."
       ]
     },
-    "part4": [
-      {
-        "person": "A",
-        "statement": "like to play with children",
-        "paragraph": "In the past, I really liked playing board games. Now to limit the children from using computers, I often spend time playing with them, but I have struggled with them, the games nowadays have more characters and rules, making us think a lot every time we play, but my children and I still like it and have a good time and laugh together."
+    "part4": {
+      "title": "Part 4: Choose the answer according to each person's opinion.",
+      "topic": "childhood",
+      "paragraphs": {
+        "A": "In the past, I really liked playing board games. Now to limit the children from using computers, I often spend time playing with them, but I have struggled with them, the games nowadays have more characters and rules, making us think a lot every time we play, but my children and I still like it and have a good time and laugh together.",
+        "B": "When I was a child, I often played soccer with other children of the same age. We often played football in the school yard and sometimes in the open spaces of the neighborhood. We divided into small teams and chased the ball until we were all tired.",
+        "C": "When I was a child, I didn't like going out to play, so I chose reading books as a form of entertainment. The stories described in the pages of books helped me discover my own world. Later, when I grow up, I like playing modern games with eye-catching interfaces, which helps me relax and increase my creativity.",
+        "D": "When I was a child, I really liked playing outdoor activities. I remember on bad weather days, I was always by the window, glued to the window to look outside, praying for the rain to stop. At those times, my mother often gave me a paper and a box of crayons. I really liked that drawing activity and often drew at home when the weather was not good."
       },
-      {
-        "person": "A",
-        "statement": "find the games nowadays much more difficult",
-        "paragraph": "In the past, I really liked playing board games. Now to limit the children from using computers, I often spend time playing with them, but I have struggled with them, the games nowadays have more characters and rules, making us think a lot every time we play, but my children and I still like it and have a good time and laugh together."
-      },
-      {
-        "person": "B",
-        "statement": "like to play with other children in the past.",
-        "paragraph": "When I was a child, I often played soccer with other children of the same age. We often played football in the school yard and sometimes in the open spaces of the neighborhood. We divided into small teams and chased the ball until we were all tired."
-      },
-      {
-        "person": "C",
-        "statement": "liked reading books when he was a child",
-        "paragraph": "When I was a child, I didn't like going out to play, so I chose reading books as a form of entertainment. The stories described in the pages of books helped me discover my own world. Later, when I grow up, I like playing modern games with eye-catching interfaces, which helps me relax and increase my creativity."
-      },
-      {
-        "person": "C",
-        "statement": "now I like modern games when I grow up",
-        "paragraph": "When I was a child, I didn't like going out to play, so I chose reading books as a form of entertainment. The stories described in the pages of books helped me discover my own world. Later, when I grow up, I like playing modern games with eye-catching interfaces, which helps me relax and increase my creativity."
-      },
-      {
-        "person": "D",
-        "statement": "liked arts when he was a child",
-        "paragraph": "When I was a child, I really liked playing outdoor activities. I remember on bad weather days, I was always by the window, glued to the window to look outside, praying for the rain to stop. At those times, my mother often gave me a paper and a box of crayons. I really liked that drawing activity and often drew at home when the weather was not good."
-      },
-      {
-        "person": "D",
-        "statement": "looked forward to going out to play",
-        "paragraph": "When I was a child, I really liked playing outdoor activities. I remember on bad weather days, I was always by the window, glued to the window to look outside, praying for the rain to stop. At those times, my mother often gave me a paper and a box of crayons. I really liked that drawing activity and often drew at home when the weather was not good."
-      }
-    ],
+      "questions": [
+        {
+          "qnum": 1,
+          "question": "Who likes to play with children?",
+          "answer": "A",
+          "statement": "like to play with children"
+        },
+        {
+          "qnum": 2,
+          "question": "Who likes to play with other children in the past?",
+          "answer": "B",
+          "statement": "like to play with other children in the past."
+        },
+        {
+          "qnum": 3,
+          "question": "Who looked forward to going out to play?",
+          "answer": "D",
+          "statement": "looked forward to going out to play"
+        },
+        {
+          "qnum": 4,
+          "question": "Who liked arts when he was a child?",
+          "answer": "D",
+          "statement": "liked arts when he was a child"
+        },
+        {
+          "qnum": 5,
+          "question": "Who likes modern games when growing up?",
+          "answer": "C",
+          "statement": "now I like modern games when I grow up"
+        },
+        {
+          "qnum": 6,
+          "question": "Who finds the games nowadays much more difficult?",
+          "answer": "A",
+          "statement": "find the games nowadays much more difficult"
+        },
+        {
+          "qnum": 7,
+          "question": "Who liked reading books when he was a child?",
+          "answer": "C",
+          "statement": "liked reading books when he was a child"
+        }
+      ]
+    },
     "part5": [
       {
         "header": "Our changing the perspective towards mountain",
@@ -214,43 +231,60 @@
         "Thanks to the great development of means of transport, today people can travel to other parts of the world."
       ]
     },
-    "part4": [
-      {
-        "person": "A",
-        "statement": "finds training before participating is important.",
-        "paragraph": "Before trying any extreme sport, I believe it’s absolutely essential to train properly. These kinds of activities are exciting, but they can also be dangerous if you don’t know what you’re doing. I’ve seen people get hurt because they didn’t prepare well. That’s why I always make sure to take a training course and understand the safety rules before I try anything new. With the right preparation, I think extreme sports can be a great experience."
+    "part4": {
+      "title": "Part 4: Choose the answer according to each person's opinion.",
+      "topic": "extreme sports",
+      "paragraphs": {
+        "A": "",
+        "B": "I’ve always been more into traditional sports like swimming, running, or playing tennis. They’re fun and easy to do regularly. But a few months ago, I went bungee jumping during a holiday, and it was an incredible experience. I didn’t expect to enjoy it so much! I still prefer regular sports for everyday fitness, but now I’m definitely more open to trying extreme sports once in a while for the adventure.",
+        "C": "What I love most about extreme sports is how they let me enjoy nature in a different way. Activities like rock climbing or mountain biking allow me to explore amazing places while challenging myself physically and mentally. It’s a way to disconnect from daily life and feel completely alive. If I had more time and money, I’d love to do these kinds of sports more often, especially in wild, remote areas.",
+        "D": "I know some people find extreme sports exciting, but for me, they’ve never been important. I actually avoid them as much as possible. I don’t like the idea of putting myself in danger just for fun. There are plenty of safer ways to stay active and enjoy life. I’d rather go for a walk or do yoga than jump out of a plane or climb a mountain. It’s just not my thing."
       },
-      {
-        "person": "B",
-        "statement": "likes traditional sports like swimming",
-        "paragraph": "I’ve always been more into traditional sports like swimming, running, or playing tennis. They’re fun and easy to do regularly. But a few months ago, I went bungee jumping during a holiday, and it was an incredible experience. I didn’t expect to enjoy it so much! I still prefer regular sports for everyday fitness, but now I’m definitely more open to trying extreme sports once in a while for the adventure."
-      },
-      {
-        "person": "B",
-        "statement": "still likes extreme sports after playing once.",
-        "paragraph": "I’ve always been more into traditional sports like swimming, running, or playing tennis. They’re fun and easy to do regularly. But a few months ago, I went bungee jumping during a holiday, and it was an incredible experience. I didn’t expect to enjoy it so much! I still prefer regular sports for everyday fitness, but now I’m definitely more open to trying extreme sports once in a while for the adventure."
-      },
-      {
-        "person": "C",
-        "statement": "enjoys nature",
-        "paragraph": "What I love most about extreme sports is how they let me enjoy nature in a different way. Activities like rock climbing or mountain biking allow me to explore amazing places while challenging myself physically and mentally. It’s a way to disconnect from daily life and feel completely alive. If I had more time and money, I’d love to do these kinds of sports more often, especially in wild, remote areas."
-      },
-      {
-        "person": "C",
-        "statement": "wants to play more extreme sports.",
-        "paragraph": "What I love most about extreme sports is how they let me enjoy nature in a different way. Activities like rock climbing or mountain biking allow me to explore amazing places while challenging myself physically and mentally. It’s a way to disconnect from daily life and feel completely alive. If I had more time and money, I’d love to do these kinds of sports more often, especially in wild, remote areas."
-      },
-      {
-        "person": "D",
-        "statement": "finds extreme sports unimportant",
-        "paragraph": "I know some people find extreme sports exciting, but for me, they’ve never been important. I actually avoid them as much as possible. I don’t like the idea of putting myself in danger just for fun. There are plenty of safer ways to stay active and enjoy life. I’d rather go for a walk or do yoga than jump out of a plane or climb a mountain. It’s just not my thing."
-      },
-      {
-        "person": "D",
-        "statement": "always avoid playing extreme sports.",
-        "paragraph": "I know some people find extreme sports exciting, but for me, they’ve never been important. I actually avoid them as much as possible. I don’t like the idea of putting myself in danger just for fun. There are plenty of safer ways to stay active and enjoy life. I’d rather go for a walk or do yoga than jump out of a plane or climb a mountain. It’s just not my thing."
-      }
-    ],
+      "questions": [
+        {
+          "qnum": 1,
+          "question": "Who still likes extreme sports after playing once?",
+          "answer": "B",
+          "statement": "still likes extreme sports after playing once."
+        },
+        {
+          "qnum": 2,
+          "question": "Who enjoys nature?",
+          "answer": "C",
+          "statement": "enjoys nature"
+        },
+        {
+          "qnum": 3,
+          "question": "Who finds extreme sports unimportant?",
+          "answer": "D",
+          "statement": "finds extreme sports unimportant"
+        },
+        {
+          "qnum": 4,
+          "question": "Who finds training before participating is important?",
+          "answer": "A",
+          "statement": "finds training before participating is important."
+        },
+        {
+          "qnum": 5,
+          "question": "Who wants to play more extreme sports?",
+          "answer": "C",
+          "statement": "wants to play more extreme sports."
+        },
+        {
+          "qnum": 6,
+          "question": "Who likes traditional sports like swimming?",
+          "answer": "B",
+          "statement": "likes traditional sports like swimming"
+        },
+        {
+          "qnum": 7,
+          "question": "Who always avoid playing extreme sports?",
+          "answer": "D",
+          "statement": "always avoid playing extreme sports."
+        }
+      ]
+    },
     "part5": [
       {
         "header": "An alternative history of settlement",
@@ -356,43 +390,60 @@
         "After this time, other students will have questions for you and you have to answer them."
       ]
     },
-    "part4": [
-      {
-        "person": "A",
-        "statement": "thinks they got benefits from working for free",
-        "paragraph": "When I was a student, I decided to do an unpaid internship at organizations and companies. At first, my friends said it was a waste of time because I didn’t earn any money. However, I learned a lot of practical skills and gained real working experience. I also built good relationships with my colleagues, which later helped me find a full-time job more easily."
+    "part4": {
+      "title": "Part 4: Choose the answer according to each person's opinion.",
+      "topic": "Careers",
+      "paragraphs": {
+        "A": "fter graduating, it took me a long time to find my first job. Many companies required experience, which made the process quite stressful. Luckily, I finally found a position that suits me well in a gaming company. I now work in a flexible working environment where I can manage my own time and work from home, and this helps me balance my work and personal life better.",
+        "B": "My dream job is becoming a teacher, and I have never thought about changing to another career. Teaching has always been my goal because I enjoy working with students and helping them learn new things. At the moment, I am studying hard to become a good teacher in the future. While I am still in training, I also work part-time at a school so that I can gain real teaching experience. I really enjoy working while studying because it helps me improve my skills and become more confident in the classroom. Even though it can be challenging sometimes, I believe this experience is very valuable, and I am happy to continue on this career path without changing my job plans.",
+        "C": "When I was a child I worked with a plumber and helped her with fixing things. I love a career in mechanical engineering because I enjoy making and repairing things by hand. However, the training period was much longer than I expected, about 2 years. Sometimes I felt tired of studying theory for so many years before actually starting work. Still, I believe the skills I learned will be useful in the long run.",
+        "D": ""
       },
-      {
-        "person": "B",
-        "statement": "does not want to change to another job",
-        "paragraph": "My dream job is becoming a teacher, and I have never thought about changing to another career. Teaching has always been my goal because I enjoy working with students and helping them learn new things. At the moment, I am studying hard to become a good teacher in the future. While I am still in training, I also work part-time at a school so that I can gain real teaching experience. I really enjoy working while studying because it helps me improve my skills and become more confident in the classroom. Even though it can be challenging sometimes, I believe this experience is very valuable, and I am happy to continue on this career path without changing my job plans."
-      },
-      {
-        "person": "B",
-        "statement": "enjoys working while training",
-        "paragraph": "My dream job is becoming a teacher, and I have never thought about changing to another career. Teaching has always been my goal because I enjoy working with students and helping them learn new things. At the moment, I am studying hard to become a good teacher in the future. While I am still in training, I also work part-time at a school so that I can gain real teaching experience. I really enjoy working while studying because it helps me improve my skills and become more confident in the classroom. Even though it can be challenging sometimes, I believe this experience is very valuable, and I am happy to continue on this career path without changing my job plans."
-      },
-      {
-        "person": "C",
-        "statement": "thinks their training is too long",
-        "paragraph": "When I was a child I worked with a plumber and helped her with fixing things. I love a career in mechanical engineering because I enjoy making and repairing things by hand. However, the training period was much longer than I expected, about 2 years. Sometimes I felt tired of studying theory for so many years before actually starting work. Still, I believe the skills I learned will be useful in the long run."
-      },
-      {
-        "person": "C",
-        "statement": "likes doing things with their hands",
-        "paragraph": "When I was a child I worked with a plumber and helped her with fixing things. I love a career in mechanical engineering because I enjoy making and repairing things by hand. However, the training period was much longer than I expected, about 2 years. Sometimes I felt tired of studying theory for so many years before actually starting work. Still, I believe the skills I learned will be useful in the long run."
-      },
-      {
-        "person": "D",
-        "statement": "thinks it was difficult to get the first job",
-        "paragraph": "After graduating, it took me a long time to find my first job. Many companies required experience, which made the process quite stressful. Luckily, I finally found a position that suits me well in a gaming company. I now work in a flexible working environment where I can manage my own time and work from home, and this helps me balance my work and personal life better."
-      },
-      {
-        "person": "D",
-        "statement": "enjoys working in a flexible working environment",
-        "paragraph": "After graduating, it took me a long time to find my first job. Many companies required experience, which made the process quite stressful. Luckily, I finally found a position that suits me well in a gaming company. I now work in a flexible working environment where I can manage my own time and work from home, and this helps me balance my work and personal life better."
-      }
-    ],
+      "questions": [
+        {
+          "qnum": 1,
+          "question": "Who does not want to change to another job?",
+          "answer": "B",
+          "statement": "does not want to change to another job"
+        },
+        {
+          "qnum": 2,
+          "question": "Who thinks their training is too long?",
+          "answer": "C",
+          "statement": "thinks their training is too long"
+        },
+        {
+          "qnum": 3,
+          "question": "Who enjoys working while training?",
+          "answer": "B",
+          "statement": "enjoys working while training"
+        },
+        {
+          "qnum": 4,
+          "question": "Who enjoys working in a flexible working environment?",
+          "answer": "D",
+          "statement": "enjoys working in a flexible working environment"
+        },
+        {
+          "qnum": 5,
+          "question": "Who thinks it was difficult to get the first job?",
+          "answer": "D",
+          "statement": "thinks it was difficult to get the first job"
+        },
+        {
+          "qnum": 6,
+          "question": "Who thinks they got benefits from working for free?",
+          "answer": "A",
+          "statement": "thinks they got benefits from working for free"
+        },
+        {
+          "qnum": 7,
+          "question": "Who likes doing things with their hands?",
+          "answer": "C",
+          "statement": "likes doing things with their hands"
+        }
+      ]
+    },
     "part5": [
       {
         "header": "A way of life now out of date",
@@ -497,43 +548,60 @@
         "Some of those include growing plants and animals in a spaceship"
       ]
     },
-    "part4": [
-      {
-        "person": "A",
-        "statement": "thinks it should help local community",
-        "paragraph": "Some people enjoy volunteering abroad, but honestly, I feel most people are more interested in travelling. I believe we should use our time more meaningfully. Each town has many people in need. Their situations are difficult, and they don’t have the means to improve their quality of life. They are individuals who have contributed a lot to the country. Sharing stories with them helps us understand the differences between generations. We can also broaden our knowledge about local history, traditions, and culture through their experiences."
+    "part4": {
+      "title": "Part 4: Choose the answer according to each person's opinion.",
+      "topic": "Volunteering",
+      "paragraphs": {
+        "A": "Some people enjoy volunteering abroad, but honestly, I feel most people are more interested in travelling. I believe we should use our time more meaningfully. Each town has many people in need. Their situations are difficult, and they don’t have the means to improve their quality of life. They are individuals who have contributed a lot to the country. Sharing stories with them helps us understand the differences between generations. We can also broaden our knowledge about local history, traditions, and culture through their experiences.",
+        "B": "My mother told me to do local volunteering because she is part of that organisation, but I’m not into it. I prefer volunteering abroad because I can develop soft skills – something that will benefit my future career. Also, meeting new people helps me expand my network and create valuable connections I can use later in my professional life.",
+        "C": "I’m too busy and rarely have any free time to do anything, so spending even a few hours volunteering is difficult. I would have to take half a day off work. I see many people in need and they genuinely require some extra financial support. That’s something I can help with because I earn a good salary. Making monthly donations is not a problem for me – it's how I show my support and contribution.",
+        "D": "I believe there are many ways we can show kindness through volunteering. I'm a retired carpenter now, and I currently help build houses for people in need. I work with a volunteering organisation that already has clear plans in place. Through this work, I’ve had the chance to experience different foreign cultures. We’re often sent to various countries to carry out these projects, so it’s also a great way to travel while doing something meaningful. The job involves manual labour, so we’re able to improve our physical health – something that some people only begin to notice after a while."
       },
-      {
-        "person": "A",
-        "statement": "thinks it can improve knowledge about culture",
-        "paragraph": "Some people enjoy volunteering abroad, but honestly, I feel most people are more interested in travelling. I believe we should use our time more meaningfully. Each town has many people in need. Their situations are difficult, and they don’t have the means to improve their quality of life. They are individuals who have contributed a lot to the country. Sharing stories with them helps us understand the differences between generations. We can also broaden our knowledge about local history, traditions, and culture through their experiences."
-      },
-      {
-        "person": "B",
-        "statement": "wants to enhance future career",
-        "paragraph": "My mother told me to do local volunteering because she is part of that organisation, but I’m not into it. I prefer volunteering abroad because I can develop soft skills – something that will benefit my future career. Also, meeting new people helps me expand my network and create valuable connections I can use later in my professional life."
-      },
-      {
-        "person": "B",
-        "statement": "wants to make new friends",
-        "paragraph": "My mother told me to do local volunteering because she is part of that organisation, but I’m not into it. I prefer volunteering abroad because I can develop soft skills – something that will benefit my future career. Also, meeting new people helps me expand my network and create valuable connections I can use later in my professional life."
-      },
-      {
-        "person": "C",
-        "statement": "helps support charity work with money",
-        "paragraph": "I’m too busy and rarely have any free time to do anything, so spending even a few hours volunteering is difficult. I would have to take half a day off work. I see many people in need and they genuinely require some extra financial support. That’s something I can help with because I earn a good salary. Making monthly donations is not a problem for me – it's how I show my support and contribution."
-      },
-      {
-        "person": "D",
-        "statement": "thinks volunteering helps improve physical health",
-        "paragraph": "I believe there are many ways we can show kindness through volunteering. I'm retired now, and I currently help build houses for people in need. I work with a volunteering organisation that already has clear plans in place. Through this work, I’ve had the chance to experience different foreign cultures. We’re often sent to various countries to carry out these projects, so it’s also a great way to travel while doing something meaningful. The job involves manual labour, so we’re able to improve our physical health – something that some people only begin to notice after a while."
-      },
-      {
-        "person": "D",
-        "statement": "thinks it is a way to travel",
-        "paragraph": "I believe there are many ways we can show kindness through volunteering. I'm retired now, and I currently help build houses for people in need. I work with a volunteering organisation that already has clear plans in place. Through this work, I’ve had the chance to experience different foreign cultures. We’re often sent to various countries to carry out these projects, so it’s also a great way to travel while doing something meaningful. The job involves manual labour, so we’re able to improve our physical health – something that some people only begin to notice after a while."
-      }
-    ],
+      "questions": [
+        {
+          "qnum": 1,
+          "question": "Who wants to enhance future career?",
+          "answer": "B",
+          "statement": "wants to enhance future career"
+        },
+        {
+          "qnum": 2,
+          "question": "Who helps support charity work with money?",
+          "answer": "C",
+          "statement": "helps support charity work with money"
+        },
+        {
+          "qnum": 3,
+          "question": "Who thinks it should help local community?",
+          "answer": "A",
+          "statement": "thinks it should help local community"
+        },
+        {
+          "qnum": 4,
+          "question": "Who thinks volunteering helps improve physical health?",
+          "answer": "D",
+          "statement": "thinks volunteering helps improve physical health"
+        },
+        {
+          "qnum": 5,
+          "question": "Who thinks it can improve knowledge about culture?",
+          "answer": "A",
+          "statement": "thinks it can improve knowledge about culture"
+        },
+        {
+          "qnum": 6,
+          "question": "Who thinks it is a way to travel?",
+          "answer": "D",
+          "statement": "thinks it is a way to travel"
+        },
+        {
+          "qnum": 7,
+          "question": "Who wants to make new friends?",
+          "answer": "B",
+          "statement": "wants to make new friends"
+        }
+      ]
+    },
     "part5": [
       {
         "header": "Who is in charge?",
@@ -639,43 +707,60 @@
         "Many people follow him on social media and he becomes a famous singer"
       ]
     },
-    "part4": [
-      {
-        "person": "A",
-        "statement": "enjoyed the last day",
-        "paragraph": "This was my first time attending the Music Festival, and to be honest, the weather really didn’t cooperate. It rained heavily on the first two days, which made it difficult to enjoy the outdoor activities. I still got wet in the tent. But I didn’t let that ruin the experience. On the final day, the skies cleared up and the performances were truly amazing — especially the final act in the evening. That last day made it all worthwhile, and I left with some great memories despite the poor weather."
+    "part4": {
+      "title": "Part 4: Choose the answer according to each person's opinion.",
+      "topic": "Music Festival",
+      "paragraphs": {
+        "A": "This was my first time attending the Music Festival, and to be honest, the weather really didn’t cooperate. It rained heavily on the first two days, which made it difficult to enjoy the outdoor activities. I still got wet in the tent. But I didn’t let that ruin the experience. On the final day, the skies cleared up and the performances were truly amazing — especially the final act in the evening. That last day made it all worthwhile, and I left with some great memories despite the poor weather.",
+        "B": "I’ve been to this festival a couple of times in the past, the quality was good the last times I came, but this time is completely different. The sound quality wasn’t great, and the whole event just felt disorganised. There weren’t enough facilities, and the staff didn’t seem prepared to handle the crowd. I couldn’t even interact with the band. I don’t think I’ll be coming back next year. It’s simply not worth the money or the time anymore.",
+        "C": "I really enjoyed the music of this festival and I danced to the music, I felt every second of the festival was worth it. I absolutely loved the energy of the performances, and the music was spot on throughout the weekend. However, I have to say the ticket prices were far too high, especially for students. I paid almost double what I did two years ago, and although I enjoyed the music, I’m not sure it offered good value for money. If they don’t lower the prices next year, a lot of people might skip it.",
+        "D": "We were playing in a band and we finished our performance in the morning. However, I stayed at the festival to meet up with some old band mates. We talked a lot. However, I didn’t like the venue. It was too crowded and not well organised. The road to the tent village was also congested. I think they should choose a better location next year."
       },
-      {
-        "person": "A",
-        "statement": "disliked the bad weather",
-        "paragraph": "This was my first time attending the Music Festival, and to be honest, the weather really didn’t cooperate. It rained heavily on the first two days, which made it difficult to enjoy the outdoor activities. I still got wet in the tent. But I didn’t let that ruin the experience. On the final day, the skies cleared up and the performances were truly amazing — especially the final act in the evening. That last day made it all worthwhile, and I left with some great memories despite the poor weather."
-      },
-      {
-        "person": "B",
-        "statement": "disappointed with the festival",
-        "paragraph": "I’ve been to this festival a couple of times in the past, the quality was good the last times I came, but this time is completely different. The sound quality wasn’t great, and the whole event just felt disorganised. There weren’t enough facilities, and the staff didn’t seem prepared to handle the crowd. I couldn’t even interact with the band. I don’t think I’ll be coming back next year. It’s simply not worth the money or the time anymore."
-      },
-      {
-        "person": "C",
-        "statement": "enjoyed the music at the event",
-        "paragraph": "I really enjoyed the music of this festival and I danced to the music, I felt every second of the festival was worth it. I absolutely loved the energy of the performances, and the music was spot on throughout the weekend. However, I have to say the ticket prices were far too high, especially for students. I paid almost double what I did two years ago, and although I enjoyed the music, I’m not sure it offered good value for money. If they don’t lower the prices next year, a lot of people might skip it."
-      },
-      {
-        "person": "C",
-        "statement": "found the ticket prices expensive",
-        "paragraph": "I really enjoyed the music of this festival and I danced to the music, I felt every second of the festival was worth it. I absolutely loved the energy of the performances, and the music was spot on throughout the weekend. However, I have to say the ticket prices were far too high, especially for students. I paid almost double what I did two years ago, and although I enjoyed the music, I’m not sure it offered good value for money. If they don’t lower the prices next year, a lot of people might skip it."
-      },
-      {
-        "person": "D",
-        "statement": "liked to meet old friends",
-        "paragraph": "We were playing in a band and we finished our performance in the morning. However, I stayed at the festival to meet up with some old band mates. We talked a lot. However, I didn’t like the venue. It was too crowded and not well organised. The road to the tent village was also congested. I think they should choose a better location next year."
-      },
-      {
-        "person": "D",
-        "statement": "didn’t like the venue",
-        "paragraph": "We were playing in a band and we finished our performance in the morning. However, I stayed at the festival to meet up with some old band mates. We talked a lot. However, I didn’t like the venue. It was too crowded and not well organised. The road to the tent village was also congested. I think they should choose a better location next year."
-      }
-    ],
+      "questions": [
+        {
+          "qnum": 1,
+          "question": "Who disappointed with the festival?",
+          "answer": "B",
+          "statement": "disappointed with the festival"
+        },
+        {
+          "qnum": 2,
+          "question": "Who didn’t like the venue?",
+          "answer": "D",
+          "statement": "didn’t like the venue"
+        },
+        {
+          "qnum": 3,
+          "question": "Who found the ticket prices expensive?",
+          "answer": "C",
+          "statement": "found the ticket prices expensive"
+        },
+        {
+          "qnum": 4,
+          "question": "Who enjoyed the last day?",
+          "answer": "A",
+          "statement": "enjoyed the last day"
+        },
+        {
+          "qnum": 5,
+          "question": "Who liked to meet old friends?",
+          "answer": "D",
+          "statement": "liked to meet old friends"
+        },
+        {
+          "qnum": 6,
+          "question": "Who disliked the bad weather?",
+          "answer": "A",
+          "statement": "disliked the bad weather"
+        },
+        {
+          "qnum": 7,
+          "question": "Who enjoyed the music at the event?",
+          "answer": "C",
+          "statement": "enjoyed the music at the event"
+        }
+      ]
+    },
     "part5": [
       {
         "header": "1. Gender obscure achievements",

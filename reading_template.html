@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>APTIS Reading Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/jszip/dist/jszip.min.js"></script>
+<script src="https://unpkg.com/docx-preview/dist/docx-preview.min.js"></script>
+<style>
+  :root {
+    --bg: #0f1117; --bg2: #161b27; --surface: #1e2538;
+    --border: #2a3550; --border2: #374165; --accent: #6366f1;
+    --text: #e2e8f0; --text2: #94a3b8; --green: #22c55e; --red: #ef4444;
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; }
+  nav { background: var(--bg2); padding: 12px 24px; display: flex; gap: 24px; border-bottom: 1px solid var(--border); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+  nav a { color: var(--text2); font-weight: 500; font-size: 15px; text-decoration: none; display: flex; align-items: center; gap: 6px; padding-bottom: 4px; transition: color 0.2s; }
+  nav a.active { color: var(--accent); font-weight: 700; border-bottom: 2px solid var(--accent); }
+  .container { max-width: 920px; margin: 40px auto; padding: 0 20px; }
+  
+  /* Setup Area */
+  .setup-card { background: var(--bg2); border-radius: 16px; padding: 32px; border: 1px solid var(--border); margin-bottom: 24px; }
+  .section-label { font-size: 14px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+  .mode-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin-bottom: 30px; }
+  .mode-btn { background: var(--surface); border: 2px solid var(--border2); border-radius: 12px; padding: 16px; text-align: left; cursor: pointer; color: var(--text); font-family: inherit; transition: all 0.2s; display: flex; flex-direction: column; gap: 8px; }
+  .mode-btn:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .mode-btn.active { border-color: var(--accent); background: rgba(99,102,241,0.1); }
+  .btn-primary { background: var(--accent); color: white; border: none; padding: 16px 32px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s; width: 100%; text-align: center; }
+  
+  /* Quiz Area */
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  .btn-home { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 8px 16px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 500; transition: all 0.2s; }
+  .btn-home:hover { background: var(--surface); }
+  .quiz-title-badge { background: rgba(99,102,241,0.15); color: var(--accent); padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+  
+  .part-card { background: var(--bg2); padding: 24px; border-radius: 12px; margin-bottom: 24px; border: 1px solid var(--border); }
+  .question-text { font-size: 16px; line-height: 1.6; margin-bottom: 16px; }
+  select { background: var(--surface); color: var(--text); padding: 8px 12px; border: 1px solid var(--border2); border-radius: 6px; font-family: 'Inter'; outline: none; font-size: 15px; margin: 4px; }
+  select:focus { border-color: var(--accent); }
+  select.correct { border-color: var(--green) !important; background: rgba(34,197,94,0.15) !important; color: #4ade80 !important; font-weight: 700; }
+  select.wrong { border-color: var(--red) !important; background: rgba(239,68,68,0.15) !important; color: #f87171 !important; }
+  
+  /* Drag and drop styles */
+  .draggable-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .draggable-item { background: var(--surface); border: 1px solid var(--border); padding: 12px 16px; border-radius: 8px; display: flex; align-items: center; gap: 12px; cursor: grab; user-select: none; transition: transform 0.15s, background-color 0.15s; }
+  .draggable-item:active { cursor: grabbing; }
+  .draggable-item.over { border: 2px dashed var(--accent); background: rgba(99,102,241,0.1); }
+  .drag-handle { color: var(--text2); cursor: grab; }
+  .draggable-item.fixed { cursor: default; background: var(--bg); opacity: 0.8; border-style: dashed; }
+  
+  .preview-btn { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+  .preview-btn:hover { background: var(--border); color: #fff; }
+  
+  .person-block { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+  .person-block strong { color: var(--accent); font-size: 15px; }
+  .person-block p { margin-top: 8px; color: var(--text2); line-height: 1.5; font-size: 14px; }
+
+  .draggable-item.correct { border: 2px solid #10b981 !important; background-color: rgba(16, 185, 129, 0.1) !important; }
+  .draggable-item.wrong { border: 2px solid #ef4444 !important; background-color: rgba(239, 68, 68, 0.1) !important; }
+
+  /* Highlight for search in docx */
+  .docx-highlight {
+    background-color: #fef08a !important;
+    color: #000000 !important;
+    padding: 2px 6px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
+    display: inline-block;
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html">🎧 Listening</a>
+  <a href="reading.html" class="active" style="color:var(--accent); border-bottom: 2px solid var(--accent);">📖 Reading</a>
+</nav>
+
+<div class="container">
+  
+  <!-- Setup Area -->
+  <div id="setup-area">
+    <div class="setup-card">
+      <div class="section-label">🎯 Chọn Phần Muốn Luyện (Reading)</div>
+      <div class="mode-grid">
+        <button class="mode-btn active" id="btn-mix" onclick="selectMode('mix')">🔀 Mix Đề</button>
+        <button class="mode-btn" id="btn-part1" onclick="selectMode('part1')">🎯 Phần 1</button>
+        <button class="mode-btn" id="btn-part2" onclick="selectMode('part2')">🧩 Phần 2</button>
+        <button class="mode-btn" id="btn-part3" onclick="selectMode('part3')">🧩 Phần 3</button>
+        <button class="mode-btn" id="btn-part4" onclick="selectMode('part4')">📝 Phần 4</button>
+        <button class="mode-btn" id="btn-part5" onclick="selectMode('part5')">📖 Phần 5</button>
+      </div>
+      
+      <div class="section-label">📝 Chọn Luyện Theo Từng Đề</div>
+      <div class="mode-grid" id="test-grid" style="grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 10px;">
+        <!-- Populated by JS -->
+      </div>
+      
+      <div style="margin-top:20px;">
+        <button class="btn-primary" onclick="startQuiz()">▶ Bắt Đầu Luyện Tập</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz Area -->
+  <div id="quiz-area" style="display:none;">
+    <div class="header">
+      <div style="display:flex; align-items:center; gap:20px;">
+        <button class="btn-home" onclick="backToSetup()">← Quay lại</button>
+        <div>
+          <h2 id="quiz-title" style="margin:0; font-size:20px;">Reading</h2>
+          <div style="display:flex; gap:10px; margin-top:4px;">
+            <span class="quiz-title-badge" id="quiz-badge">Phần 1</span>
+            <span class="quiz-title-badge" id="score-chip" style="display:none; background:rgba(34,197,94,0.15); color:var(--green);">0/0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="q-container"></div>
+    
+    <button class="btn-primary" id="submit-btn" onclick="submitQuiz()" style="margin-top:20px;">Nộp Bài / Kiểm Tra</button>
+  </div>
+
+</div>
+
+<!-- Preview Modal -->
+<div id="preview-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center; padding: 20px; box-sizing: border-box;">
+  <div style="background:var(--bg2); width:100%; max-width:860px; height:88vh; border-radius:12px; display:flex; flex-direction:column; overflow:hidden; border:1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+    <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:12px 18px; background:var(--surface); border-bottom:1px solid var(--border); gap:10px;">
+      <h3 style="margin:0; font-size:15px; font-weight: 600; color:var(--text);" id="preview-title">Reading File Preview</h3>
+      
+      <!-- Toolbar Tìm kiếm & Nhảy nhanh trong file gốc -->
+      <div style="display:flex; align-items:center; gap:8px;">
+        <input type="text" id="doc-search-input" placeholder="🔍 Tìm trong file..." style="background:var(--bg); border:1px solid var(--border2); color:var(--text); padding:5px 10px; border-radius:6px; font-size:12px; width:160px;" onkeydown="if(event.key==='Enter') searchInDoc(this.value)">
+        <button onclick="searchInDoc(document.getElementById('doc-search-input').value)" class="preview-btn" style="padding:5px 10px; font-size:12px;">Tìm</button>
+        <a id="preview-download" href="#" download style="background:var(--accent); color:#fff; text-decoration:none; padding:5px 10px; border-radius:6px; font-size:12px; font-weight:600; display:flex; align-items:center;">📥 Tải (.docx)</a>
+        <button onclick="closePreview()" style="background:var(--bg); border:1px solid var(--border); color:var(--text); font-size:18px; width:30px; height:30px; border-radius:6px; cursor:pointer; display:flex; align-items:center; justify-content:center;">&times;</button>
+      </div>
+    </div>
+    <div id="docx-container" style="flex:1; width:100%; overflow:auto; background:white; padding:20px; box-sizing:border-box;"></div>
+  </div>
+</div>
+
+<script>
+let ALL_TESTS = __JSON_DATA__;
+let mode = 'mix';
+
+initTestGrid();
+
+function initTestGrid() {
+  const tGrid = document.getElementById('test-grid');
+  if(!tGrid) return;
+  tGrid.innerHTML = '';
+  ALL_TESTS.forEach((t, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'mode-btn';
+    btn.style.padding = '8px';
+    btn.style.fontSize = '13px';
+    btn.innerHTML = `Đề ${i+1}`;
+    btn.onclick = () => startSpecificTest(i);
+    tGrid.appendChild(btn);
+  });
+}
+
+function selectMode(m) {
+  mode = m;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  if(document.getElementById('btn-'+m)) {
+    document.getElementById('btn-'+m).classList.add('active');
+  }
+}
+
+function backToSetup() {
+  document.getElementById('quiz-area').style.display = 'none';
+  document.getElementById('setup-area').style.display = 'block';
+}
+
+function startQuiz() {
+  if(mode === 'specific') return; 
+  
+  document.getElementById('setup-area').style.display = 'none';
+  document.getElementById('quiz-area').style.display = 'block';
+  document.getElementById('score-chip').style.display = 'none';
+  document.getElementById('submit-btn').style.display = 'block';
+  
+  const c = document.getElementById('q-container');
+  c.innerHTML = '';
+  
+  if(mode === 'mix') {
+    if(ALL_TESTS.length > 0) renderTest(ALL_TESTS[0], c); 
+  } else {
+    ALL_TESTS.forEach(t => renderTestPart(t, mode, c));
+  }
+}
+
+function startSpecificTest(index) {
+  mode = 'specific';
+  document.getElementById('setup-area').style.display = 'none';
+  document.getElementById('quiz-area').style.display = 'block';
+  document.getElementById('score-chip').style.display = 'none';
+  document.getElementById('submit-btn').style.display = 'block';
+  
+  const t = ALL_TESTS[index];
+  document.getElementById('quiz-title').textContent = t.test_name;
+  document.getElementById('quiz-badge').textContent = `Full Test`;
+  
+  const c = document.getElementById('q-container');
+  c.innerHTML = '';
+  renderTest(t, c);
+}
+
+function makeSelect(options, correctAns) {
+  let opts = `<option value="">--</option>` + options.map(o => `<option value="${o}">${o}</option>`).join('');
+  return `<select data-ans="${correctAns || ''}" onchange="checkSelect(this)">${opts}</select>`;
+}
+
+function renderTestPart(t, part, container) {
+  const div = document.createElement('div');
+  div.className = 'part-card';
+  
+  let header = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+    <h3 style="margin:0; font-size:18px; color:var(--text);">${part.toUpperCase()}</h3>
+    <button class="preview-btn" onclick="openPreview('${t.test_name}')">📄 Xem File Gốc</button>
+  </div>`;
+  div.innerHTML = header;
+  
+  let content = document.createElement('div');
+  
+  if (part === 'part1' && t.part1 && t.part1.length > 0) {
+    let html = '';
+    t.part1.forEach(q => {
+      let htmlQ = q.question.replace('___', makeSelect(q.options, q.answer));
+      html += `<p style="margin-bottom:12px; line-height:1.6;">${htmlQ}</p>`;
+    });
+    content.innerHTML = html;
+  } 
+  else if ((part === 'part2' || part === 'part3') && t[part] && t[part].sentences) {
+    let pObj = t[part];
+    let html = `<p style="color:var(--text2);margin-bottom:16px;">Sắp xếp các câu sau cho đúng thứ tự đoạn văn:</p>`;
+    html += `<ul class="draggable-list" id="drag-${part}-${t.test_name.replace(/[^a-zA-Z0-9]/g, '')}">`;
+    if(pObj.fixed) {
+      html += `<li class="draggable-item fixed"><strong>0.</strong> ${pObj.fixed}</li>`;
+    }
+    let sents = pObj.sentences.map((s, i) => ({text: s, idx: i}));
+    sents.sort(() => Math.random() - 0.5);
+    
+    sents.forEach(sObj => {
+      html += `<li class="draggable-item" draggable="true" data-idx="${sObj.idx}">
+        <span class="drag-handle">☰</span> 
+        <span style="flex:1">${sObj.text}</span>
+      </li>`;
+    });
+    html += `</ul>`;
+    html += `<button class="preview-btn" style="margin-top:16px;" onclick="checkDrag(this)">Kiểm tra</button>`;
+    content.innerHTML = html;
+    
+    // Setup drag and drop
+    setTimeout(() => {
+      const list = document.getElementById(`drag-${part}-${t.test_name.replace(/[^a-zA-Z0-9]/g, '')}`);
+      if(!list) return;
+      let dragEl = null;
+      list.querySelectorAll('.draggable-item:not(.fixed)').forEach(item => {
+        item.addEventListener('dragstart', (e) => { dragEl = item; e.dataTransfer.effectAllowed = 'move'; });
+        item.addEventListener('dragover', (e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; item.classList.add('over'); });
+        item.addEventListener('dragleave', (e) => { item.classList.remove('over'); });
+        item.addEventListener('drop', (e) => {
+          e.preventDefault(); item.classList.remove('over');
+          if (dragEl && dragEl !== item) {
+            let all = [...list.querySelectorAll('.draggable-item')];
+            let dragIdx = all.indexOf(dragEl);
+            let dropIdx = all.indexOf(item);
+            if (dragIdx < dropIdx) item.after(dragEl);
+            else item.before(dragEl);
+            
+            list.querySelectorAll('.draggable-item').forEach(li => li.classList.remove('correct', 'wrong'));
+            if(list.nextElementSibling && list.nextElementSibling.tagName === 'BUTTON') {
+              list.nextElementSibling.disabled = false;
+            }
+          }
+        });
+      });
+    }, 100);
+  }
+  else if (part === 'part4' && t.part4) {
+    const p4 = t.part4;
+    // Check if new structured dictionary format
+    if (p4.questions && p4.paragraphs) {
+      let html = `
+        <!-- 1. Đề bài & Topic gộp vào đề bài -->
+        <div style="margin-bottom: 20px; background: rgba(99,102,241,0.06); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px;">
+          <div style="font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px;">
+            ${p4.title || "Part 4: Choose the answer according to each person's opinion."}
+          </div>
+          ${p4.topic ? `<div style="display:inline-flex; align-items:center; gap:6px; background:rgba(99,102,241,0.18); color:var(--accent); padding:3px 10px; border-radius:6px; font-size:13px; font-weight:600;">🏷️ Topic: ${p4.topic}</div>` : ''}
+        </div>
+
+        <!-- 2. Đoạn văn của 4 người: A, B, C, D -->
+        <div style="margin-bottom: 28px;">
+          <div style="font-size: 13px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; display:flex; align-items:center; gap:6px;">
+            <span>📖</span> Đoạn văn của 4 người:
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+      `;
+
+      const peopleKeys = Object.keys(p4.paragraphs).sort();
+      peopleKeys.forEach(p => {
+        html += `
+          <div class="person-card" style="background: var(--surface); border: 1px solid var(--border2); border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+              <span style="background: var(--accent); color: #fff; width: 26px; height: 26px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">${p}</span>
+              <strong style="font-size: 15px; color: var(--text);">Person ${p}</strong>
+            </div>
+            <p style="margin: 0; color: var(--text); font-size: 14px; line-height: 1.6;">${p4.paragraphs[p]}</p>
+          </div>
+        `;
+      });
+
+      html += `
+          </div>
+        </div>
+
+        <!-- 3. 7 Câu hỏi và chọn câu trả lời -->
+        <div style="border-top: 1px solid var(--border); padding-top: 20px;">
+          <div style="font-size: 13px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; display:flex; justify-content:space-between; align-items:center;">
+            <span>❓ 7 Câu hỏi (Chọn người theo quan điểm):</span>
+            <span style="font-size:12px; color:var(--text2); font-weight:normal;">Chọn đúng người ứng với nhận định</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+      `;
+
+      p4.questions.forEach((q, idx) => {
+        const safeQText = q.question.replace(/'/g, "\'");
+        const safeStmt = (q.statement || '').replace(/'/g, "\'");
+        html += `
+          <div class="p4-q-row" style="background: var(--surface); border: 1px solid var(--border2); border-radius: 10px; padding: 14px 18px; transition: all 0.2s;">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;">
+              <div style="font-size: 15px; font-weight: 500; color: var(--text); flex: 1; min-width: 250px; line-height: 1.5;">
+                <strong style="color: var(--accent); font-size: 16px;">${idx + 1}.</strong> ${q.question}
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <label style="font-size: 13px; color: var(--text2); font-weight: 500;">Chọn:</label>
+                <select data-ans="${q.answer}" onchange="checkP4Select(this, '${q.answer}', '${safeStmt}')" style="background: var(--bg2); border: 1px solid var(--border2); color: var(--text); padding: 7px 12px; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer;">
+                  <option value="">--</option>
+                  <option value="A">Person A</option>
+                  <option value="B">Person B</option>
+                  <option value="C">Person C</option>
+                  <option value="D">Person D</option>
+                </select>
+                <button class="preview-btn" style="padding: 5px 9px; font-size: 12px; display: inline-flex; align-items: center; gap: 4px;" onclick="openPreview('${t.test_name}', '${safeQText}')" title="Xem vị trí câu hỏi trong file gốc">📄 File gốc</button>
+              </div>
+            </div>
+            
+            <!-- Box hiển thị đáp án mapping -->
+            <div class="p4-ans-box" style="display: none; margin-top: 10px; padding: 8px 12px; background: rgba(99, 102, 241, 0.1); border-left: 3px solid var(--accent); border-radius: 4px; font-size: 13px;">
+              <span style="font-weight: 700; color: var(--accent);">[Đáp án] Person ${q.answer}:</span>
+              <span style="color: var(--text); margin-left: 6px;">${q.statement}</span>
+            </div>
+          </div>
+        `;
+      });
+
+      html += `
+          </div>
+        </div>
+      `;
+      content.innerHTML = html;
+    } else if (Array.isArray(p4) && p4.length > 0) {
+      // Fallback for legacy list format
+      let html = `<p style="color:var(--text2);margin-bottom:16px;">Đọc đoạn văn và chọn Người (A/B/C/D) tương ứng:</p>`;
+      let uniquePeople = [...new Set(p4.map(p => p.person))].sort();
+      let statements = [...p4];
+      statements.sort(() => Math.random() - 0.5);
+      statements.forEach((p, idx) => {
+        html += `<p style="margin-bottom:12px;"><strong>${idx+1}. </strong> ${makeSelect(uniquePeople, p.person)} ${p.statement}</p>`;
+      });
+      content.innerHTML = html;
+    }
+  }
+  else if (part === 'part5' && t.part5 && t.part5.length > 0) {
+    let html = `<p style="color:var(--text2);margin-bottom:16px;">Chọn Header đúng cho mỗi đoạn văn:</p>`;
+    let headers = t.part5.map(p => p.header);
+    
+    t.part5.forEach((p, idx) => {
+      html += `<div class="person-block" style="margin-bottom:24px;">
+        <div style="margin-bottom:12px;"><strong>Đoạn ${idx+1}: </strong> ${makeSelect(headers, p.header)}</div>
+        <p>${p.paragraph}</p>
+      </div>`;
+    });
+    content.innerHTML = html;
+  }
+  else {
+    content.innerHTML = `<p style="color:var(--text2)">Nội dung phần này không có sẵn. Vui lòng xem File Gốc.</p>`;
+  }
+  
+  div.appendChild(content);
+  container.appendChild(div);
+}
+
+function renderTest(t, container) {
+  ['part1', 'part2', 'part3', 'part4', 'part5'].forEach(p => renderTestPart(t, p, container));
+}
+
+function checkSelect(sel) {
+  sel.classList.remove('correct', 'wrong');
+  if(!sel.value) return;
+  if(sel.value.trim().toLowerCase() === sel.dataset.ans.trim().toLowerCase()) {
+    sel.classList.add('correct');
+    sel.disabled = true;
+  } else {
+    sel.classList.add('wrong');
+  }
+}
+
+function checkP4Select(sel, ans, statement) {
+  sel.classList.remove('correct', 'wrong');
+  const card = sel.closest('.p4-q-row');
+  const ansBox = card ? card.querySelector('.p4-ans-box') : null;
+  
+  if (!sel.value) {
+    if (ansBox) ansBox.style.display = 'none';
+    return;
+  }
+  
+  if (sel.value.trim().toUpperCase() === ans.trim().toUpperCase()) {
+    sel.classList.add('correct');
+    if (ansBox) {
+      ansBox.style.display = 'block';
+      ansBox.style.borderColor = 'var(--green)';
+      ansBox.style.background = 'rgba(34,197,94,0.1)';
+      ansBox.innerHTML = `<span style="font-weight:700; color:var(--green);">✓ Chính xác! [Đáp án] Person ${ans}:</span> <span style="color:var(--text); margin-left:6px;">${statement}</span>`;
+    }
+  } else {
+    sel.classList.add('wrong');
+    if (ansBox) {
+      ansBox.style.display = 'block';
+      ansBox.style.borderColor = 'var(--red)';
+      ansBox.style.background = 'rgba(239,68,68,0.08)';
+      ansBox.innerHTML = `<span style="font-weight:700; color:var(--red);">✗ Chưa đúng. [Gợi ý] Đáp án là Person ${ans}:</span> <span style="color:var(--text); margin-left:6px;">${statement}</span>`;
+    }
+  }
+}
+
+function checkDrag(btn) {
+  const list = btn.previousElementSibling;
+  const items = list.querySelectorAll('.draggable-item:not(.fixed)');
+  let ok = true;
+  items.forEach((item, i) => {
+    item.classList.remove('correct', 'wrong');
+    if (parseInt(item.dataset.idx) === i) {
+      item.classList.add('correct');
+    } else {
+      item.classList.add('wrong');
+      ok = false;
+    }
+  });
+  if(ok) btn.disabled = true;
+}
+
+function submitQuiz() {
+  let total = 0;
+  let correct = 0;
+  
+  document.querySelectorAll('select').forEach(sel => {
+    if(sel.dataset.ans) {
+      total++;
+      sel.classList.remove('correct', 'wrong');
+      if (sel.value.trim().toLowerCase() === sel.dataset.ans.trim().toLowerCase()) {
+        sel.classList.add('correct');
+        correct++;
+      } else {
+        sel.classList.add('wrong');
+      }
+    }
+  });
+  
+  // Show all Part 4 answer boxes with explanations
+  document.querySelectorAll('.p4-ans-box').forEach(box => {
+    box.style.display = 'block';
+  });
+  
+  const chip = document.getElementById('score-chip');
+  if(chip && total > 0) {
+    chip.style.display = 'inline-block';
+    chip.textContent = `Kết quả: ${correct}/${total} câu đúng`;
+  }
+  
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+let currentRenderedDoc = null;
+
+function openPreview(testName, targetKeyword) {
+  const modal = document.getElementById('preview-modal');
+  modal.style.display = 'flex';
+  document.getElementById('preview-title').textContent = testName;
+  document.getElementById('preview-download').href = 'data/reading/' + testName.replace(/ /g, '_') + '.docx';
+  
+  const searchInput = document.getElementById('doc-search-input');
+  if(searchInput) {
+    searchInput.value = targetKeyword || '';
+  }
+  
+  const docContainer = document.getElementById('docx-container');
+  docContainer.innerHTML = '<div style="text-align:center; padding: 40px; color:black; font-weight:500;">⏳ Đang tải và hiển thị file Word gốc...</div>';
+  
+  fetch('data/reading/' + testName.replace(/ /g, '_') + '.docx')
+    .then(res => res.blob())
+    .then(blob => {
+      docx.renderAsync(blob, docContainer).then(() => {
+        currentRenderedDoc = docContainer;
+        if (targetKeyword) {
+          searchInDoc(targetKeyword);
+        }
+      });
+    }).catch(err => {
+      docContainer.innerHTML = '<div style="color:red; padding:20px; text-align:center;">Lỗi khi tải file gốc. Vui lòng bấm Tải file ở trên.</div>';
+    });
+}
+
+function closePreview() {
+  document.getElementById('preview-modal').style.display = 'none';
+}
+
+function searchInDoc(keyword) {
+  if (!keyword || !keyword.trim()) return;
+  const docContainer = document.getElementById('docx-container');
+  if (!docContainer) return;
+  
+  // Remove existing highlights
+  docContainer.querySelectorAll('.docx-highlight').forEach(el => {
+    el.classList.remove('docx-highlight');
+  });
+  
+  const cleanKey = keyword.trim().toLowerCase();
+  // Try exact or keyword search across p, span, tr, td
+  const candidates = docContainer.querySelectorAll('p, span, td, li');
+  let matchedEl = null;
+  
+  for (let el of candidates) {
+    const text = el.textContent || '';
+    if (text.toLowerCase().includes(cleanKey)) {
+      matchedEl = el;
+      break;
+    }
+  }
+  
+  // If not found full text, try keywords (first 4 words)
+  if (!matchedEl) {
+    const words = cleanKey.split(/\s+/).filter(w => w.length > 3);
+    if (words.length > 0) {
+      const subKey = words.slice(0, 3).join(' ');
+      for (let el of candidates) {
+        if (el.textContent && el.textContent.toLowerCase().includes(subKey)) {
+          matchedEl = el;
+          break;
+        }
+      }
+    }
+  }
+  
+  if (matchedEl) {
+    matchedEl.classList.add('docx-highlight');
+    matchedEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+</script>
+</body>
+</html>
